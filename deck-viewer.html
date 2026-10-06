@@ -582,6 +582,26 @@
                 file: "decks/The_Bioluminescent_Orb.pptx",
                 slideCount: 11,
                 ext: "GIF"
+            },
+            "The_Gnostic_Flight_Manual": {
+                title: "Mapping the Treasury of Light: Gnostic Flight Manual",
+                subtitle: "Applied Cybernetic Hermeneutics: Modeling Late Antique Ascent Liturgies as Information Architectures and Access Control Systems",
+                category: "Hermeneutic Systems & Cybernetics",
+                badgeClass: "badge-ai",
+                folder: "The_Gnostic_Flight_Manual",
+                file: "decks/The_Gnostic_Flight_Manual.pdf",
+                slideCount: 15,
+                ext: "PNG"
+            },
+            "The_Luminous_Codex": {
+                title: "The Luminous Codex: An Atlas of Ascent",
+                subtitle: "Theoretical Modeling: Phenomenological Isomorphisms Between Ancient Cosmologies and Modern Field Theories",
+                category: "Theoretical Physics & Cognitive Models",
+                badgeClass: "badge-ai",
+                folder: "The_Luminous_Codex",
+                file: "decks/The_Luminous_Codex.pdf",
+                slideCount: 13,
+                ext: "PNG"
             }
         };
 
@@ -643,7 +663,10 @@
             document.getElementById('activeDeckTitle').textContent = deck.title;
             document.getElementById('activeDeckSubtitle').textContent = deck.subtitle;
             document.getElementById('activeDeckBadge').textContent = deck.category;
-            document.getElementById('downloadPptxBtn').href = deck.file;
+            const isPdf = deck.file.toLowerCase().endsWith('.pdf');
+            const downloadBtn = document.getElementById('downloadPptxBtn');
+            downloadBtn.href = deck.file;
+            downloadBtn.innerHTML = `<span>💾</span> Download ${isPdf ? 'PDF' : 'PPTX'}`;
             document.getElementById('deckSelect').value = deckId;
 
             renderThumbnails(deckId);
