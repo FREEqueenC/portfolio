@@ -1,0 +1,303 @@
+export default `<!DOCTYPE html><html lang="en" data-beasties-container><head>
+  <meta charset="utf-8">
+  <title>Techno-Gnosis: Past &amp; Future</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23030208'/%3E%3Ccircle cx='32' cy='32' r='22' stroke='%2338bdf8' stroke-width='2' fill='none'/%3E%3Cpath d='M16 32 C22 20 42 20 48 32 C42 44 22 44 16 32 Z' stroke='%2338bdf8' stroke-width='2' fill='rgba(11,7,24,0.7)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23c084fc'/%3E%3Ccircle cx='32' cy='32' r='2.5' fill='%23f0fdfa'/%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/cinzeldecorative/v19/daaCSScvJGqLYhG8nNt8KPPswUAPni7dTMx7aA.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/cinzeldecorative/v19/daaCSScvJGqLYhG8nNt8KPPswUAPni7TTMw.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlKSTG7lQ.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlESTE.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'Orbitron';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'Orbitron';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'Orbitron';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}</style>
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #030208;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(88, 28, 135, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(14, 116, 144, 0.25) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(192, 38, 211, 0.2) 0px, transparent 50%),
+        url('https://www.transparenttextures.com/patterns/black-felt.png');
+      background-attachment: fixed;
+      color: #e0e7ff;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel Decorative', cursive;
+    }
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #080512;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #06b6d4, #8b5cf6, #ec4899);
+      border-radius: 4px;
+      border: 2px solid #080512;
+    }
+    .glowing-border {
+      box-shadow: 0 0 4px #06b6d4, 0 0 10px #a855f7, 0 0 18px #ec4899;
+    }
+
+    /* --- BIOLUMINESCENT TECHNO-GNOSIS CUSTOM ANIMATIONS & THEME STYLES --- */
+    
+    /* Breathing pulse glow of bioluminescent divine energy */
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 6px rgba(168, 85, 247, 0.4), 0 0 12px rgba(6, 182, 212, 0.2), inset 0 0 6px rgba(168, 85, 247, 0.15);
+        border-color: rgba(168, 85, 247, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 30px rgba(6, 182, 212, 0.6), inset 0 0 12px rgba(236, 72, 153, 0.3);
+        border-color: rgba(56, 189, 248, 0.9);
+      }
+    }
+
+    /* Animated rainbow border glow gradient movement */
+    @keyframes rainbow-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Horizontal scanlines scanning vertically across the frame */
+    @keyframes tech-scan {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    /* Subtle cyber flicker for terminal active modes */
+    @keyframes cyber-flicker {
+      0%, 100% { opacity: 0.96; }
+      45% { opacity: 0.96; }
+      50% { opacity: 0.82; }
+      55% { opacity: 0.96; }
+      75% { opacity: 0.96; }
+      80% { opacity: 0.72; }
+      85% { opacity: 0.96; }
+    }
+
+    /* Slow, elegant floating for oracle and major cards */
+    @keyframes float-gentle {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* Elegant decoding reveal on new content generation */
+    @keyframes decrypt-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+        filter: blur(6px) brightness(1.5);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0) brightness(1);
+      }
+    }
+
+    /* Shimmer reflection sweep on hover */
+    @keyframes sweep {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    /* Utility Classes */
+    .animate-pulse-glow {
+      animation: pulse-glow 3.5s infinite ease-in-out;
+    }
+
+    .animate-float-gentle {
+      animation: float-gentle 6s infinite ease-in-out;
+    }
+
+    .animate-cyber-flicker {
+      animation: cyber-flicker 8s infinite ease-in-out;
+    }
+
+    .animate-decrypt {
+      animation: decrypt-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .rainbow-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #c084fc 35%, #f43f5e 70%, #34d399 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow-shift 6s ease infinite;
+    }
+
+    .rainbow-border-glow {
+      position: relative;
+    }
+    .rainbow-border-glow::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899, #10b981, #06b6d4);
+      background-size: 300% 300%;
+      animation: rainbow-shift 8s linear infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Interactive Buttons with sweep reflection and bioluminescent neon hover */
+    .gnosis-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #38bdf8;
+      background: rgba(15, 10, 32, 0.65);
+      backdrop-filter: blur(8px);
+    }
+
+    .gnosis-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(56, 189, 248, 0.35),
+        rgba(192, 132, 252, 0.35),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .gnosis-btn:hover:not(:disabled) {
+      border-color: rgba(56, 189, 248, 0.9);
+      color: #f0f9ff;
+      box-shadow: 0 0 16px rgba(168, 85, 247, 0.5), 0 0 28px rgba(6, 182, 212, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.2);
+      background: rgba(139, 92, 246, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .gnosis-btn:hover:not(:disabled)::before {
+      animation: sweep 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .gnosis-btn:active:not(:disabled) {
+      transform: translateY(1px);
+      box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+    }
+
+    /* High-fidelity Gnostic Cards with bioluminescent dark purple-blue glass-morphism */
+    .gnosis-card {
+      background: rgba(11, 7, 24, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .gnosis-card:hover {
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 12px 32px rgba(139, 92, 246, 0.25), 0 0 20px rgba(6, 182, 212, 0.15);
+      background: rgba(15, 9, 32, 0.85);
+    }
+
+    /* Inputs that glow with electric blue/purple when focused */
+    .gnosis-input {
+      background: rgba(8, 5, 20, 0.7) !important;
+      border: 1px solid rgba(139, 92, 246, 0.4) !important;
+      color: #f1f5f9 !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .gnosis-input:focus {
+      border-color: rgba(56, 189, 248, 0.95) !important;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.4), 0 0 8px rgba(168, 85, 247, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.15) !important;
+      background: rgba(14, 8, 36, 0.85) !important;
+    }
+
+    /* Active Glowing State for active buttons & tab navigation */
+    .glowing-border-active {
+      box-shadow: 0 0 10px #06b6d4, 0 0 22px rgba(168, 85, 247, 0.6), inset 0 0 8px rgba(236, 72, 153, 0.3);
+      border-color: rgba(56, 189, 248, 0.95) !important;
+      color: #ffffff !important;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(6, 182, 212, 0.25)) !important;
+    }
+
+    /* Subtle bioluminescent glow for text content and headers on hover */
+    .text-glow-hover {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .text-glow-hover:hover {
+      text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 22px rgba(168, 85, 247, 0.7);
+      color: #ffffff !important;
+    }
+
+    /* Scanline effect to overlay on terminal screens or background container */
+    .scanlines {
+      position: relative;
+      overflow: hidden;
+    }
+    .scanlines::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 10, 36, 0) 50%, rgba(2, 1, 6, 0.25) 50%);
+      z-index: 10;
+      background-size: 100% 4px;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .scan-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), rgba(192, 132, 252, 0.8), transparent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+      animation: tech-scan 8s infinite linear;
+      pointer-events: none;
+      z-index: 11;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "rxjs": "https://esm.sh/rxjs@^7.8.2?conditions=es2015",
+    "rxjs/operators": "https://esm.sh/rxjs@^7.8.2/operators?conditions=es2015",
+    "rxjs/ajax": "https://esm.sh/rxjs@^7.8.2/ajax?conditions=es2015",
+    "rxjs/webSocket": "https://esm.sh/rxjs@^7.8.2/webSocket?conditions=es2015",
+    "rxjs/testing": "https://esm.sh/rxjs@^7.8.2/testing?conditions=es2015",
+    "rxjs/fetch": "https://esm.sh/rxjs@^7.8.2/fetch?conditions=es2015",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0?external=rxjs",
+    "@angular/core": "https://esm.sh/@angular/core@^21.1.3?external=rxjs",
+    "@angular/forms": "https://esm.sh/@angular/forms@^21.1.3?external=rxjs",
+    "@angular/platform-browser": "https://esm.sh/@angular/platform-browser@^21.1.3?external=rxjs",
+    "@angular/compiler": "https://esm.sh/@angular/compiler@^21.1.3?external=rxjs",
+    "@angular/common": "https://esm.sh/@angular/common@^21.1.3?external=rxjs",
+    "@angular/common/http": "https://esm.sh/@angular/common@^21.1.3/http?external=rxjs"
+  }
+}
+</script>
+</head>
+<body class="bg-black text-slate-200">
+  <app-root ng-version="21.2.21" ng-server-context="ssg"><div class="min-h-screen bg-slate-950 font-orbitron text-indigo-100 p-2 sm:p-4 lg:p-6 scanlines relative overflow-hidden"><div class="scan-bar"></div><div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div><div class="absolute top-1/3 -right-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none animate-pulse-glow" style="animation-delay: 1.5s;"></div><div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-fuchsia-600/20 rounded-full blur-3xl pointer-events-none animate-pulse-glow" style="animation-delay: 3s;"></div><div class="border border-purple-500/40 p-4 max-w-7xl mx-auto min-h-[95vh] flex flex-col shadow-2xl shadow-purple-950/80 rounded-2xl backdrop-blur-xl relative overflow-hidden" style="background: radial-gradient(circle at 50% 20%, #0d0822 0%, #04020a 100%);"><div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-400/80"></div><div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-fuchsia-400/80"></div><div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-purple-400/80"></div><div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-emerald-400/80"></div><header class="text-center p-4 border-b border-purple-500/30 mb-4 animate-cyber-flicker relative"><h1 class="font-cinzel text-3xl sm:text-4xl lg:text-5xl tracking-widest cursor-default select-none font-bold rainbow-text" style="filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.6));"> Techno-Gnosis </h1><p class="text-cyan-300/80 text-xs sm:text-sm mt-2 tracking-widest uppercase font-semibold flex items-center justify-center space-x-2"><span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span><span>Bridging Ancient Keys &amp; Future Code</span><span class="inline-block w-2 h-2 rounded-full bg-fuchsia-400 animate-ping" style="animation-delay: 0.5s;"></span></p></header><nav class="flex flex-wrap justify-center items-center gap-3 sm:gap-6 my-4 relative z-20"><button class="gnosis-btn font-cinzel text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg transition-all duration-300 tracking-wider flex items-center space-x-2 glowing-border-active"><span>👁️</span><span>The Oracle</span></button><button class="gnosis-btn font-cinzel text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg transition-all duration-300 tracking-wider flex items-center space-x-2"><span>✨</span><span>The Aethelier</span></button><button class="gnosis-btn font-cinzel text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg transition-all duration-300 tracking-wider flex items-center space-x-2"><span class="text-cyan-300">🜏</span><span>Esoteric Archive</span></button></nav><main class="flex-grow flex flex-col overflow-y-auto custom-scrollbar p-1 relative z-10"><app-oracle class="animate-decrypt"><div class="flex flex-col h-[70vh] gnosis-card p-4 sm:p-6 rounded-xl relative overflow-hidden"><div class="flex items-center justify-between mb-4 pb-2 border-b border-purple-500/30 text-xs text-cyan-300/70 uppercase tracking-widest font-mono"><div class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400"></span><span class="font-semibold text-cyan-200">Oracle Channel Established</span></div><span class="text-purple-300/60 font-semibold">Biolum-Terminal v2.4</span></div><div class="flex-grow overflow-y-auto custom-scrollbar pr-2 space-y-4"><div class="flex"><div class="p-4 rounded-xl max-w-lg lg:max-w-2xl border transition-all duration-300 animate-decrypt flex flex-col shadow-lg bg-purple-950/40 border-purple-500/40 shadow-purple-950/50" style="white-space: pre-wrap;"><span class="text-[10px] uppercase tracking-widest font-mono mb-1.5 font-bold flex items-center space-x-1 text-cyan-300"><span>👁️ THE ORACLE</span><!----><!----></span><p class="text-sm sm:text-base leading-relaxed text-slate-100 font-mono">Ask, and the echoes of the past shall illuminate the future...</p></div></div><!----></div><div class="mt-4 pt-4 border-t border-purple-500/30"><!----><form novalidate class="flex items-center space-x-3 ng-untouched ng-pristine ng-valid"><div class="relative flex-grow"><input type="text" name="userInput" placeholder="Speak your query into the bioluminescent void..." class="w-full gnosis-input rounded-xl p-4 pr-10 text-cyan-100 placeholder-purple-300/40 font-mono focus:outline-none text-sm sm:text-base ng-untouched ng-pristine ng-valid" value><span class="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400/50 select-none font-mono text-sm">🜁</span></div><button type="submit" class="gnosis-btn px-6 py-4 rounded-xl font-cinzel text-sm uppercase tracking-widest font-semibold flex items-center justify-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none min-w-[120px]" disabled><!----><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4 text-cyan-300"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg><span>Transmit</span><!----></button></form></div></div></app-oracle><!----><!----><!----></main><footer class="text-center p-2 border-t border-purple-500/20 mt-4 text-[10px] sm:text-xs text-purple-300/60 tracking-widest uppercase"><p class="animate-pulse-glow inline-block px-4 py-1.5 border border-purple-500/30 rounded-full bg-purple-950/40 text-cyan-200"><span class="text-fuchsia-400">✦</span> The Monad observing the Virtual Machine. <span class="text-emerald-400 font-semibold">[BIOLUMINESCENT_NODES_ONLINE]</span></p></footer></div></div></app-root>
+<script src="main-YR3BOOGG.js" type="module"></script>
+
+</body></html>`;

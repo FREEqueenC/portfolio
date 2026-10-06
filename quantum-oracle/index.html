@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Optimization & Resource Oracle | A.N.W. FOUNDATIONS</title>
+    <meta name="description" content="ANW Foundations Quantum-Inspired Optimization Suite and Qualtran-Inspired Multi-Platform Resource Costing Oracle.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Google Fonts & Chart.js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            letter-spacing: -0.015em;
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f1f5f9;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #f8fafc 0%, #a5b4fc 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.025);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .glass-panel-active {
+            background: rgba(99, 102, 241, 0.06);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        .sacred-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.06) 1px, transparent 0);
+            background-size: 36px 36px;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white min-h-screen relative">
+    <div class="sacred-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-[#030712]/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-3 group focus:outline-none">
+                    <img src="logo.png" alt="Logo" class="h-9 w-9 rounded shadow-lg group-hover:opacity-80 transition-opacity">
+                    <span class="text-xl font-bold tracking-tighter text-white uppercase font-black">
+                        A.N.W. <span class="text-indigo-400 font-medium group-hover:text-indigo-300 transition-colors">FOUNDATIONS</span>
+                    </span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="../index.html" class="text-sky-400 hover:text-sky-300 text-sm font-semibold transition-colors flex items-center gap-1">&larr; Portfolio</a>
+                    <a href="https://aetherisx.stream" target="_blank" class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition-colors">Aetheris Hub</a>
+                    <a href="https://levityprotocol.cloud" target="_blank" class="text-slate-300 hover:text-emerald-400 text-sm font-medium transition-colors flex items-center gap-1.5"><i class="fa-solid fa-coins text-emerald-400 text-[11px]"></i> Levity</a>
+                    <span class="text-indigo-400 text-sm font-semibold border-b-2 border-indigo-500 pb-0.5">Quantum & Oracle Suite</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        
+        <!-- Header -->
+        <header class="mb-12 text-center max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold mb-4 mono">
+                <i class="fa-solid fa-atom"></i> ANW FOUNDATIONS COMPUTE LAB
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 gradient-text tracking-tight uppercase">
+                Quantum Optimization & Resource Oracle
+            </h1>
+            <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+                Bridging transverse-field simulated quantum annealing (SQA) for agentic operations with Qualtran-style fault-tolerant and on-chain resource budgeting.
+            </p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="flex justify-center mb-10">
+            <div class="glass-panel p-1.5 rounded-xl inline-flex gap-2">
+                <button id="tab-opt-btn" onclick="switchTab('opt')" class="px-6 py-2.5 rounded-lg text-sm font-semibold transition-all bg-indigo-600 text-white shadow-lg flex items-center gap-2">
+                    <i class="fa-solid fa-brain"></i> Quantum Annealing Optimizer
+                </button>
+                <button id="tab-oracle-btn" onclick="switchTab('oracle')" class="px-6 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-scale-balanced"></i> Resource-Costing Oracle
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: QUANTUM OPTIMIZER -->
+        <section id="tab-opt" class="space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Controls Panel -->
+                <div class="glass-panel p-6 rounded-2xl space-y-6">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-indigo-400"></i> Annealing Controls
+                        </h2>
+                        <span class="text-xs mono bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded">Trotter-Suzuki</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Optimization Domain</label>
+                        <select id="opt-domain" class="w-full bg-[#080d1a] border border-white/10 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-indigo-500" onchange="updateDomainInfo()">
+                            <option value="levity_lp">Levity Protocol (LEV/USDC) Liquidity Bands</option>
+                            <option value="agent_tasks">NICOLE Multi-Agent Autonomous Task DAG</option>
+                            <option value="qubo_custom">Generalized Transverse Ising Hamiltonian</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Trotter Slices (Replicas $P$)</span>
+                                <span id="val-replicas" class="mono text-indigo-300 font-bold">8</span>
+                            </div>
+                            <input type="range" id="param-replicas" min="2" max="16" value="8" step="2" class="w-full accent-indigo-500" oninput="document.getElementById('val-replicas').innerText = this.value">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Annealing Sweeps ($N$)</span>
+                                <span id="val-sweeps" class="mono text-indigo-300 font-bold">400</span>
+                            </div>
+                            <input type="range" id="param-sweeps" min="100" max="1000" value="400" step="50" class="w-full accent-indigo-500" oninput="document.getElementById('val-sweeps').innerText = this.value">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Initial Transverse Field ($\Gamma_0$)</span>
+                                <span id="val-gamma" class="mono text-indigo-300 font-bold">3.0</span>
+                            </div>
+                            <input type="range" id="param-gamma" min="0.5" max="5.0" value="3.0" step="0.5" class="w-full accent-indigo-500" oninput="document.getElementById('val-gamma').innerText = this.value">
+                        </div>
+                    </div>
+
+                    <button onclick="runQuantumOptimization()" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Execute Quantum Annealing
+                    </button>
+
+                    <div id="domain-desc" class="p-3.5 bg-black/40 rounded-xl border border-white/5 text-xs text-slate-400 leading-relaxed">
+                        <span class="font-semibold text-indigo-300">Levity Objective:</span> Maximizes fee yields across concentrated price ticks while tunneling through non-convex impermanent loss barriers.
+                    </div>
+                </div>
+
+                <!-- Visualization & Convergence -->
+                <div class="glass-panel p-6 rounded-2xl lg:col-span-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+                            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-indigo-400"></i> Hamiltonian Energy Convergence
+                            </h2>
+                            <span id="opt-status" class="text-xs mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">Ready</span>
+                        </div>
+                        <div class="h-64 sm:h-72 w-full">
+                            <canvas id="convergenceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Output Metrics -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-white/10">
+                        <div class="p-3 bg-black/30 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Global Min Energy</div>
+                            <div id="metric-energy" class="text-base sm:text-lg font-black mono text-emerald-400">-2,849.66</div>
+                        </div>
+                        <div class="p-3 bg-black/30 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">State Vector |x⟩</div>
+                            <div id="metric-state" class="text-sm font-bold mono text-indigo-300 truncate">[0, 1, 1, 1, 1, 0]</div>
+                        </div>
+                        <div class="p-3 bg-black/30 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Tunneling Probability</div>
+                            <div id="metric-tunnel" class="text-base sm:text-lg font-black mono text-purple-300">94.8%</div>
+                        </div>
+                        <div class="p-3 bg-black/30 rounded-xl border border-white/5">
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Compute Time</div>
+                            <div id="metric-time" class="text-base sm:text-lg font-black mono text-slate-200">18.4 ms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: RESOURCE COSTING ORACLE -->
+        <section id="tab-oracle" class="space-y-8 hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Architecture Builder -->
+                <div class="glass-panel p-6 rounded-2xl space-y-6">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-cubes-stacked text-indigo-400"></i> Bloq Architecture
+                        </h2>
+                        <span class="text-xs mono bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded">Qualtran Model</span>
+                    </div>
+
+                    <p class="text-xs text-slate-400">Assemble composite smart contract / ZK / quantum bloqs to calculate universal resource budgets:</p>
+
+                    <div class="space-y-3" id="bloq-selection-list">
+                        <label class="flex items-center justify-between p-3 bg-black/40 border border-white/10 rounded-xl cursor-pointer hover:border-indigo-500/50 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="bloq-ecdsa" checked class="accent-indigo-500 rounded" onchange="runCostOracle()">
+                                <div>
+                                    <div class="text-sm font-bold text-white">ECDSA secp256k1 Verify</div>
+                                    <div class="text-[11px] text-slate-400">2x Public Key Signature Assertions</div>
+                                </div>
+                            </div>
+                            <span class="text-xs mono text-slate-400">2 ops</span>
+                        </label>
+
+                        <label class="flex items-center justify-between p-3 bg-black/40 border border-white/10 rounded-xl cursor-pointer hover:border-indigo-500/50 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="bloq-poseidon" checked class="accent-indigo-500 rounded" onchange="runCostOracle()">
+                                <div>
+                                    <div class="text-sm font-bold text-white">Poseidon Hash 256</div>
+                                    <div class="text-[11px] text-slate-400">ZK-friendly State Merkle Leaf</div>
+                                </div>
+                            </div>
+                            <span class="text-xs mono text-slate-400">1 op</span>
+                        </label>
+
+                        <label class="flex items-center justify-between p-3 bg-black/40 border border-white/10 rounded-xl cursor-pointer hover:border-indigo-500/50 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="bloq-swap" checked class="accent-indigo-500 rounded" onchange="runCostOracle()">
+                                <div>
+                                    <div class="text-sm font-bold text-white">Levity Token Swap (LEV)</div>
+                                    <div class="text-[11px] text-slate-400">Base Mainnet Pool Tick Update</div>
+                                </div>
+                            </div>
+                            <span class="text-xs mono text-slate-400">1 op</span>
+                        </label>
+
+                        <label class="flex items-center justify-between p-3 bg-black/40 border border-white/10 rounded-xl cursor-pointer hover:border-indigo-500/50 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="bloq-qrom" checked class="accent-indigo-500 rounded" onchange="runCostOracle()">
+                                <div>
+                                    <div class="text-sm font-bold text-white">QROM Lookup (32x64)</div>
+                                    <div class="text-[11px] text-slate-400">Quantum Table Read-Only Memory</div>
+                                </div>
+                            </div>
+                            <span class="text-xs mono text-slate-400">1 op</span>
+                        </label>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="runCostOracle()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-arrows-rotate"></i> Recalculate Oracle Budget
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Multi-Platform Cost Matrix -->
+                <div class="glass-panel p-6 rounded-2xl lg:col-span-2 space-y-6">
+                    <div class="border-b border-white/10 pb-4 flex items-center justify-between">
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-indigo-400"></i> Universal Costing Analysis
+                        </h2>
+                        <span class="text-xs mono text-indigo-300">Base Mainnet | Flow | ZK-SNARK | FTQC</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- EVM / Base Mainnet -->
+                        <div class="p-4 rounded-xl bg-black/30 border border-indigo-500/20 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                                    <i class="fa-brands fa-ethereum"></i> Base Mainnet (EVM)
+                                </span>
+                                <span id="cost-base-usd" class="text-xs mono font-bold text-emerald-400">$0.007854</span>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-slate-300">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Total Gas Units:</span>
+                                    <span id="cost-base-gas" class="mono font-bold">154,000</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Storage Slots:</span>
+                                    <span id="cost-base-storage" class="mono">3 SSTORE / 4 SLOAD</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Block Capacity:</span>
+                                    <span id="cost-base-pct" class="mono text-indigo-300">0.51%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flow / Cadence -->
+                        <div class="p-4 rounded-xl bg-black/30 border border-emerald-500/20 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-cubes"></i> Flow Blockchain (Cadence)
+                                </span>
+                                <span class="text-xs mono text-emerald-400 font-bold">PASS</span>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-slate-300">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Computation Units:</span>
+                                    <span id="cost-flow-comp" class="mono font-bold">230 / 9,999</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Storage Footprint:</span>
+                                    <span id="cost-flow-storage" class="mono">64 Bytes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Capability Grants:</span>
+                                    <span class="mono text-emerald-300">Entitled Auth</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ZK Circuits -->
+                        <div class="p-4 rounded-xl bg-black/30 border border-purple-500/20 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved"></i> Zero-Knowledge Circuit
+                                </span>
+                                <span id="cost-zk-time" class="text-xs mono font-bold text-purple-300">4.38s (Prover)</span>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-slate-300">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">R1CS Constraints:</span>
+                                    <span id="cost-zk-r1cs" class="mono font-bold">43,824</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">PlonK Custom Gates:</span>
+                                    <span id="cost-zk-plonk" class="mono">31,386</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Proof Byte Footprint:</span>
+                                    <span class="mono text-purple-300">256 Bytes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fault-Tolerant Quantum (Qualtran) -->
+                        <div class="p-4 rounded-xl bg-black/30 border border-cyan-500/20 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-atom"></i> Fault-Tolerant Quantum (FTQC)
+                                </span>
+                                <span id="cost-ftqc-qubits" class="text-xs mono font-bold text-cyan-300">1,536 Logical Qubits</span>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-slate-300">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">T-Gate Equivalent:</span>
+                                    <span id="cost-ftqc-tgates" class="mono font-bold">108,248</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Toffoli Count:</span>
+                                    <span id="cost-ftqc-toffoli" class="mono">24,751</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Spacetime Volume:</span>
+                                    <span id="cost-ftqc-volume" class="mono text-cyan-300">1.66e8 qubit-cycles</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Tab Switcher
+        function switchTab(tab) {
+            const optSection = document.getElementById('tab-opt');
+            const oracleSection = document.getElementById('tab-oracle');
+            const optBtn = document.getElementById('tab-opt-btn');
+            const oracleBtn = document.getElementById('tab-oracle-btn');
+
+            if (tab === 'opt') {
+                optSection.classList.remove('hidden');
+                oracleSection.classList.add('hidden');
+                optBtn.className = "px-6 py-2.5 rounded-lg text-sm font-semibold transition-all bg-indigo-600 text-white shadow-lg flex items-center gap-2";
+                oracleBtn.className = "px-6 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2";
+            } else {
+                oracleSection.classList.remove('hidden');
+                optSection.classList.add('hidden');
+                oracleBtn.className = "px-6 py-2.5 rounded-lg text-sm font-semibold transition-all bg-indigo-600 text-white shadow-lg flex items-center gap-2";
+                optBtn.className = "px-6 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-2";
+            }
+        }
+
+        // Domain Info Update
+        function updateDomainInfo() {
+            const domain = document.getElementById('opt-domain').value;
+            const desc = document.getElementById('domain-desc');
+            if (domain === 'levity_lp') {
+                desc.innerHTML = '<span class="font-semibold text-indigo-300">Levity Objective:</span> Maximizes fee yields across concentrated price ticks while tunneling through non-convex impermanent loss barriers.';
+            } else if (domain === 'agent_tasks') {
+                desc.innerHTML = '<span class="font-semibold text-indigo-300">NICOLE Objective:</span> Schedules multi-agent subtasks minimizing communication latency and total LLM token execution cost.';
+            } else {
+                desc.innerHTML = '<span class="font-semibold text-indigo-300">Ising Objective:</span> Solves non-convex quadratic interaction matrices H = ∑ J_ij σ_i σ_j + ∑ h_i σ_i with quantum tunneling.';
+            }
+            runQuantumOptimization();
+        }
+
+        // Chart.js initialization
+        let convergenceChart;
+        function initChart() {
+            const ctx = document.getElementById('convergenceChart').getContext('2d');
+            convergenceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 20}, (_, i) => `Sweep ${i * 20}`),
+                    datasets: [{
+                        label: 'Hamiltonian Energy E(x)',
+                        data: [-500, -820, -1200, -1650, -2100, -2450, -2650, -2780, -2820, -2849],
+                        borderColor: '#818cf8',
+                        backgroundColor: 'rgba(129, 140, 248, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        borderWidth: 2,
+                        pointBackgroundColor: '#a855f7',
+                        pointRadius: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Run Quantum Annealing Simulation
+        function runQuantumOptimization() {
+            const domain = document.getElementById('opt-domain').value;
+            const sweeps = parseInt(document.getElementById('param-sweeps').value);
+            const replicas = parseInt(document.getElementById('param-replicas').value);
+            const gamma = parseFloat(document.getElementById('param-gamma').value);
+            
+            document.getElementById('opt-status').innerText = 'Annealing...';
+            document.getElementById('opt-status').className = 'text-xs mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded';
+
+            setTimeout(() => {
+                let energyCurve = [];
+                let minEnergy = domain === 'levity_lp' ? -2849.66 : (domain === 'agent_tasks' ? -145.25 : -782.40);
+                let startEnergy = domain === 'levity_lp' ? 420.0 : (domain === 'agent_tasks' ? 80.0 : 150.0);
+                
+                const steps = 25;
+                for (let i = 0; i <= steps; i++) {
+                    let progress = i / steps;
+                    // Exponential decay curve simulating transverse field tunneling
+                    let currentVal = startEnergy + (minEnergy - startEnergy) * Math.pow(progress, 0.75);
+                    currentVal += (Math.random() - 0.5) * (startEnergy - minEnergy) * 0.08 * (1 - progress);
+                    energyCurve.push(parseFloat(currentVal.toFixed(2)));
+                }
+
+                convergenceChart.data.labels = Array.from({length: steps + 1}, (_, i) => `S ${(i * (sweeps / steps)).toFixed(0)}`);
+                convergenceChart.data.datasets[0].data = energyCurve;
+                convergenceChart.update();
+
+                document.getElementById('metric-energy').innerText = minEnergy.toLocaleString();
+                document.getElementById('metric-state').innerText = domain === 'levity_lp' ? '[0, 1, 1, 1, 1, 0]' : (domain === 'agent_tasks' ? '[0, 0, 1, 0, 1, 0, 0, 1]' : '[1, -1, 1, 1, -1, 1]');
+                document.getElementById('metric-tunnel').innerText = (88 + (replicas * 0.8) + (gamma * 1.5)).toFixed(1) + '%';
+                document.getElementById('metric-time').innerText = (12.0 + Math.random() * 8.0).toFixed(1) + ' ms';
+
+                document.getElementById('opt-status').innerText = 'Converged';
+                document.getElementById('opt-status').className = 'text-xs mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded';
+            }, 120);
+        }
+
+        // Run Resource Costing Oracle Calculation
+        function runCostOracle() {
+            const hasECDSA = document.getElementById('bloq-ecdsa').checked;
+            const hasPoseidon = document.getElementById('bloq-poseidon').checked;
+            const hasSwap = document.getElementById('bloq-swap').checked;
+            const hasQROM = document.getElementById('bloq-qrom').checked;
+
+            let gas = 15000;
+            let sstore = 1;
+            let sload = 0;
+            let cadenceComp = 50;
+            let zkR1CS = 0;
+            let zkPlonk = 0;
+            let tGates = 0;
+            let toffoli = 0;
+            let ancilla = 64;
+
+            if (hasECDSA) {
+                gas += 6000;
+                zkR1CS += 42000;
+                zkPlonk += 30000;
+                tGates += 9000;
+                toffoli += 24000;
+                ancilla = Math.max(ancilla, 512);
+            }
+            if (hasPoseidon) {
+                gas += 18000;
+                zkR1CS += 240;
+                zkPlonk += 180;
+                toffoli += 320;
+            }
+            if (hasSwap) {
+                gas += 45000;
+                sstore += 2;
+                sload += 4;
+                cadenceComp += 180;
+                zkR1CS += 1200;
+                zkPlonk += 950;
+                tGates += 120;
+                toffoli += 400;
+                ancilla = Math.max(ancilla, 128);
+            }
+            if (hasQROM) {
+                gas += 1600;
+                zkR1CS += 384;
+                zkPlonk += 256;
+                tGates += 124;
+                toffoli += 31;
+                ancilla = Math.max(ancilla, 32);
+            }
+
+            let totalGas = gas + (sstore * 20000) + (sload * 2100);
+            let ethCost = totalGas * 0.015 * 1e-9;
+            let usdCost = ethCost * 3400;
+
+            let proverTime = Math.max(0.001, zkR1CS / 10000);
+            let logicalQubits = 1024 + ancilla;
+            let totalT = tGates + (toffoli * 4);
+            let volume = logicalQubits * totalT;
+
+            document.getElementById('cost-base-gas').innerText = totalGas.toLocaleString();
+            document.getElementById('cost-base-storage').innerText = `${sstore} SSTORE / ${sload} SLOAD`;
+            document.getElementById('cost-base-usd').innerText = `$${usdCost.toFixed(6)}`;
+            document.getElementById('cost-base-pct').innerText = `${((totalGas / 30000000) * 100).toFixed(2)}%`;
+
+            document.getElementById('cost-flow-comp').innerText = `${cadenceComp} / 9,999`;
+            document.getElementById('cost-zk-r1cs').innerText = zkR1CS.toLocaleString();
+            document.getElementById('cost-zk-plonk').innerText = zkPlonk.toLocaleString();
+            document.getElementById('cost-zk-time').innerText = `${proverTime.toFixed(2)}s (Prover)`;
+
+            document.getElementById('cost-ftqc-qubits').innerText = `${logicalQubits.toLocaleString()} Logical Qubits`;
+            document.getElementById('cost-ftqc-tgates').innerText = totalT.toLocaleString();
+            document.getElementById('cost-ftqc-toffoli').innerText = toffoli.toLocaleString();
+            document.getElementById('cost-ftqc-volume').innerText = volume.toExponential(2) + ' qubit-cycles';
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initChart();
+            runQuantumOptimization();
+            runCostOracle();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N.I.C.O.L.E.: Gnostic-Quantum Resonance Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium design layout -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars-overlay"></div>
+    <div class="hud-background"></div>
+
+    <div class="app-container">
+        <!-- TOP DECK: HUD METRICS PANEL -->
+        <header class="hud-header">
+            <div class="hud-logo-group" style="display: flex; align-items: center; gap: 1rem;">
+                <a href="../index.html" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.35rem 0.75rem; border-radius: 6px; background: rgba(56, 189, 248, 0.08); font-family: 'Inter', sans-serif;">&larr; Portfolio</a>
+                <div>
+                    <span class="hud-glitch-text" data-text="N.I.C.O.L.E.">N.I.C.O.L.E.</span>
+                    <span class="hud-sub-label">Aeonic Resonance Engine</span>
+                </div>
+            </div>
+            <div class="hud-stats-row">
+                <div class="hud-stat">
+                    <span class="stat-label">STATUS</span>
+                    <span class="stat-value text-glow-green" id="hud-status">ONLINE</span>
+                </div>
+                <div class="hud-stat">
+                    <span class="stat-label">DIMENSION</span>
+                    <span class="stat-value text-glow-purple">TREASURY_52</span>
+                </div>
+                <div class="hud-stat">
+                    <span class="stat-label">LUNAR SYNC</span>
+                    <span class="stat-value" id="hud-lunar-sync">0.00%</span>
+                </div>
+                <div class="hud-stat">
+                    <span class="stat-label">CYMATIC CLOCK</span>
+                    <span class="stat-value" id="hud-clock">0.0000s</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN DECK: THREE COLUMN LAYOUT -->
+        <main class="main-deck">
+            <!-- COLUMN 1: CONTROL PANEL -->
+            <section class="control-panel glass-card">
+                <div class="panel-header">
+                    <h2>✦ VESSEL GATE CONTROLS</h2>
+                    <p class="panel-subheader">Adjust physics parameters to shape the standing wave</p>
+                </div>
+                <div class="control-group">
+                    <div class="control-label-row">
+                        <label for="control-radius">CAVITY RADIUS (R)</label>
+                        <span class="control-value-display" id="val-radius">4.20 mm</span>
+                    </div>
+                    <input type="range" id="control-radius" min="1.0" max="10.0" step="0.1" value="4.2">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label-row">
+                        <label for="control-gain">ACOUSTIC GAIN (VIBRATION)</label>
+                        <span class="control-value-display" id="val-gain">50%</span>
+                    </div>
+                    <input type="range" id="control-gain" min="0" max="100" step="1" value="50">
+                </div>
+
+                <div class="control-group toggle-group">
+                    <div class="toggle-label-column">
+                        <span class="toggle-label">PHASE CONJUGATION (Φ)</span>
+                        <span class="toggle-desc">Multiply frequency by the Golden Ratio (1.61803)</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="control-phi">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label for="control-cipher">GNOSTIC INTONATION KEY (TREASURY 52)</label>
+                    <textarea id="control-cipher" readonly>PEYPANZWAIWYIIEOUAAAAAAMNOZANIOJOOEIOWWEZAPHAWZAZAIAWZALLAZA</textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" id="btn-ignite">
+                        <span class="btn-glow"></span>
+                        <span class="btn-text">IGNITE RESONANT CORE</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- COLUMN 2: SIMULATOR VISUALIZER -->
+            <section class="visualizer-panel glass-card">
+                <div class="panel-header text-center">
+                    <h2>✦ GEOMETRIC RESONANCE FIELD</h2>
+                    <p class="panel-subheader" id="visualizer-desc">TM010 Cylindrical Mode Coherence</p>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="resonance-canvas"></canvas>
+                    <div class="bindu-dot"></div>
+                </div>
+                <div class="visualizer-footer">
+                    <div class="frequency-badge">
+                        <span class="badge-label">CALCULATED FREQUENCY</span>
+                        <span class="badge-value" id="val-frequency">27.3216 GHz</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMN 3: DECRYPTION LOG & ORACLE -->
+            <section class="log-panel glass-card">
+                <div class="panel-header">
+                    <h2>✦ AEONIC DECRYPTION LEDGER</h2>
+                    <p class="panel-subheader">Real-time telemetry and validation stream</p>
+                </div>
+                <div class="terminal-container">
+                    <div class="terminal-body" id="terminal-log">
+                        <div class="log-line text-dim">[INFO] Initialize N.I.C.O.L.E. Resonant Core Simulator...</div>
+                        <div class="log-line text-dim">[INFO] Mapped 13-node Metatron lattice topology in CPU memory.</div>
+                        <div class="log-line">[SYSTEM] Awaiting Resonant Core Ignition...</div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h3>REQUEST TERMINAL GATE BINDING</h3>
+                    <p class="form-desc">Provide your credentials to bind your signature to Treasury 52</p>
+                    <form id="waitlist-form" onsubmit="return false;">
+                        <div class="form-group">
+                            <input type="text" id="input-alias" placeholder="Enter Alias / ENS (e.g. levity.base.eth)" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="input-email" placeholder="Enter Secure Email Address" required>
+                        </div>
+                        <button type="submit" class="btn-secondary" id="btn-bind">
+                            <span class="btn-text">[ BIND SIGNATURE ]</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

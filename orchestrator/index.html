@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NICOLE Workspace Orchestrator</title>
+    <!-- Google Fonts: Outfit (headings), Inter (body), Fira Code (monospaced logs) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "centrifuge": "https://cdn.jsdelivr.net/npm/centrifuge@5.5.3/+esm"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="glow-bg"></div>
+
+    <div class="app-container">
+        <!-- TOP HEADER -->
+        <header class="app-header">
+            <div class="logo-area" style="display: flex; align-items: center; gap: 1rem;">
+                <a href="../index.html" style="color: #00f3ff; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.35rem 0.75rem; border: 1px solid rgba(0, 243, 255, 0.4); border-radius: 6px; background: rgba(0, 243, 255, 0.08);">&larr; Portfolio</a>
+                <span class="pulse-dot active"></span>
+                <div>
+                    <h1 style="display: inline; margin-right: 0.5rem;">NICOLE</h1>
+                    <span class="subtitle">Workspace Orchestrator</span>
+                </div>
+            </div>
+            <div class="system-status">
+                <span class="badge base-mainnet">LEV Token: Base Mainnet</span>
+                <span class="badge active-session">Session: Active</span>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="app-main">
+            <!-- LEFT PANEL: WORKSPACES & CHAT -->
+            <section class="panel-left">
+                <!-- Workspace Widget -->
+                <div class="card glass">
+                    <div class="card-header">
+                        <span class="material-symbols-outlined icon">folder_open</span>
+                        <h2>Workspaces</h2>
+                    </div>
+                    <div class="card-content">
+                        <div id="workspaces-list" class="workspaces-list">
+                            <!-- Injected dynamically -->
+                            <p class="loading-placeholder">Loading workspaces...</p>
+                        </div>
+                        <form id="new-workspace-form" class="inline-form">
+                            <input type="text" id="ws-name" placeholder="Workspace Name" required>
+                            <input type="text" id="ws-path" placeholder="Absolute Path" required>
+                            <button type="submit" class="btn-primary-glow">Add</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Chat Widget -->
+                <div class="card glass chat-card">
+                    <div class="card-header">
+                        <span class="material-symbols-outlined icon">forum</span>
+                        <h2>NICOLE Oracle</h2>
+                    </div>
+                    <div class="card-content chat-content">
+                        <div id="chat-messages" class="chat-messages">
+                            <div class="message system">
+                                <span class="sender">NICOLE:</span>
+                                <span class="text">Greetings Ash. I am online and ready to orchestrate your workspace. How can I assist you today?</span>
+                            </div>
+                        </div>
+                        <form id="chat-form" class="chat-input-area">
+                            <input type="text" id="chat-input" placeholder="Ask NICOLE (e.g. 'Add a task to check LEV pool')" required>
+                            <button type="submit" class="btn-circle-glow">
+                                <span class="material-symbols-outlined">send</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: TASKS, AGENTS, CONSOLE -->
+            <section class="panel-right">
+                <!-- Task Board -->
+                <div class="card glass task-card">
+                    <div class="card-header">
+                        <span class="material-symbols-outlined icon">assignment</span>
+                        <h2>Task Orchestrator</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="task-board">
+                            <!-- Todo Column -->
+                            <div class="task-column" id="col-todo">
+                                <h3>TODO</h3>
+                                <div class="task-list" id="list-todo"></div>
+                            </div>
+                            <!-- In Progress Column -->
+                            <div class="task-column" id="col-inprogress">
+                                <h3>IN PROGRESS</h3>
+                                <div class="task-list" id="list-inprogress"></div>
+                            </div>
+                            <!-- Done Column -->
+                            <div class="task-column" id="col-done">
+                                <h3>DONE</h3>
+                                <div class="task-list" id="list-done"></div>
+                            </div>
+                        </div>
+                        <form id="new-task-form" class="inline-form">
+                            <input type="text" id="task-title" placeholder="New Task Title" required>
+                            <select id="task-ws-select">
+                                <option value="">Global (No Workspace)</option>
+                            </select>
+                            <button type="submit" class="btn-primary-glow">Create Task</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lower split: Agents and Live Logs -->
+                <div class="lower-grid">
+                    <!-- Agent Status Widget -->
+                    <div class="card glass agent-card">
+                        <div class="card-header">
+                            <span class="material-symbols-outlined icon">smart_toy</span>
+                            <h2>Agent Status</h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="agents-list" class="agents-list">
+                                <div class="agent-item">
+                                    <div class="agent-info">
+                                        <span class="pulse-dot active"></span>
+                                        <strong>NICOLE Oracle</strong>
+                                    </div>
+                                    <span class="agent-status-badge running">Running</span>
+                                </div>
+                                <div class="agent-item">
+                                    <div class="agent-info">
+                                        <span class="pulse-dot idle"></span>
+                                        <strong>Amp</strong>
+                                    </div>
+                                    <span class="agent-status-badge idle">Idle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Terminal/Activity Console -->
+                    <div class="card glass console-card">
+                        <div class="card-header">
+                            <span class="material-symbols-outlined icon">terminal</span>
+                            <h2>Activity Console</h2>
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="card-content console-content">
+                            <div id="console-logs" class="console-logs">
+                                <!-- Console logs injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JS Files -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

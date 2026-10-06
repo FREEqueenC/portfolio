@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashleigh Walker | Full-Stack Developer & Data Systems Showcase</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .project-card {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 24px rgba(0, 243, 255, 0.2);
+        }
+        .project-card h3 {
+            margin: 0 0 0.5rem 0;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+        .badge-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .badge-data { background: rgba(0, 243, 255, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .badge-ai { background: rgba(176, 38, 255, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+        .badge-web3 { background: rgba(0, 255, 102, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+        .badge-deck { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+        .badge-civic { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+        .badge-eco { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.3); }
+        .badge-theology { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .card-meta {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        .project-desc {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(176, 38, 255, 0.2));
+            color: #fff;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+        .project-link-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.4), rgba(176, 38, 255, 0.4));
+            border-color: #00f3ff;
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+        }
+        .btn-deck {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        .btn-deck:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(16, 185, 129, 0.4));
+            border-color: #60a5fa;
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+        }
+        .quick-nav {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .quick-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.2s ease;
+        }
+        .quick-nav a:hover {
+            color: #fff;
+            border-color: var(--accent-cyan);
+            background: rgba(0, 243, 255, 0.08);
+        }
+    </style>
+</head>
+<body>
+    <div id="glow-bg"></div>
+
+    <header>
+        <div class="profile-header-container">
+            <div class="profile-avatar-wrap">
+                <img src="assets/ashleigh_walker.jpg" alt="Ashleigh Walker" class="profile-avatar">
+                <span class="status-indicator" title="Open to Full-Stack & Data Analytics Roles">Available</span>
+            </div>
+            <div class="profile-header-text">
+                <h1 id="brand-name">Ashleigh Walker</h1>
+                <p class="subtitle">Full-Stack Developer, Data Analyst, and Creative Software Engineer</p>
+                <p class="location-badge">📍 Belleville, IL &bull; Greater St. Louis Metropolitan Area</p>
+            </div>
+        </div>
+
+        <div class="quick-nav">
+            <a href="https://github.com/FREEqueenC" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/ashleigh-walker-2131a2173" target="_blank">LinkedIn</a>
+            <a href="https://app.joinhandshake.com/profiles/freequeensea" target="_blank">Handshake</a>
+            <a href="https://acoustic-wave-cooling-l0kson9.gamma.site/" target="_blank">Acoustic Cooling Deck</a>
+            <a href="deck-viewer.html">Live Slide Viewer</a>
+            <a href="#profiles">Professional Profiles</a>
+            <a href="#projects">Interactive Demos</a>
+            <a href="#research-decks">Live Slide Decks</a>
+            <a href="#craft-interests">Hands-On Craft</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION 0: PROFESSIONAL PROFILES & CANDIDATE SUMMARIES -->
+        <section class="story-section reveal" id="profiles">
+            <h2>Professional Profiles</h2>
+            <p style="color: #94a3b8; margin-bottom: 1.2rem;">Select an orientation below to see how my analytical and engineering background aligns with your project:</p>
+
+            <div class="profile-tabs">
+                <button class="profile-tab-btn active" onclick="switchProfile(event, 'data-dev')">Full-Stack & Data Systems</button>
+                <button class="profile-tab-btn" onclick="switchProfile(event, 'creative-maker')">Creative Technologist & Maker</button>
+                <button class="profile-tab-btn" onclick="switchProfile(event, 'ai-civic')">Applied AI & Civic Solutions</button>
+            </div>
+
+            <div class="profile-content-card" id="profile-data-dev">
+                <div class="badge-row">
+                    <span class="badge badge-data">Engineering & Analytics Focus</span>
+                    <span class="card-meta">Recommended for Full-Stack, Backend & Data Roles</span>
+                </div>
+                <h3>Full-Stack Web & Data Systems Developer</h3>
+                <p class="profile-narrative">Practical software developer and data analyst focused on building reliable web applications, clean API architectures, and data processing pipelines. Grounded in Bachelor of Science studies in Data Analysis at Southern New Hampshire University and production workflows on Google Cloud Platform, I prioritize maintainable code, testable logic, and clear interfaces across Python, JavaScript, SQL, and modern frameworks.</p>
+                <div class="profile-highlights">
+                    <div class="highlight-chip"><strong>Core Tech:</strong> Python, TypeScript, React, SQL, GCP, Node.js</div>
+                    <div class="highlight-chip"><strong>Data Focus:</strong> BigQuery, ETL Pipelines, Statistical Analysis</div>
+                    <div class="highlight-chip"><strong>Work Ethic:</strong> Root-cause debugging, modular design, clean documentation</div>
+                </div>
+            </div>
+
+            <div class="profile-content-card hidden" id="profile-creative-maker">
+                <div class="badge-row">
+                    <span class="badge badge-ai">Multidisciplinary Systems</span>
+                    <span class="card-meta">Recommended for Creative Technology & UI/UX Roles</span>
+                </div>
+                <h3>Creative Technologist & Multidisciplinary Maker</h3>
+                <p class="profile-narrative">Software engineering informed by physical craftsmanship. As a woodworker, gardener, and vocalist, I treat codebases like physical structures: respecting material tolerances, designing resilient joins, managing living dependencies, and tuning acoustic and visual harmonies. This hands-on discipline drives how I build durable software systems that balance technical precision with human resonance.</p>
+                <div class="profile-highlights">
+                    <div class="highlight-chip"><strong>Physical Craft:</strong> Woodworking joinery, structural tolerances, precision carving</div>
+                    <div class="highlight-chip"><strong>Living Systems:</strong> Permaculture, soil ecosystems, organic succession cycles</div>
+                    <div class="highlight-chip"><strong>Acoustics & Art:</strong> Vocal physics, Web Audio synthesis, sacred geometry UI</div>
+                </div>
+            </div>
+
+            <div class="profile-content-card hidden" id="profile-ai-civic">
+                <div class="badge-row">
+                    <span class="badge badge-civic">Applied AI & Public Sector</span>
+                    <span class="card-meta">Recommended for AI Engineering & Civic Analytics</span>
+                </div>
+                <h3>Applied AI & Civic Solutions Specialist</h3>
+                <p class="profile-narrative">Building autonomous agent evaluation workflows, Model Context Protocol (MCP) integrations, and regional civic data pipelines. As the creator of the SPARC HUD FY2026 data engine and Housing First predictive models, I connect complex machine learning capabilities with public sector accountability, bi-state coordination, and transparent community outcomes.</p>
+                <div class="profile-highlights">
+                    <div class="highlight-chip"><strong>AI Tooling:</strong> Agentic evaluation loops, LLM reasoning traces, MCP servers</div>
+                    <div class="highlight-chip"><strong>Civic Data:</strong> HUD FY2026 HMIS schemas, Stella M scoring, PII hashing</div>
+                    <div class="highlight-chip"><strong>Regional Impact:</strong> Bi-state coordination across St. Louis & St. Clair County</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: INTERACTIVE SYSTEMS & DEMOS -->
+        <section class="story-section reveal" id="projects">
+            <h2>Interactive Systems & Demos</h2>
+            <p style="color: #94a3b8; margin-bottom: 1rem;">Explore working interactive prototypes, dashboards, and computational tools developed across my engineering repositories.</p>
+            
+            <div class="project-grid">
+                <!-- Project 1: Biomarker Intelligence -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-data">Clinical Intelligence</span>
+                            <span class="card-meta">Vanilla JS + SVG</span>
+                        </div>
+                        <h3>Clinical Biomarker Dashboard</h3>
+                        <p class="project-desc">Interactive metabolic and organ integrity platform modeling HOMA-IR insulin resistance, LH to FSH hormonal ratios, and lipid particle distributions with dynamic SVG charting.</p>
+                    </div>
+                    <a href="biomarker/" class="project-link-btn" target="_blank">Launch Dashboard &rarr;</a>
+                </div>
+
+                <!-- Project 2: SPARC HMIS -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-data">HUD FY 2026 Engine</span>
+                            <span class="card-meta">Executive HUD Matrix</span>
+                        </div>
+                        <h3>SPARC Architecture of Renewal</h3>
+                        <p class="project-desc">Executive operational matrix for bi-state Continuum of Care governance boards (MO-501 and IL-508), modeling real-time Stella M vulnerability scoring and SHA-256 client deduplication.</p>
+                    </div>
+                    <a href="sparc/" class="project-link-btn" target="_blank">Launch System Matrix &rarr;</a>
+                </div>
+
+                <!-- Project 3: Payviah BNPL -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-web3">Community Fintech</span>
+                            <span class="card-meta">Fintech Simulator</span>
+                        </div>
+                        <h3>Payviah BNPL Micro-Lending</h3>
+                        <p class="project-desc">Essential community micro-lending simulation with zero-interest schedule calculation, APR comparison charts, and localized financial buffer verification.</p>
+                    </div>
+                    <a href="payviah/" class="project-link-btn" target="_blank">Launch Simulator &rarr;</a>
+                </div>
+
+                <!-- Project 4: Web3 Security Auditor -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-web3">Smart Contract Security</span>
+                            <span class="card-meta">Static AST Analyzer</span>
+                        </div>
+                        <h3>Web3 Security Auditor</h3>
+                        <p class="project-desc">Interactive EVM bytecode and Solidity vulnerability analyzer scanning for reentrancy vectors, integer overflows, unchecked return calls, and access-control bypasses.</p>
+                    </div>
+                    <a href="web3-auditor/" class="project-link-btn" target="_blank">Launch Auditor &rarr;</a>
+                </div>
+
+                <!-- Project 5: Enochian Acoustic Synthesis -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Digital Signal Processing</span>
+                            <span class="card-meta">Web Audio API</span>
+                        </div>
+                        <h3>Enochian Acoustic Synthesizer</h3>
+                        <p class="project-desc">Harmonic frequency synthesizer modeling 432Hz and 528Hz pure sine waves, dual resonant filter sweeps, and custom stereo delay buffers directly in the browser.</p>
+                    </div>
+                    <a href="enochian/" class="project-link-btn" target="_blank">Launch Synthesizer &rarr;</a>
+                </div>
+
+                <!-- Project 6: Aetheris Corpus Explorer -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Vector Retrieval</span>
+                            <span class="card-meta">Semantic Search</span>
+                        </div>
+                        <h3>Aetheris Corpus Knowledge Engine</h3>
+                        <p class="project-desc">Knowledge exploration interface featuring cosine similarity filtering across ancient codices, technical whitepapers, and municipal housing policies.</p>
+                    </div>
+                    <a href="aetheris-corpus/" class="project-link-btn" target="_blank">Explore Corpus &rarr;</a>
+                </div>
+
+                <!-- Project 7: NICOLE Terminal -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Autonomous Agent Loop</span>
+                            <span class="card-meta">Interactive CLI</span>
+                        </div>
+                        <h3>NICOLE Agent Command Interface</h3>
+                        <p class="project-desc">Autonomous agent orchestrator simulating Model Context Protocol (MCP) tool execution, subagent task delegations, and cryptographic memory states.</p>
+                    </div>
+                    <a href="nicole-terminal/" class="project-link-btn" target="_blank">Open Terminal &rarr;</a>
+                </div>
+
+                <!-- Project 8: NISAR InSAR -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-data">Earth Observation</span>
+                            <span class="card-meta">Radar Interferometry</span>
+                        </div>
+                        <h3>NISAR Radar Deformation Monitor</h3>
+                        <p class="project-desc">Earth observation interface tracking L-band and S-band radar interferometry for tectonic deformation, aquifer depletion, and municipal infrastructure subsidence.</p>
+                    </div>
+                    <a href="nisar/" class="project-link-btn" target="_blank">View Radar Console &rarr;</a>
+                </div>
+
+                <!-- Project 9: Supply Chain Digital Twin -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-data">Industrial IoT</span>
+                            <span class="card-meta">State Machine</span>
+                        </div>
+                        <h3>Supply Chain Digital Twin</h3>
+                        <p class="project-desc">Interactive logistics monitoring console with simulated telemetry for temperature excursions, GPS geofencing alerts, and automated multi-tier custody handoffs.</p>
+                    </div>
+                    <a href="supply-chain/" class="project-link-btn" target="_blank">Monitor Supply Chain &rarr;</a>
+                </div>
+
+                <!-- Project 10: Sophia Protocol -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Cosmological Math</span>
+                            <span class="card-meta">Interactive Canvas</span>
+                        </div>
+                        <h3>Sophia Protocol Harmonic Field</h3>
+                        <p class="project-desc">Mathematical visualization of non-equilibrium wave equations, toroidal electromagnetic flux lines, and acoustic resonance nodes rendered in HTML5 Canvas.</p>
+                    </div>
+                    <a href="sophia-protocol/" class="project-link-btn" target="_blank">View Harmonic Field &rarr;</a>
+                </div>
+
+                <!-- Project 11: Genetic Oracle -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-data">Bioinformatics</span>
+                            <span class="card-meta">FASTA Translator</span>
+                        </div>
+                        <h3>Bio-Genetic Oracle</h3>
+                        <p class="project-desc">DNA sequence translator computing GC-content percentage, transcription to mRNA, and protein codon translation tables with nucleotide error validation.</p>
+                    </div>
+                    <a href="genetic-oracle/" class="project-link-btn" target="_blank">Analyze Genetics &rarr;</a>
+                </div>
+
+                <!-- Project 12: Quantum Telemetry Oracle -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Simulated Physics</span>
+                            <span class="card-meta">Bloch Sphere</span>
+                        </div>
+                        <h3>Quantum Telemetry Oracle</h3>
+                        <p class="project-desc">Quantum state vector simulator demonstrating Hadamard superpositions, Pauli-X bit flips, and state measurement collapse with dynamic probability charts.</p>
+                    </div>
+                    <a href="quantum-oracle/" class="project-link-btn" target="_blank">Simulate Quantum State &rarr;</a>
+                </div>
+
+                <!-- Project 13: Data Race Visualizer -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-data">Concurrency Testing</span>
+                            <span class="card-meta">Thread Lock Visualizer</span>
+                        </div>
+                        <h3>Concurrency & Lock Visualizer</h3>
+                        <p class="project-desc">Interactive parallel computing simulation demonstrating non-deterministic thread interleaving, un-synchronized memory mutation, and mutex lock resolution.</p>
+                    </div>
+                    <a href="data-race/" class="project-link-btn" target="_blank">Test Concurrency &rarr;</a>
+                </div>
+
+                <!-- Project 14: Agent Workflow Orchestrator -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Workflow Automation</span>
+                            <span class="card-meta">Directed Acyclic Graph</span>
+                        </div>
+                        <h3>Agent Workflow Orchestrator</h3>
+                        <p class="project-desc">Visual task DAG pipeline displaying parallel autonomous execution branches, dependency barriers, and simulated artifact consolidation.</p>
+                    </div>
+                    <a href="orchestrator/" class="project-link-btn" target="_blank">Inspect Pipelines &rarr;</a>
+                </div>
+
+                <!-- Project 15: Techno-Gnosis Reality OS -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Cybernetic Philosophy</span>
+                            <span class="card-meta">Cognitive Terminal</span>
+                        </div>
+                        <h3>Techno-Gnosis Reality OS</h3>
+                        <p class="project-desc">Philosophical exploration linking ancient informational cosmologies with modern computational paradigms, cybernetic feedback loops, and recursive memory layers.</p>
+                    </div>
+                    <a href="techno-gnosis/" class="project-link-btn" target="_blank">Launch System OS &rarr;</a>
+                </div>
+
+                <!-- Project 16: Acoustic Wave Cooling -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-web3">Clean-Tech Infrastructure</span>
+                            <span class="card-meta">Live Pitch Deck</span>
+                        </div>
+                        <h3>Acoustic Wave Cooling</h3>
+                        <p class="project-desc">Hyperscale data center cooling optimization pitch, demonstrating ultrasonic cavitation descaling to eliminate chemicals and reclaim up to 25% thermal efficiency.</p>
+                    </div>
+                    <a href="https://acoustic-wave-cooling-l0kson9.gamma.site/" class="project-link-btn" target="_blank">Open Pitch Showcase &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: RESEARCH SLIDE DECKS & LIVE POWERPOINT PRESENTATIONS -->
+        <section class="story-section reveal" id="research-decks">
+            <h2>Research Slide Decks & Interactive Presentations</h2>
+            <p style="color: #94a3b8; margin-bottom: 1.2rem;">Executive slide decks, municipal blueprints, and NotebookLM publications spanning urban housing systems, ecological watersheds, clean-tech, and cognitive architectures.</p>
+
+            <!-- Live Viewer Feature Banner -->
+            <div class="live-deck-banner">
+                <div class="live-deck-banner-text">
+                    <h4>Interactive Live Presentation Mode Active</h4>
+                    <p>All 8 executive slide decks can be launched live directly in your browser with keyboard navigation (Arrow keys / Spacebar), slide scrubber, fullscreen mode, and autoplay.</p>
+                </div>
+                <a href="deck-viewer.html" class="btn-open-viewer">
+                    <span>▶</span> Open Master Presentation Stage
+                </a>
+            </div>
+
+            <div class="project-grid">
+                <!-- Deck 1: SPARC HUD 2026 Enhanced -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-civic">Civic Systems & Data</span>
+                            <span class="card-meta">21 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>SPARC HUD FY 2026 Strategy</h3>
+                        <p class="project-desc">Strategic operational deck for regional Continuum of Care (CoC) governance boards across St. Louis City (MO-501) and St. Clair County (IL-508). Details Stella M vulnerability scoring, client deduplication, and Federal compliance.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=SPARC_HUD_2026_Executive_Deck_Enhanced" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/SPARC_HUD_2026_Executive_Deck_Enhanced.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 2: Belleville Housing First -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-civic">Civic Infrastructure</span>
+                            <span class="card-meta">15 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Belleville Housing First Blueprint</h3>
+                        <p class="project-desc">Municipal data blueprint for supportive housing allocation, regional CoC governance, and transitional community support in St. Clair County, Illinois.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Belleville_Housing_First_Blueprint" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Belleville_Housing_First_Blueprint.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 3: Redesigning Broken Blueprint -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-civic">Systems Architecture</span>
+                            <span class="card-meta">15 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Redesigning the Broken Blueprint</h3>
+                        <p class="project-desc">Critical analysis of systemic civic housing inequities, federal data reporting deficiencies, and restorative algorithmic solutions for regional urban development.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Redesigning_the_Broken_Blueprint" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Redesigning_the_Broken_Blueprint.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 4: St. Louis Watershed -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Environmental Engineering</span>
+                            <span class="card-meta">15 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>St. Louis Watershed Reimagined</h3>
+                        <p class="project-desc">Ecological and hydrological modeling presentation analyzing watershed conservation, runoff mitigation, and environmental infrastructure across the greater St. Louis metropolitan basin.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=St._Louis_Watershed_Reimagined" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/St._Louis_Watershed_Reimagined.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 5: City of the Sun -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-civic">Clean-Tech Microgrid</span>
+                            <span class="card-meta">8 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>SPARC: City of the Sun</h3>
+                        <p class="project-desc">Executive concept deck modeling renewable thermal storage, solar-augmented microgrid arrays, and sustainable urban resilience hubs for community independence.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=SPARC_City_of_the_Sun_Executive_Deck" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/SPARC_City_of_the_Sun_Executive_Deck.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 6: Bioluminescent Orb -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Photonic Computing</span>
+                            <span class="card-meta">11 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>The Bioluminescent Orb</h3>
+                        <p class="project-desc">Exploration of bio-photonic light emission, resonant optical storage lattices, and low-power biological computing mechanisms.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=The_Bioluminescent_Orb" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/The_Bioluminescent_Orb.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 7: Gnostic Reality OS -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Cognitive Systems</span>
+                            <span class="card-meta">17 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Gnostic Reality OS</h3>
+                        <p class="project-desc">NotebookLM research presentation mapping ancient metaphysical frameworks, cybernetic control loops, and cognitive architecture models into executable software analogies.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Gnostic_Reality_OS" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Gnostic_Reality_OS.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 8: Quantum Magik -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Quantum Mathematics</span>
+                            <span class="card-meta">15 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Quantum Magik: Resonance Dynamics</h3>
+                        <p class="project-desc">Advanced deck analyzing quantum information dynamics, mathematical synchronicity matrices, and non-equilibrium thermodynamic states in computational systems.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Quantum_Magik" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Quantum_Magik.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Deck 9: Pistis Sophia Decoding -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-theology">Theological Research</span>
+                            <span class="card-meta">PDF &bull; 23.6 MB</span>
+                        </div>
+                        <h3>Pistis Sophia: Decoding the Gospel</h3>
+                        <p class="project-desc">In-depth scholarly research document decoding the Askew Codex. Systematic analysis of the 13 repentances, aeonic hierarchies, and mathematical cosmology.</p>
+                    </div>
+                    <a href="decks/Pistis_Sophia_Decoding_the_Gnostic_Gospel.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+
+                <!-- Deck 10: Pistis Sophia Blueprint -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-theology">Textual Archeology</span>
+                            <span class="card-meta">PDF &bull; 21.9 MB</span>
+                        </div>
+                        <h3>The Pistis Sophia Blueprint</h3>
+                        <p class="project-desc">Structural breakdown and architectural schematic of the Pistis Sophia narrative, examining internal geometric allegories and light-power distribution across realms.</p>
+                    </div>
+                    <a href="decks/The_Pistis_Sophia_Blueprint.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+
+                <!-- Deck 11: Pistis Sophia Unveiled -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-theology">Hermeneutic Analysis</span>
+                            <span class="card-meta">PDF &bull; 24.6 MB</span>
+                        </div>
+                        <h3>The Pistis Sophia Unveiled</h3>
+                        <p class="project-desc">Comprehensive contextual study examining the linguistic, theological, and historical dimensions of the Coptic Gnostic manuscripts.</p>
+                    </div>
+                    <a href="decks/The_Pistis_Sophia_Unveiled.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+
+                <!-- Deck 12: Project PISTIS GNA Protocol -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Cryptographic Genomics</span>
+                            <span class="card-meta">PDF &bull; 19.5 MB</span>
+                        </div>
+                        <h3>Project PISTIS GNA Protocol</h3>
+                        <p class="project-desc">Hybrid research paper formalizing genetic resonance matrices, decentralized oracle verification, and bio-cryptographic validation protocols.</p>
+                    </div>
+                    <a href="decks/Project_PISTIS_GNA_Protocol.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+
+                <!-- Deck 13: The Sophia Synthesis -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-theology">Unified Systems</span>
+                            <span class="card-meta">PDF &bull; 19.7 MB</span>
+                        </div>
+                        <h3>The Sophia Synthesis</h3>
+                        <p class="project-desc">Holistic synthesis integrating ancient wisdom traditions with modern systems theory, thermodynamic efficiency, and autonomous software agents.</p>
+                    </div>
+                    <a href="decks/The_Sophia_Synthesis.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+
+                <!-- Deck 14: Techno-Gnosis Reality OS -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Cybernetic Philosophy</span>
+                            <span class="card-meta">PDF &bull; 20.1 MB</span>
+                        </div>
+                        <h3>Techno-Gnosis: Reality's OS</h3>
+                        <p class="project-desc">Groundbreaking NotebookLM publication exploring reality simulation hypotheses, information architecture, and the convergence of ancient mysticism with modern software.</p>
+                    </div>
+                    <a href="decks/Techno-Gnosis_Decoding_Realitys_OS.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+
+                <!-- Deck 15: Quantum Sovereignty Blueprint -->
+                <div class="project-card">
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-deck">Sovereign Intelligence</span>
+                            <span class="card-meta">PDF &bull; 21.0 MB</span>
+                        </div>
+                        <h3>Quantum Sovereignty Blueprint</h3>
+                        <p class="project-desc">Strategic architectural guide for sovereign computing, edge AI self-sovereignty, and decentralized cryptographic infrastructure.</p>
+                    </div>
+                    <a href="decks/The_Quantum_Sovereignty_Blueprint.pdf" class="project-link-btn btn-deck" target="_blank">View PDF Study &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: HANDS-ON CRAFT, CREATIVE DISCIPLINES & PHYSICAL FOUNDATIONS -->
+        <section class="story-section reveal" id="craft-interests">
+            <h2>Hands-On Craft & Creative Disciplines</h2>
+            <p style="color: #94a3b8; margin-bottom: 1.5rem;">The principles that produce reliable software govern physical creation: strict tolerances, patient iteration, systemic harmony, and building structures designed to endure over time.</p>
+
+            <div class="craft-grid">
+                <!-- Craft 1: Woodworking & Joinery -->
+                <div class="craft-card">
+                    <div class="craft-img-wrap">
+                        <img src="assets/woodworking_tree_of_life_stencil.jpg" alt="Tree of Life Woodworking Blueprint" class="grid-img">
+                        <span class="craft-tag">Woodworking & Joinery</span>
+                    </div>
+                    <div class="craft-info">
+                        <h3>Woodworking & Structural Joinery</h3>
+                        <p>Working with physical timber demands measuring twice, respecting grain tension, and cutting within tight mechanical tolerances. Hand-carving joinery and drafting architectural blueprints (like the Tree of Life layout above) instills the exact discipline required when designing immutable database schemas and resilient software architectures.</p>
+                    </div>
+                </div>
+
+                <!-- Craft 2: Music, Singing & Acoustic Physics -->
+                <div class="craft-card">
+                    <div class="craft-img-wrap">
+                        <img src="assets/music_and_singing_resonance.jpg" alt="Vocal Singing and Acoustic Resonance" class="grid-img">
+                        <span class="craft-tag">Music & Singing</span>
+                    </div>
+                    <div class="craft-info">
+                        <h3>Vocal Music & Harmonic Physics</h3>
+                        <p>Trained vocal singing and harmonic theory provide a direct intuition for frequency resonance, wave physics, and acoustic modulation. This background directly inspired the Web Audio synthesis engines in my Enochian and Sophia Protocol software projects, translating mathematical harmonic intervals into live digital signal processing.</p>
+                    </div>
+                </div>
+
+                <!-- Craft 3: Gardening & Living Systems -->
+                <div class="craft-card">
+                    <div class="craft-img-wrap">
+                        <img src="assets/cahokia_sunset_skyline.png" alt="Cahokia Mounds Sunset over St. Louis Arch" class="grid-img">
+                        <span class="craft-tag">Gardening & Living Systems</span>
+                    </div>
+                    <div class="craft-info">
+                        <h3>Gardening & Ecological Stewardship</h3>
+                        <p>Soil ecosystems, organic succession, and closed-loop composting teach patience and system-level resilience. Maintaining a thriving garden closely mirrors maintaining a production codebase: strengthening root dependencies, pruning obsolete branches, managing environmental stresses, and cultivating sustainable yields without exhaustion.</p>
+                    </div>
+                </div>
+
+                <!-- Craft 4: Fine Art & Sacred Geometry -->
+                <div class="craft-card">
+                    <div class="craft-img-wrap">
+                        <img src="assets/sacred_geometry_mandala.jpg" alt="Sacred Geometry Mandala Artwork" class="grid-img">
+                        <span class="craft-tag">Fine Art & Geometry</span>
+                    </div>
+                    <div class="craft-info">
+                        <h3>Fine Art & Sacred Geometry</h3>
+                        <p>Original hand-drawn sacred geometric mandala (shown with signature stamp). Exploring proportional balance, rotational symmetry, and golden ratios sharpens front-end UI visual hierarchy, typography rhythm, and ergonomic user experience design.</p>
+                    </div>
+                </div>
+
+                <!-- Craft 5: Visionary Systems & Synthesis -->
+                <div class="craft-card">
+                    <div class="craft-img-wrap">
+                        <img src="assets/visionary_creative_synthesis.jpg" alt="Visionary Creative Synthesis" class="grid-img">
+                        <span class="craft-tag">Creative Synthesis</span>
+                    </div>
+                    <div class="craft-info">
+                        <h3>Visionary Synthesis & Wisdom Systems</h3>
+                        <p>Original visual synthesis exploring wisdom traditions, information theory, and human consciousness. Grounded in curiosity and Pistis-Sophia (faith-wisdom), seeking solutions that elevate human connection and operate with high ethical coherence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CONNECT & COLLABORATE -->
+        <section class="story-section reveal contact-section" id="contact">
+            <h2>Connect & Collaborate</h2>
+            <div class="buttons">
+                <a href="mailto:ashleigh4533@gmail.com" class="btn glow-btn">Email Ashleigh</a>
+                <a href="https://app.joinhandshake.com/profiles/freequeensea" class="btn glow-btn" target="_blank">View on Handshake</a>
+            </div>
+            <div class="socials">
+                <a href="https://github.com/FREEqueenC" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/ashleigh-walker-2131a2173" target="_blank">LinkedIn</a>
+                <a href="https://x.com/Ashleigh11911" target="_blank">X (Twitter)</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fullscreen Image Modal for Lightbox -->
+    <div id="image-modal" class="modal hidden">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="full-image" src="" alt="Full Resolution View">
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Profile Summary Switcher
+        function switchProfile(event, profileId) {
+            document.querySelectorAll('.profile-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.profile-content-card').forEach(card => card.classList.add('hidden'));
+
+            event.currentTarget.classList.add('active');
+            const target = document.getElementById('profile-' + profileId);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

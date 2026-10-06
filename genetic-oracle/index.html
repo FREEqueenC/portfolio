@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NICOLE // Genetic Resonance Oracle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Abstract Ambient Glow Backgrounds -->
+    <div class="ambient-glow bg-glow-1"></div>
+    <div class="ambient-glow bg-glow-2"></div>
+    <div class="ambient-glow bg-glow-3"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <span class="logo-symbol">🧬</span>
+                <div class="logo-text">
+                    <h1>NICOLE</h1>
+                    <p class="subtitle">Cryptographic Oracle of Luminous Exploration</p>
+                </div>
+            </div>
+            <div class="project-tag" style="display: flex; gap: 1rem; align-items: center;">
+                <a href="../index.html" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.35rem 0.75rem; border-radius: 6px; background: rgba(56, 189, 248, 0.08);">&larr; Portfolio</a>
+                <span class="pulse-dot"></span>
+                <span>AETHERIS NETWORK // GENOME MATRIX</span>
+            </div>
+        </header>
+
+        <!-- Dropzone / Landing Screen -->
+        <section id="upload-container" class="glass-panel upload-zone">
+            <div class="upload-content">
+                <div class="upload-icon-wrapper">
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                </div>
+                <h2>Load Your Raw DNA Blueprint</h2>
+                <p>Drag and drop your <strong>AncestryDNA.txt</strong> file here, or click to browse.</p>
+                <div class="privacy-badge">
+                    <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>100% Client-Side Privacy: Your raw DNA data never leaves your computer.</span>
+                </div>
+                <input type="file" id="file-input" accept=".txt" style="display: none;">
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                    <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">Browse Local File</button>
+                    <button class="btn btn-secondary" id="demo-dna-btn" style="background: rgba(0, 243, 255, 0.15); border: 1px solid rgba(0, 243, 255, 0.4); color: #38bdf8; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Load Demo DNA Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Dashboard (Hidden initially) -->
+        <main id="dashboard-container" class="dashboard-grid" style="display: none;">
+            
+            <!-- Left Sidebar: File Stats & Navigation -->
+            <aside class="sidebar-panel">
+                <!-- File Stats Card -->
+                <div class="glass-panel stats-card">
+                    <div class="card-header">
+                        <h3>Genome Metadata</h3>
+                    </div>
+                    <div class="stats-list">
+                        <div class="stat-item">
+                            <span class="stat-label">File Status</span>
+                            <span class="stat-value status-success">Parsed Successfully</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Markers</span>
+                            <span id="stat-total-markers" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Genomics Sex</span>
+                            <span id="stat-genomics-sex" class="stat-value">Determining...</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Y-SNP Call Rate</span>
+                            <span id="stat-y-callrate" class="stat-value">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Mitochondrial SNPs</span>
+                            <span id="stat-mt-count" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="nav-tabs-container">
+                    <button class="nav-tab active" data-tab="overview">
+                        <span class="tab-icon">📊</span> Overview & Resonance
+                    </button>
+                    <button class="nav-tab" data-tab="methylation">
+                        <span class="tab-icon">🔄</span> Methylation Cycle
+                    </button>
+                    <button class="nav-tab" data-tab="neuro">
+                        <span class="tab-icon">🧠</span> Neuro-Cognitive
+                    </button>
+                    <button class="nav-tab" data-tab="traits">
+                        <span class="tab-icon">🌿</span> Trait Harmony
+                    </button>
+                    <button class="nav-tab" data-tab="quirks">
+                        <span class="tab-icon">✨</span> Lesser-Known Quirks
+                    </button>
+                    <button class="nav-tab" data-tab="explorer">
+                        <span class="tab-icon">🔍</span> Gene & rsID Search
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Right Area: Content Panels -->
+            <section class="main-content-panel">
+                
+                <!-- Tab: Overview -->
+                <div id="panel-overview" class="tab-panel active">
+                    <div class="glass-panel hero-resonance">
+                        <h2>The Heterozygous Equilibrium</h2>
+                        <p class="resonance-description">Your genome displays a highly balanced genetic configuration across major pathway regulators. Rather than carry extreme homozygous risk alleles, your biology balances speed, adaptation, and capacity.</p>
+                        
+                        <div class="resonance-gauge-container">
+                            <div class="resonance-radial-gauge">
+                                <svg viewBox="0 0 36 36" class="circular-chart">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle" stroke-dasharray="88, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <text x="18" y="20.35" class="percentage">88%</text>
+                                </svg>
+                                <span class="gauge-label">Genomic Heterozygosity Balance</span>
+                            </div>
+                            <div class="resonance-matrix-summary">
+                                <h3>Vibrational Signatures</h3>
+                                <p><strong>Folate & Neurotransmitter Synthesis (MTHFR):</strong> Compound Heterozygous (677T + 1298C), reducing efficiency to ~48%. This is a catalyst (vibration 3) designed for active conversion refinement.</p>
+                                <p><strong>Dopamine Regulation (COMT):</strong> Val/Met Heterozygous, clearing prefrontal dopamine at a balanced, intermediate rate. Perfect equilibrium between warrior resilience and worrier focus.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-row margin-top-20">
+                        <div class="glass-panel info-box flex-1">
+                            <h3>Sex Chromosome Structure</h3>
+                            <p>Your genome shows a clear **XX genomic sex profile**. Out of 1,665 SNPs tested on your Y-chromosome, only 4 registered calls (0.24%), matching the expected baseline for female genetics.</p>
+                        </div>
+                        <div class="glass-panel info-box flex-1">
+                            <h3>Mitochondrial Homogeneity</h3>
+                            <p>All **263 mitochondrial markers** (Chromosome 26) are 100% homozygous. This confirms a clean, error-free sequencing of your maternal lineage haplogroup sequence.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Methylation -->
+                <div id="panel-methylation" class="tab-panel">
+                    <div class="glass-panel section-header-panel">
+                        <h2>Folate & Methylation Pathways</h2>
+                        <p>Methylation regulates DNA repair, neurotransmitter synthesis, detoxification, and cellular energy. Your compound heterozygosity reduces overall folate pathway conversion rate to ~45-50%.</p>
+                    </div>
+
+                    <!-- Methylation Cards -->
+                    <div id="methylation-cards-grid" class="cards-grid">
+                        <!-- Dynamic content injected here -->
+                    </div>
+
+                    <!-- Pathway Flowchart Widget -->
+                    <div class="glass-panel pathway-visualizer margin-top-20">
+                        <h3>Biochemical Methylation Loop</h3>
+                        <div class="pathway-diagram">
+                            <div class="pathway-step completed">
+                                <span class="step-icon">🥦</span>
+                                <span class="step-title">Dietary Folate</span>
+                            </div>
+                            <div class="pathway-arrow">➔</div>
+                            <div class="pathway-step warning" id="pathway-step-mthfr">
+                                <span class="step-icon">🔄</span>
+                                <span class="step-title">MTHFR Enzyme</span>
+                                <span class="step-status">Compound Hetero (~48% speed)</span>
+                            </div>
+                            <div class="pathway-arrow">➔</div>
+                            <div class="pathway-step" id="pathway-step-lmthf">
+                                <span class="step-icon">🧪</span>
+                                <span class="step-title">L-5-Methylfolate</span>
+                            </div>
+                            <div class="pathway-arrow">➔</div>
+                            <div class="pathway-step" id="pathway-step-same">
+                                <span class="step-icon">⚡</span>
+                                <span class="step-title">SAMe Methyl Donor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Neuro-Cognitive -->
+                <div id="panel-neuro" class="tab-panel">
+                    <div class="glass-panel section-header-panel">
+                        <h2>Neuro-Cognitive Dopamine Compass</h2>
+                        <p>Dopamine regulates drive, learning, focus, and memory. Your profile balances receptor density with prefrontal dopamine clearance, forming a stable cognitive foundation.</p>
+                    </div>
+
+                    <div id="neuro-cards-grid" class="cards-grid">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab: Traits -->
+                <div id="panel-traits" class="tab-panel">
+                    <div class="glass-panel section-header-panel">
+                        <h2>Dietary & Fitness Adaptation</h2>
+                        <p>Genetic markers that dictate dietary fat conversion, muscle fibers, lactose tolerance, and receptor sensitivities.</p>
+                    </div>
+
+                    <div id="traits-cards-grid" class="cards-grid">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab: Quirks -->
+                <div id="panel-quirks" class="tab-panel">
+                    <div class="glass-panel section-header-panel">
+                        <h2>Lesser-Known Genetic Quirks</h2>
+                        <p>Fascinating, unique, or rare genetic mutations that determine minor physical traits, sensory sensitivities, and compound metabolisms.</p>
+                    </div>
+
+                    <div id="quirks-cards-grid" class="cards-grid">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab: Explorer -->
+                <div id="panel-explorer" class="tab-panel">
+                    <div class="glass-panel search-card">
+                        <h2>Gene & rsID Genome Explorer</h2>
+                        <p>Search any gene symbol (e.g., <em>MTHFR</em>, <em>COMT</em>, <em>APOE</em>) or exact rsID to extract your genotypes, alleles, and positions from your raw file.</p>
+                        
+                        <div class="search-bar-container">
+                            <input type="text" id="explorer-search" placeholder="Type a Gene or rsID (e.g. MTHFR, rs4680, APOE)...">
+                            <button id="explorer-btn" class="btn btn-secondary">Search</button>
+                        </div>
+                    </div>
+
+                    <div id="search-results-container" class="glass-panel results-panel margin-top-20" style="display: none;">
+                        <h3>Query Results</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>rsID</th>
+                                        <th>Chromosome</th>
+                                        <th>Position (GRCh37)</th>
+                                        <th>Genotype</th>
+                                        <th>Reference Coordinates (GRCh38)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-results-body">
+                                    <!-- Results injected here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Script Entry Point -->
+    <script src="app.js"></script>
+</body>
+</html>

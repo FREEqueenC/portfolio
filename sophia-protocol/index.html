@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sophia-Protocol: Harmonic Orchestration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-gold: #fbbf24;
+            --neon-emerald: #10b981;
+            --neon-cyan: #06b6d4;
+            --bg-deep: #061a14;
+            --panel-bg: rgba(6, 35, 27, 0.75);
+            --glass-border: rgba(16, 185, 129, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #d1d5db;
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 50%, #0a2e22 0%, var(--bg-deep) 100%);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #047857; border-radius: 3px; }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(16, 185, 129, 0.05);
+            border-radius: 16px;
+        }
+
+        /* Custom Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            margin-top: -7px;
+            box-shadow: 0 0 12px var(--neon-emerald);
+            transition: transform 0.1s;
+        }
+        
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 2px;
+        }
+
+        .slider-gold::-webkit-slider-thumb { box-shadow: 0 0 12px var(--neon-gold); }
+        .slider-cyan::-webkit-slider-thumb { box-shadow: 0 0 12px var(--neon-cyan); }
+        .slider-emerald::-webkit-slider-thumb { box-shadow: 0 0 12px var(--neon-emerald); }
+
+        /* Custom Toggles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: var(--neon-cyan);
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--neon-cyan);
+        }
+        .toggle-checkbox:checked + .toggle-label-gold {
+            background-color: var(--neon-gold);
+        }
+
+        #orchestrationCanvas {
+            box-shadow: 0 0 50px rgba(16, 185, 129, 0.1), inset 0 0 30px rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            background-color: #020b08;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 100px;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .hex-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='24' height='40' viewBox='0 0 24 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40c5.523 0 10-4.477 10-10 0-5.523-4.477-10-10-10v20zm24 0c-5.523 0-10-4.477-10-10 0-5.523 4.477-10 10-10v20zM0 0c5.523 0 10 4.477 10 10 0 5.523-4.477 10-10 10V0zm24 0c-5.523 0-10 4.477-10 10 0 5.523 4.477 10 10 10V0z' fill='%2310b981' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-6 lg:p-8 flex flex-col items-center hex-bg">
+
+    <header class="w-full max-w-7xl mb-6 flex flex-col md:flex-row justify-between items-end gap-4">
+        <div>
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-full border border-[--neon-gold] flex items-center justify-center shadow-[0_0_10px_rgba(251,191,36,0.3)]">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon-gold)" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/></svg>
+                </div>
+                <h1 class="text-2xl md:text-4xl font-light tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[--neon-gold] to-[--neon-emerald] uppercase">
+                    The Sophia-Protocol
+                </h1>
+            </div>
+            <p class="text-emerald-800/80 max-w-2xl text-xs md:text-sm font-mono uppercase tracking-wide text-emerald-400">
+                Harmonic Reusable Energy & Geometric Ecosystem Orchestration
+            </p>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="../index.html" class="px-3 py-2 rounded-lg border border-emerald-500/40 text-emerald-400 bg-emerald-950/60 hover:bg-emerald-900/80 transition text-xs font-mono">&larr; Portfolio</a>
+            <div class="px-4 py-2 glass-panel flex items-center gap-3 border-[--neon-emerald] border-opacity-30">
+                <div id="status-pulse" class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse"></div>
+                <span class="text-xs uppercase tracking-widest text-emerald-300 font-mono">Symbiosis Active</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+        
+        <!-- LEFT PANEL: CONTROLS -->
+        <section class="lg:col-span-3 glass-panel p-5 flex flex-col gap-6 z-10">
+            <h2 class="text-sm font-semibold text-emerald-400 border-b border-emerald-900/50 pb-2 uppercase tracking-widest flex justify-between">
+                <span>Variables</span>
+                <span class="font-mono text-[10px] text-emerald-600">INPUT</span>
+            </h2>
+            
+            <div class="flex flex-col gap-6">
+                <!-- Node Scale -->
+                <div class="relative group">
+                    <div class="flex justify-between items-end mb-2">
+                        <label class="text-xs text-gray-400 uppercase tracking-wider">Node Scale (Fibonacci)</label>
+                        <span id="scale-val" class="text-[--neon-gold] font-mono text-sm">Level 5</span>
+                    </div>
+                    <input type="range" id="scale-slider" class="slider-gold" min="1" max="10" value="5" step="1">
+                </div>
+
+                <!-- Synchronicity Index -->
+                <div class="relative group">
+                    <div class="flex justify-between items-end mb-2">
+                        <label class="text-xs text-gray-400 uppercase tracking-wider">Synchronicity Index</label>
+                        <span id="sync-val" class="text-[--neon-cyan] font-mono text-sm">80%</span>
+                    </div>
+                    <input type="range" id="sync-slider" class="slider-cyan" min="10" max="100" value="80">
+                </div>
+
+                <!-- Stress Load -->
+                <div class="relative group">
+                    <div class="flex justify-between items-end mb-2">
+                        <label class="text-xs text-gray-400 uppercase tracking-wider">Env. Stress Load</label>
+                        <span id="stress-val" class="text-red-400 font-mono text-sm">35%</span>
+                    </div>
+                    <input type="range" id="stress-slider" class="slider-emerald" min="0" max="100" value="35">
+                    <div class="w-full h-1 bg-gray-800 rounded mt-2 overflow-hidden">
+                        <div id="stress-bar" class="h-full bg-gradient-to-r from-yellow-500 to-red-500 w-[35%]"></div>
+                    </div>
+                </div>
+
+                <!-- Energy Allocation -->
+                <div class="relative group">
+                    <div class="flex justify-between items-end mb-2">
+                        <label class="text-xs text-gray-400 uppercase tracking-wider">Energy Allocation</label>
+                        <span id="energy-val" class="text-[--neon-emerald] font-mono text-sm">Regeneration</span>
+                    </div>
+                    <input type="range" id="energy-slider" class="slider-emerald" min="0" max="100" value="75">
+                    <div class="flex justify-between text-[9px] text-gray-500 mt-1 font-mono uppercase">
+                        <span>Storage</span>
+                        <span>Regen</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggles Container -->
+            <div class="flex flex-col gap-5 mt-2 pt-5 border-t border-emerald-900/50">
+                
+                <!-- Routing Toggle -->
+                <div>
+                    <span class="text-xs text-gray-400 uppercase tracking-wider block mb-3 text-center">Routing Optimization</span>
+                    <div class="flex items-center justify-center gap-3">
+                        <span id="lbl-ulam" class="text-xs font-medium text-gray-500 uppercase">Ulam Prime</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="route-toggle" checked class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-gray-700 appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-300"/>
+                            <label for="route-toggle" class="toggle-label-gold block overflow-hidden h-5 rounded-full bg-gray-800 cursor-pointer transition-colors duration-300"></label>
+                        </div>
+                        <span id="lbl-fol" class="text-xs font-medium text-[--neon-gold] uppercase">Flower of Life</span>
+                    </div>
+                </div>
+
+                <!-- Symbiosis Toggle -->
+                <div>
+                    <span class="text-xs text-gray-400 uppercase tracking-wider block mb-3 text-center">Symbiosis Core</span>
+                    <div class="flex items-center justify-center gap-3">
+                        <span id="lbl-ext" class="text-xs font-medium text-gray-500 uppercase">Protect</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="sym-toggle" checked class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-gray-700 appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-300"/>
+                            <label for="sym-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-800 cursor-pointer transition-colors duration-300"></label>
+                        </div>
+                        <span id="lbl-sym" class="text-xs font-medium text-[--neon-cyan] uppercase">Cultivate</span>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- CENTER PANEL: CANVAS MAP -->
+        <section class="lg:col-span-6 flex flex-col h-[500px] lg:h-[650px]">
+            <div class="glass-panel p-1 flex-grow flex flex-col relative group overflow-hidden border border-emerald-500/20">
+                
+                <!-- Overlay HUD -->
+                <div class="absolute top-4 left-4 z-10 flex flex-col gap-1 pointer-events-none bg-black/40 p-2 rounded backdrop-blur-sm border border-emerald-900/50">
+                    <span class="text-[10px] text-emerald-400 uppercase font-mono tracking-widest flex items-center gap-2">
+                        <div class="w-1.5 h-1.5 bg-red-500 rounded-full animate-ping"></div> Live Telemetry
+                    </span>
+                    <span class="text-xs text-gray-300 font-mono mt-1" id="hud-nodes">Active Agents: 144</span>
+                    <span class="text-xs text-gray-300 font-mono" id="hud-mode">Matrix: Flower of Life</span>
+                </div>
+                
+                <div class="absolute bottom-4 right-4 z-10 pointer-events-none">
+                     <svg width="40" height="40" viewBox="0 0 100 100" class="opacity-30">
+                        <!-- Simple compass/sacred geometry subtle overlay -->
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--neon-gold)" stroke-width="1"/>
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="var(--neon-emerald)" stroke-width="0.5"/>
+                        <path d="M50 5 L50 95 M5 50 L95 50" stroke="var(--neon-cyan)" stroke-width="0.5"/>
+                     </svg>
+                </div>
+
+                <!-- The Canvas -->
+                <div class="w-full h-full rounded-xl overflow-hidden flex items-center justify-center bg-[#010604] relative">
+                     <canvas id="orchestrationCanvas" class="w-full h-full object-cover cursor-crosshair"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: OUTCOMES -->
+        <section class="lg:col-span-3 glass-panel p-5 flex flex-col gap-5 z-10">
+            <h2 class="text-sm font-semibold text-emerald-400 border-b border-emerald-900/50 pb-2 uppercase tracking-widest flex justify-between">
+                <span>Efficacy</span>
+                <span class="font-mono text-[10px] text-emerald-600">OUTPUT</span>
+            </h2>
+            
+            <!-- Outcome 1: Harmony Index -->
+            <div class="flex flex-col bg-black/20 p-3 rounded-lg border border-emerald-900/30">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-medium text-gray-300 uppercase tracking-wide">Harmony Index</span>
+                    <span id="out-harmony" class="text-[--neon-gold] font-mono font-bold text-lg">92.4</span>
+                </div>
+                <div class="text-[9px] text-gray-500 uppercase tracking-widest mb-1">System Entropy Reduction</div>
+                <div class="chart-container" id="chart-harmony-container">
+                    <canvas id="chart-harmony"></canvas>
+                </div>
+            </div>
+
+            <!-- Outcome 2: Bio-Recovery -->
+            <div class="flex flex-col bg-black/20 p-3 rounded-lg border border-emerald-900/30">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-medium text-gray-300 uppercase tracking-wide">Bio-Recovery Vel.</span>
+                    <span id="out-bio" class="text-[--neon-emerald] font-mono font-bold text-lg">+14.2x</span>
+                </div>
+                <div class="text-[9px] text-gray-500 uppercase tracking-widest mb-1">Flora/Fauna Resurgence Rate</div>
+                <div class="chart-container" id="chart-bio-container">
+                     <canvas id="chart-bio"></canvas>
+                </div>
+            </div>
+
+            <!-- Outcome 3: Reusable Energy -->
+            <div class="flex flex-col bg-black/20 p-3 rounded-lg border border-emerald-900/30">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-medium text-gray-300 uppercase tracking-wide">Energy Efficiency</span>
+                    <span id="out-energy" class="text-[--neon-cyan] font-mono font-bold text-lg">98.9%</span>
+                </div>
+                <div class="text-[9px] text-gray-500 uppercase tracking-widest mb-1">Renewable Waste Minimization</div>
+                <div class="chart-container" id="chart-energy-container">
+                     <canvas id="chart-energy"></canvas>
+                </div>
+            </div>
+            
+            <!-- Global Status Bar -->
+            <div class="mt-auto pt-2">
+                <div class="flex justify-between text-[10px] text-gray-400 uppercase tracking-wider mb-1">
+                    <span>Grid Stability</span>
+                    <span id="grid-status" class="text-emerald-400">Optimal</span>
+                </div>
+                <div class="w-full bg-gray-900 h-1.5 rounded overflow-hidden">
+                    <div id="stability-bar" class="h-full bg-gradient-to-r from-emerald-600 to-cyan-400 w-[95%] transition-all duration-1000"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL WIDTH PANEL: AI ORACLE -->
+        <section class="lg:col-span-12 glass-panel p-5 mt-2 flex flex-col gap-4 z-10">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-emerald-900/50 pb-3 gap-3">
+                <h2 class="text-sm font-semibold text-emerald-400 uppercase tracking-widest flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-[--neon-cyan] animate-pulse"></div>
+                    Sophia AI Neural Synthesis
+                </h2>
+                <button id="btn-ai-analyze" class="bg-emerald-900/30 hover:bg-emerald-800/50 text-emerald-300 border border-emerald-700/50 px-4 py-2 rounded text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_10px_rgba(16,185,129,0.1)] hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] w-full sm:w-auto">
+                    Initialize Analysis
+                </button>
+            </div>
+            <div class="relative min-h-[80px] bg-[#020b08] rounded-lg border border-emerald-900/30 p-4 font-mono text-xs md:text-sm text-emerald-100/80 leading-relaxed shadow-inner">
+                <div id="ai-loading" class="hidden absolute inset-0 flex items-center justify-center bg-[#020b08]/90 backdrop-blur-sm rounded-lg z-10">
+                    <div class="w-4 h-4 rounded-full bg-[--neon-cyan] animate-ping"></div>
+                    <span class="ml-3 text-[--neon-cyan] uppercase tracking-widest text-xs font-semibold">Communing with Oracle...</span>
+                </div>
+                <div id="ai-output" class="whitespace-pre-wrap transition-opacity duration-300">Awaiting manual initialization... The neural pathways are dormant but ready to synthesize the current harmonic resonance parameters. Adjust the grid variables and initialize to consult the AI.</div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- DOM Elements ---
+        const els = {
+            scale: document.getElementById('scale-slider'),
+            sync: document.getElementById('sync-slider'),
+            stress: document.getElementById('stress-slider'),
+            energy: document.getElementById('energy-slider'),
+            route: document.getElementById('route-toggle'),
+            sym: document.getElementById('sym-toggle'),
+            
+            scaleVal: document.getElementById('scale-val'),
+            syncVal: document.getElementById('sync-val'),
+            stressVal: document.getElementById('stress-val'),
+            energyVal: document.getElementById('energy-val'),
+            stressBar: document.getElementById('stress-bar'),
+            
+            lblUlam: document.getElementById('lbl-ulam'),
+            lblFol: document.getElementById('lbl-fol'),
+            lblExt: document.getElementById('lbl-ext'),
+            lblSym: document.getElementById('lbl-sym'),
+
+            outHarmony: document.getElementById('out-harmony'),
+            outBio: document.getElementById('out-bio'),
+            outEnergy: document.getElementById('out-energy'),
+            
+            hudNodes: document.getElementById('hud-nodes'),
+            hudMode: document.getElementById('hud-mode'),
+            gridStatus: document.getElementById('grid-status'),
+            stabilityBar: document.getElementById('stability-bar'),
+            
+            // AI Panel Elements
+            btnAi: document.getElementById('btn-ai-analyze'),
+            aiOutput: document.getElementById('ai-output'),
+            aiLoading: document.getElementById('ai-loading')
+        };
+
+        // --- Canvas Setup ---
+        const canvas = document.getElementById('orchestrationCanvas');
+        const ctx = canvas.getContext('2d');
+        let cw, ch, cx, cy;
+        
+        function resize() {
+            const parent = canvas.parentElement;
+            cw = parent.clientWidth;
+            ch = parent.clientHeight;
+            // High DPI screen support
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = cw * dpr;
+            canvas.height = ch * dpr;
+            ctx.scale(dpr, dpr);
+            cx = cw / 2;
+            cy = ch / 2;
+            initAgents(); // Re-init on resize
+        }
+        window.addEventListener('resize', resize);
+
+        // --- STREAMING_CHUNK:Implementing Geometric Mathematics... ---
+        // Fibonacci Math
+        function getFibonacciPoints(maxLevel, scale) {
+            const points = [];
+            let a = 1, b = 1;
+            let currentAngle = 0;
+            let currentX = 0, currentY = 0;
+
+            for (let i = 0; i < maxLevel * 2; i++) {
+                const radius = a * scale;
+                // Add points along the arc for pathing
+                for (let a_step = 0; a_step <= Math.PI/2; a_step += 0.1) {
+                    const angle = currentAngle + a_step;
+                    // Approximate origin shift for arcs (simplified for visual representation)
+                    const px = cx + currentX + Math.cos(angle) * radius;
+                    const py = cy + currentY + Math.sin(angle) * radius;
+                    points.push({x: px, y: py});
+                }
+                
+                // Update for next quarter circle
+                currentX += Math.cos(currentAngle) * radius;
+                currentY += Math.sin(currentAngle) * radius;
+                currentAngle += Math.PI / 2;
+                
+                let next = a + b;
+                a = b;
+                b = next;
+            }
+            return points;
+        }
+
+        // Ulam Spiral Math (Prime mapping)
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+            if (num % 2 === 0 || num % 3 === 0) return false;
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+
+        function getUlamCoordinate(n, stepSize) {
+            if (n === 1) return { x: cx, y: cy, isPrime: false };
+            let k = Math.ceil((Math.sqrt(n) - 1) / 2);
+            let t = 2 * k;
+            let m = (t + 1) * (t + 1); 
+            let x, y;
+            
+            if (n >= m - t) { x = k - (m - n); y = -k; }
+            else { m -= t; if (n >= m - t) { x = -k; y = -k + (m - n); }
+            else { m -= t; if (n >= m - t) { x = -k + (m - n); y = k; }
+            else { x = k; y = k - (m - n - t); } } }
+            
+            return { x: cx + x * stepSize, y: cy + y * stepSize, isPrime: isPrime(n) };
+        }
+
+        // Flower of Life Math
+        function getFlowerOfLifeCenters(radius, depth) {
+            const centers = [{x: cx, y: cy}]; // Center
+            const angles = [0, Math.PI/3, 2*Math.PI/3, Math.PI, 4*Math.PI/3, 5*Math.PI/3];
+            
+            // Build rings
+            for(let ring=1; ring<=depth; ring++) {
+                let startPoint = {
+                    x: cx + Math.cos(4*Math.PI/3) * radius * ring,
+                    y: cy + Math.sin(4*Math.PI/3) * radius * ring
+                };
+                
+                let currentPoint = {...startPoint};
+                
+                for(let side=0; side<6; side++) {
+                    const angle = angles[side];
+                    for(let step=0; step<ring; step++) {
+                        centers.push({...currentPoint});
+                        currentPoint.x += Math.cos(angle) * radius;
+                        currentPoint.y += Math.sin(angle) * radius;
+                    }
+                }
+            }
+            return centers;
+        }
+
+        // --- STREAMING_CHUNK:Building the Multi-Agent System... ---
+        let agents = [];
+        const MAX_AGENTS = 300;
+        let fibPoints = [];
+        let folCenters = [];
+        
+        class Agent {
+            constructor() {
+                this.reset();
+                // Randomize starting phase
+                this.life = Math.random() * 1000;
+            }
+            
+            reset() {
+                const isFol = els.route.checked;
+                this.targetNode = Math.floor(Math.random() * (isFol ? folCenters.length : 200) + 1);
+                
+                if (isFol) {
+                    const center = folCenters[this.targetNode % folCenters.length] || {x:cx, y:cy};
+                    // Spawn on ring
+                    const angle = Math.random() * Math.PI * 2;
+                    const r = 40; // Fol radius
+                    this.x = center.x + Math.cos(angle) * r;
+                    this.y = center.y + Math.sin(angle) * r;
+                } else {
+                    const ulam = getUlamCoordinate(this.targetNode, 30);
+                    this.x = ulam.x + (Math.random()-0.5)*10;
+                    this.y = ulam.y + (Math.random()-0.5)*10;
+                }
+                
+                this.vx = 0;
+                this.vy = 0;
+                this.size = Math.random() * 2 + 1;
+                // Assign a role based on sync index logic later
+                this.type = Math.random() > 0.7 ? 'energy' : 'nutrient';
+            }
+
+            update(syncIndex, scaleLevel, isFol) {
+                // Seek logic based on geometry
+                let targetX, targetY;
+                
+                if (isFol) {
+                    // Orbit the FoL centers
+                    const center = folCenters[this.targetNode % folCenters.length] || {x:cx, y:cy};
+                    const dx = center.x - this.x;
+                    const dy = center.y - this.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    const r = 40; // Fol Radius
+                    
+                    // Tangent force to orbit
+                    const tx = -dy/dist;
+                    const ty = dx/dist;
+                    
+                    // Pull to orbit radius
+                    const pull = (dist - r) * 0.05;
+                    
+                    targetX = this.x + tx * 5 + (dx/dist)*pull;
+                    targetY = this.y + ty * 5 + (dy/dist)*pull;
+                    
+                    // Occasionally jump to next node based on sync
+                    if (Math.random() < (syncIndex/10000)) {
+                        this.targetNode = (this.targetNode + 1) % folCenters.length;
+                    }
+
+                } else {
+                    // Navigate Ulam prime nodes
+                    const ulamTarget = getUlamCoordinate(this.targetNode, 30);
+                    targetX = ulamTarget.x;
+                    targetY = ulamTarget.y;
+                    
+                    const dx = targetX - this.x;
+                    const dy = targetY - this.y;
+                    if(Math.sqrt(dx*dx + dy*dy) < 5) {
+                        // Reached node, find next prime
+                        do {
+                            this.targetNode = Math.floor(Math.random() * 400) + 1;
+                        } while (!isPrime(this.targetNode) && Math.random() > 0.2); // Prefer primes
+                    }
+                }
+
+                // Add spiral drift force based on Fibonacci scale
+                const fibInfluence = (scaleLevel / 10) * 0.5;
+                const fx = cx - this.x;
+                const fy = cy - this.y;
+                const fDist = Math.sqrt(fx*fx + fy*fy);
+                const spiralAng = Math.atan2(fy, fx) + Math.PI/2 + 0.2; // Spiral inward/outward
+                
+                targetX += Math.cos(spiralAng) * fDist * fibInfluence * 0.05;
+                targetY += Math.sin(spiralAng) * fDist * fibInfluence * 0.05;
+
+                // Move
+                this.vx += (targetX - this.x) * (0.01 * (syncIndex/50));
+                this.vy += (targetY - this.y) * (0.01 * (syncIndex/50));
+                
+                // Friction
+                this.vx *= 0.92;
+                this.vy *= 0.92;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                this.life++;
+                
+                // Bound check
+                if (this.x < -100 || this.x > cw+100 || this.y < -100 || this.y > ch+100) {
+                    this.reset();
+                }
+            }
+
+            draw(ctx, isFol) {
+                const color = this.type === 'energy' ? 'rgba(251, 191, 36, 0.8)' : 'rgba(16, 185, 129, 0.8)'; // Gold or Emerald
+                ctx.fillStyle = color;
+                
+                const pulse = Math.sin(this.life * 0.1) * 1.5;
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, Math.max(0.5, this.size + pulse), 0, Math.PI*2);
+                ctx.fill();
+                
+                // Draw connection lines if highly synchronized
+                if (parseInt(els.sync.value) > 70 && Math.random() > 0.95) {
+                    ctx.strokeStyle = color.replace('0.8', '0.2');
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    const center = isFol ? folCenters[this.targetNode % folCenters.length] : getUlamCoordinate(this.targetNode, 30);
+                    if(center) {
+                        ctx.lineTo(center.x, center.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function initAgents() {
+            folCenters = getFlowerOfLifeCenters(40, 5);
+            agents = [];
+            const count = parseInt(els.scale.value) * 30; // Max 300
+            for(let i=0; i<count; i++) {
+                agents.push(new Agent());
+            }
+        }
+
+        // --- STREAMING_CHUNK:Rendering Canvas Geometries... ---
+        let time = 0;
+
+        function drawBackgroundGeometries(scaleLvl, isFol) {
+            ctx.lineWidth = 1;
+            
+            if (isFol) {
+                // Flower of Life
+                ctx.strokeStyle = `rgba(251, 191, 36, ${0.1 + (scaleLvl*0.01)})`; // Gold faint
+                const r = 40;
+                folCenters.forEach((center, i) => {
+                    // Only draw subset based on scale to create growth effect
+                    if (i < scaleLvl * Math.pow(scaleLvl, 1.2)) {
+                        ctx.beginPath();
+                        ctx.arc(center.x, center.y, r, 0, Math.PI*2);
+                        ctx.stroke();
+                        
+                        // Node dot
+                        ctx.fillStyle = `rgba(6, 182, 212, ${0.3 + Math.sin(time+i)*0.2})`; // Cyan pulse
+                        ctx.beginPath();
+                        ctx.arc(center.x, center.y, 2, 0, Math.PI*2);
+                        ctx.fill();
+                    }
+                });
+            } else {
+                // Ulam Spiral Grid
+                ctx.strokeStyle = `rgba(16, 185, 129, 0.15)`; // Emerald faint
+                const step = 30;
+                const maxN = scaleLvl * 60;
+                
+                ctx.beginPath();
+                let lastPt = getUlamCoordinate(1, step);
+                ctx.moveTo(lastPt.x, lastPt.y);
+                
+                for(let n=2; n<=maxN; n++) {
+                    const pt = getUlamCoordinate(n, step);
+                    ctx.lineTo(pt.x, pt.y);
+                    
+                    if (pt.isPrime) {
+                        // Draw prime node
+                        ctx.fillStyle = `rgba(16, 185, 129, ${0.4 + Math.sin(time*2+n)*0.3})`;
+                        ctx.fillRect(pt.x-2, pt.y-2, 4, 4);
+                    }
+                }
+                ctx.stroke();
+            }
+
+            // Draw overarching Fibonacci spiral overlay
+            ctx.strokeStyle = `rgba(6, 182, 212, ${0.05 + (scaleLvl*0.015)})`; // Cyan
+            ctx.lineWidth = 2;
+            const fibScale = 5 + Math.sin(time*0.5)*2; // Breathing scale
+            let a = 1, b = 1;
+            let currentAngle = time * 0.1; // Slowly rotate
+            let currentX = 0, currentY = 0;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            for (let i = 0; i < scaleLvl + 3; i++) {
+                const radius = a * fibScale;
+                
+                // Draw arc approximation
+                for (let a_step = 0; a_step <= Math.PI/2; a_step += 0.1) {
+                    const angle = currentAngle + a_step;
+                    const px = cx + currentX + Math.cos(angle) * radius;
+                    const py = cy + currentY + Math.sin(angle) * radius;
+                    ctx.lineTo(px, py);
+                }
+                
+                currentX += Math.cos(currentAngle) * radius;
+                currentY += Math.sin(currentAngle) * radius;
+                currentAngle += Math.PI / 2;
+                
+                let next = a + b;
+                a = b;
+                b = next;
+            }
+            ctx.stroke();
+        }
+
+        // --- STREAMING_CHUNK:Engine Loop and Chart Rendering... ---
+        function animate() {
+            // Trail effect
+            ctx.fillStyle = 'rgba(2, 11, 8, 0.2)'; // Dark green/black fade
+            ctx.fillRect(0, 0, cw, ch);
+
+            const scaleLvl = parseInt(els.scale.value);
+            const syncIdx = parseInt(els.sync.value);
+            const isFol = els.route.checked;
+
+            drawBackgroundGeometries(scaleLvl, isFol);
+
+            // Update and draw agents
+            agents.forEach(agent => {
+                agent.update(syncIdx, scaleLvl, isFol);
+                agent.draw(ctx, isFol);
+            });
+
+            time += 0.02;
+            requestAnimationFrame(animate);
+        }
+
+        // Simple mini-chart renderer for right panel
+        function renderMiniChart(canvasId, values, colorStr) {
+            const chartCanvas = document.getElementById(canvasId);
+            const cctx = chartCanvas.getContext('2d');
+            const cw2 = chartCanvas.parentElement.clientWidth;
+            const ch2 = chartCanvas.parentElement.clientHeight;
+            chartCanvas.width = cw2;
+            chartCanvas.height = ch2;
+
+            cctx.clearRect(0, 0, cw2, ch2);
+            
+            // Grid
+            cctx.strokeStyle = 'rgba(16, 185, 129, 0.1)';
+            cctx.beginPath();
+            cctx.moveTo(0, ch2/2); cctx.lineTo(cw2, ch2/2);
+            cctx.stroke();
+
+            // Line
+            cctx.strokeStyle = colorStr;
+            cctx.lineWidth = 2;
+            cctx.beginPath();
+            cctx.moveTo(0, ch2);
+            
+            const points = values.length;
+            const stepX = cw2 / (points - 1);
+            
+            for(let i=0; i<points; i++) {
+                const x = i * stepX;
+                // Map 0-100 to canvas height
+                const y = ch2 - (ch2 * (values[i]/100)); 
+                cctx.lineTo(x, y);
+            }
+            cctx.stroke();
+            
+            // Fill
+            cctx.lineTo(cw2, ch2);
+            cctx.lineTo(0, ch2);
+            const gradient = cctx.createLinearGradient(0, 0, 0, ch2);
+            gradient.addColorStop(0, colorStr.replace(')', ', 0.4)').replace('rgb', 'rgba').replace('#fbbf24', 'rgba(251,191,36,0.4)').replace('#10b981', 'rgba(16,185,129,0.4)').replace('#06b6d4', 'rgba(6,182,212,0.4)'));
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            cctx.fillStyle = gradient;
+            cctx.fill();
+        }
+
+        // History arrays for charts
+        let historyHarmony = Array(20).fill(50);
+        let historyBio = Array(20).fill(50);
+        let historyEnergy = Array(20).fill(50);
+
+        function updateUI() {
+            const scale = parseInt(els.scale.value);
+            const sync = parseInt(els.sync.value);
+            const stress = parseInt(els.stress.value);
+            const energy = parseInt(els.energy.value);
+            const isFol = els.route.checked;
+            const isSym = els.sym.checked;
+
+            // Update Labels
+            els.scaleVal.textContent = `Level ${scale}`;
+            els.syncVal.textContent = `${sync}%`;
+            els.stressVal.textContent = `${stress}%`;
+            els.energyVal.textContent = energy > 50 ? 'Regeneration' : 'Storage';
+            els.stressBar.style.width = `${stress}%`;
+
+            // Toggle Styles
+            els.lblUlam.className = !isFol ? "text-xs font-medium text-[--neon-gold] uppercase" : "text-xs font-medium text-gray-500 uppercase";
+            els.lblFol.className = isFol ? "text-xs font-medium text-[--neon-gold] uppercase" : "text-xs font-medium text-gray-500 uppercase";
+            
+            els.lblExt.className = !isSym ? "text-xs font-medium text-[--neon-cyan] uppercase" : "text-xs font-medium text-gray-500 uppercase";
+            els.lblSym.className = isSym ? "text-xs font-medium text-[--neon-cyan] uppercase" : "text-xs font-medium text-gray-500 uppercase";
+
+            // HUD
+            els.hudNodes.textContent = `Active Agents: ${scale * 30}`;
+            els.hudMode.textContent = `Matrix: ${isFol ? 'Flower of Life' : 'Ulam Prime'}`;
+
+            // --- Pseudo-Math Outcomes ---
+            const geoBonus = isFol ? 1.2 : 0.9;
+            const symBonus = isSym ? 1.3 : 0.8;
+            
+            // Harmony Index (0-100)
+            let harmony = ((sync * 1.5) - (stress * 0.8) + (scale * 5)) * geoBonus;
+            harmony = Math.min(99.9, Math.max(10.1, harmony/1.8));
+            
+            // Bio-Recovery (Multiplier)
+            let bio = (energy > 50 ? (energy/5) : (energy/10)) * symBonus * (scale/5);
+            bio = Math.min(25.0, Math.max(0.1, bio));
+
+            // Energy Efficiency (Percentage)
+            let nrg = (100 - stress/2) * (isFol ? 1.05 : 0.95);
+            nrg = Math.min(99.9, Math.max(40.0, nrg));
+
+            // Update Text
+            els.outHarmony.textContent = harmony.toFixed(1);
+            els.outBio.textContent = `+${bio.toFixed(1)}x`;
+            els.outEnergy.textContent = `${nrg.toFixed(1)}%`;
+
+            // Grid Status
+            let status = 'Optimal';
+            let statusColor = 'text-emerald-400';
+            if (stress > 80 && sync < 50) { status = 'Critical'; statusColor = 'text-red-500'; }
+            else if (stress > 50) { status = 'Stressed'; statusColor = 'text-yellow-500'; }
+            els.gridStatus.textContent = status;
+            els.gridStatus.className = statusColor;
+            els.stabilityBar.style.width = `${harmony}%`;
+
+            // Update History Arrays
+            historyHarmony.push(harmony); historyHarmony.shift();
+            historyBio.push((bio/25)*100); historyBio.shift(); // Normalize to 100 for chart
+            historyEnergy.push(nrg); historyEnergy.shift();
+
+            // Draw Charts
+            renderMiniChart('chart-harmony', historyHarmony, '#fbbf24');
+            renderMiniChart('chart-bio', historyBio, '#10b981');
+            renderMiniChart('chart-energy', historyEnergy, '#06b6d4');
+
+            // Manage agent count dynamically
+            const targetAgents = scale * 30;
+            if (agents.length < targetAgents) {
+                for(let i = agents.length; i < targetAgents; i++) agents.push(new Agent());
+            } else if (agents.length > targetAgents) {
+                agents.splice(targetAgents);
+            }
+        }
+
+        // --- STREAMING_CHUNK:Implementing Gemini AI Integration... ---
+        
+        // Exponential backoff fetch wrapper
+        async function fetchWithBackoff(url, options, retries = 4, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok && response.status === 429) {
+                        throw new Error("Throttled");
+                    }
+                    return response;
+                } catch (e) {
+                    if (i === retries - 1) throw e;
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; // Exponential increase
+                }
+            }
+        }
+
+        // AI Analysis Function using Gemini API
+        async function generateAnalysis() {
+            // Show loading state
+            els.aiLoading.classList.remove('hidden');
+            els.aiOutput.style.opacity = '0.3';
+            
+            // Gather current state data
+            const scale = els.scale.value;
+            const sync = els.sync.value;
+            const stress = els.stress.value;
+            const energy = els.energy.value > 50 ? 'Regeneration' : 'Storage';
+            const isFol = els.route.checked ? 'Flower of Life' : 'Ulam Prime Spiral';
+            const isSym = els.sym.checked ? 'Cultivate (Symbiosis)' : 'Protect (Defensive)';
+            const gridStatus = els.gridStatus.textContent;
+            const harmony = els.outHarmony.textContent;
+
+            const systemPrompt = "You are Sophia, an advanced bio-digital ecological AI. Your tone is a blend of sacred geometry, high-tech sci-fi, and natural mysticism. Keep responses to exactly 3 short, deeply poetic but analytical sentences.";
+            const userQuery = `Analyze the following ecosystem matrix: Node Scale Level ${scale}, Synchronicity ${sync}%, Environmental Stress ${stress}%, Energy Mode: ${energy}. Geometry Pattern: ${isFol}. Symbiosis Core Strategy: ${isSym}. Current Grid Status is ${gridStatus} with a Harmony Index of ${harmony}. Provide a brief diagnostic of the current state and one piece of mystical-technical advice to achieve perfect harmony.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            const apiKey = ""; // Immersive Canvas will inject the key
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetchWithBackoff(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+                
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    els.aiOutput.textContent = candidate.content.parts[0].text;
+                } else {
+                    els.aiOutput.textContent = "Neurolink disruption. The harmonic resonance was too unstable to parse.";
+                }
+            } catch (error) {
+                // Ensure failures are gracefully handled without logging to console as errors per rules
+                els.aiOutput.textContent = "Connection to the Sophia-Protocol oracle failed. Check dimensional tether and bandwidth allocations.";
+            } finally {
+                // Hide loading state
+                els.aiLoading.classList.add('hidden');
+                els.aiOutput.style.opacity = '1';
+            }
+        }
+
+        // --- STREAMING_CHUNK:Attaching Event Listeners and Booting... ---
+        
+        // Attach AI trigger
+        els.btnAi.addEventListener('click', generateAnalysis);
+
+        [els.scale, els.sync, els.stress, els.energy, els.route, els.sym].forEach(el => {
+            el.addEventListener('input', updateUI);
+            el.addEventListener('change', updateUI);
+        });
+
+        // Initialize
+        window.onload = () => {
+            resize();
+            updateUI();
+            animate();
+            
+            // Continuous chart update for lively feel
+            setInterval(() => {
+                // Add tiny noise to history arrays
+                historyHarmony.push(Math.min(100, Math.max(0, historyHarmony[historyHarmony.length-1] + (Math.random()-0.5)*2))); historyHarmony.shift();
+                historyBio.push(Math.min(100, Math.max(0, historyBio[historyBio.length-1] + (Math.random()-0.5)*2))); historyBio.shift();
+                historyEnergy.push(Math.min(100, Math.max(0, historyEnergy[historyEnergy.length-1] + (Math.random()-0.5)*2))); historyEnergy.shift();
+                
+                renderMiniChart('chart-harmony', historyHarmony, '#fbbf24');
+                renderMiniChart('chart-bio', historyBio, '#10b981');
+                renderMiniChart('chart-energy', historyEnergy, '#06b6d4');
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

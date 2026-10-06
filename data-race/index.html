@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Economic Trajectories: Time-Series Line Race | Ashleigh Walker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #090d16;
+      color: #f1f5f9;
+      font-family: 'Inter', system-ui, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .back-btn {
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      background: rgba(56, 189, 248, 0.08);
+    }
+    .back-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      background: rgba(0, 243, 255, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .subtitle {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .action-btn {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(176, 38, 255, 0.2));
+      color: #fff;
+      border: 1px solid rgba(0, 243, 255, 0.4);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.4), rgba(176, 38, 255, 0.4));
+      border-color: #00f3ff;
+      box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+    }
+    #chart-wrapper {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-btn">&larr; Portfolio</a>
+      <div>
+        <h1>Global Economic Trajectories <span class="badge">ECharts 5 Time-Series Race</span></h1>
+        <p class="subtitle">Multi-Nation Income & Longevity Dynamics (1950 to 2015)</p>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="replay-btn" class="action-btn" onclick="restartRace()">Replay Race</button>
+    </div>
+  </header>
+
+  <div id="chart-wrapper">
+    <div id="container"></div>
+  </div>
+
+  <script src="https://fastly.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="data.js"></script>
+
+  <script>
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, 'dark', {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var cachedData = null;
+
+    function restartRace() {
+      if (cachedData) {
+        myChart.clear();
+        run(cachedData);
+      }
+    }
+
+    if (window.LIFE_EXPECTANCY_DATA) {
+      cachedData = window.LIFE_EXPECTANCY_DATA;
+      run(cachedData);
+    } else {
+      $.get('life-expectancy-table.json', function (_rawData) {
+        cachedData = _rawData;
+        run(_rawData);
+      });
+    }
+
+    function run(_rawData) {
+      const countries = [
+        'Finland',
+        'France',
+        'Germany',
+        'Iceland',
+        'Norway',
+        'Poland',
+        'Russia',
+        'United Kingdom',
+        'United States',
+        'Japan',
+        'China'
+      ];
+      const datasetWithFilters = [];
+      const seriesList = [];
+      const colors = [
+        '#00f3ff', '#a855f7', '#38bdf8', '#34d399', '#f59e0b',
+        '#ec4899', '#f43f5e', '#6366f1', '#10b981', '#fbbf24', '#06b6d4'
+      ];
+
+      echarts.util.each(countries, function (country, index) {
+        var datasetId = 'dataset_' + country;
+        datasetWithFilters.push({
+          id: datasetId,
+          fromDatasetId: 'dataset_raw',
+          transform: {
+            type: 'filter',
+            config: {
+              and: [
+                { dimension: 'Year', gte: 1950 },
+                { dimension: 'Country', '=': country }
+              ]
+            }
+          }
+        });
+        seriesList.push({
+          type: 'line',
+          datasetId: datasetId,
+          showSymbol: false,
+          name: country,
+          lineStyle: {
+            width: 3,
+            color: colors[index % colors.length]
+          },
+          endLabel: {
+            show: true,
+            formatter: function (params) {
+              return params.value[3] + ': $' + Math.round(params.value[0]).toLocaleString();
+            },
+            color: colors[index % colors.length],
+            fontWeight: 600,
+            fontSize: 12
+          },
+          labelLayout: {
+            moveOverlap: 'shiftY'
+          },
+          emphasis: {
+            focus: 'series'
+          },
+          encode: {
+            x: 'Year',
+            y: 'Income',
+            label: ['Country', 'Income'],
+            itemName: 'Year',
+            tooltip: ['Income']
+          }
+        });
+      });
+
+      var option = {
+        backgroundColor: '#090d16',
+        animationDuration: 10000,
+        dataset: [
+          {
+            id: 'dataset_raw',
+            source: _rawData
+          },
+          ...datasetWithFilters
+        ],
+        title: {
+          text: 'National Income Trajectories Over Time',
+          subtext: 'Tracking purchasing-power adjusted GDP per capita in USD',
+          textStyle: {
+            color: '#f8fafc',
+            fontFamily: 'Outfit, sans-serif',
+            fontSize: 18,
+            fontWeight: 700
+          },
+          subtextStyle: {
+            color: '#94a3b8',
+            fontSize: 12
+          },
+          left: 30,
+          top: 20
+        },
+        tooltip: {
+          order: 'valueDesc',
+          trigger: 'axis',
+          backgroundColor: 'rgba(15, 23, 42, 0.9)',
+          borderColor: 'rgba(0, 243, 255, 0.4)',
+          textStyle: {
+            color: '#f1f5f9'
+          }
+        },
+        xAxis: {
+          type: 'category',
+          nameLocation: 'middle',
+          name: 'Year',
+          nameGap: 30,
+          axisLine: { lineStyle: { color: '#334155' } },
+          axisLabel: { color: '#94a3b8' },
+          splitLine: { show: true, lineStyle: { color: 'rgba(51, 65, 85, 0.3)' } }
+        },
+        yAxis: {
+          name: 'Per Capita Income (USD)',
+          nameGap: 20,
+          axisLine: { lineStyle: { color: '#334155' } },
+          axisLabel: {
+            color: '#94a3b8',
+            formatter: function(val) { return '$' + (val / 1000) + 'k'; }
+          },
+          splitLine: { show: true, lineStyle: { color: 'rgba(51, 65, 85, 0.3)' } }
+        },
+        grid: {
+          right: 170,
+          left: 70,
+          top: 90,
+          bottom: 50
+        },
+        series: seriesList
+      };
+
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', function() {
+      if (myChart) myChart.resize();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Research Deck Viewer | Ashleigh Walker</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg-deep: #070d18;
+            --surface-glass: rgba(15, 23, 42, 0.85);
+            --border-glow: rgba(0, 243, 255, 0.25);
+            --accent-cyan: #00f3ff;
+            --accent-purple: #b026ff;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top App Bar */
+        .viewer-nav {
+            background: rgba(10, 15, 29, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            background: rgba(0, 243, 255, 0.08);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .deck-select-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .deck-select-wrap label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .deck-dropdown {
+            background: #0f172a;
+            color: #f1f5f9;
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            max-width: 380px;
+        }
+
+        .deck-dropdown:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-main);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 6px;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.15), rgba(176, 38, 255, 0.15));
+            border-color: var(--border-glow);
+            color: var(--accent-cyan);
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.3), rgba(176, 38, 255, 0.3));
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Main Presentation Theater */
+        .theater-layout {
+            display: flex;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            height: calc(100vh - 65px);
+        }
+
+        .stage-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.35) 0%, rgba(7, 13, 24, 0.9) 100%);
+            overflow-y: auto;
+        }
+
+        .deck-header-info {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .deck-title-group h2 {
+            margin: 0;
+            font-size: 1.35rem;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        .deck-subtitle {
+            margin: 0.2rem 0 0 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .deck-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            background: rgba(0, 243, 255, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        /* Slide Viewport */
+        .viewport-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: #020617;
+            border-radius: 12px;
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 243, 255, 0.08);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.2s ease-in-out;
+            border-radius: 10px;
+        }
+
+        /* Floating Nav Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .nav-arrow:hover:not(:disabled) {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 16px rgba(0, 243, 255, 0.5);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+
+        .arrow-left { left: 16px; }
+        .arrow-right { right: 16px; }
+
+        /* Slide Control Bar */
+        .stage-controls {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 10px;
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .slide-counter {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            color: var(--accent-cyan);
+            min-width: 110px;
+            text-align: center;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            min-width: 140px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            width: 0%;
+            transition: width 0.25s ease;
+        }
+
+        /* Thumbnails Sidebar / Drawer */
+        .thumbnails-panel {
+            width: 280px;
+            background: rgba(10, 15, 29, 0.98);
+            border-left: 1px solid var(--border-glow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            z-index: 50;
+        }
+
+        .thumbnails-panel.collapsed {
+            transform: translateX(100%);
+            display: none;
+        }
+
+        .thumb-header {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .thumb-header h3 {
+            margin: 0;
+            font-size: 0.92rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .thumb-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .thumb-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            background: #020617;
+            aspect-ratio: 16 / 9;
+        }
+
+        .thumb-item:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .thumb-item.active {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumb-number {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 0.7rem;
+            font-family: 'Fira Code', monospace;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        /* Fullscreen State */
+        :fullscreen .theater-layout {
+            height: 100vh;
+        }
+
+        :fullscreen .viewer-nav {
+            display: none;
+        }
+
+        :fullscreen .viewport-wrapper {
+            max-width: 100vw;
+            max-height: 100vh;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 900px) {
+            .thumbnails-panel {
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                box-shadow: -8px 0 24px rgba(0, 0, 0, 0.7);
+            }
+            .stage-container {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="viewer-nav">
+        <div class="nav-left">
+            <a href="index.html#research-decks" class="back-link">&larr; Back to Portfolio</a>
+            <div class="deck-select-wrap">
+                <label for="deckSelect">Select Deck:</label>
+                <select id="deckSelect" class="deck-dropdown" onchange="switchDeck(this.value)">
+                    <!-- Populated via JavaScript -->
+                </select>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="btn-action" id="toggleThumbnailsBtn" onclick="toggleThumbnails()" title="Toggle slide list">
+                <span>📑</span> Slides
+            </button>
+            <button class="btn-action" id="autoplayBtn" onclick="toggleAutoplay()" title="Toggle autoplay">
+                <span id="autoplayIcon">▶</span> Auto
+            </button>
+            <button class="btn-action" onclick="toggleFullscreen()" title="Toggle full screen">
+                <span>⛶</span> Fullscreen
+            </button>
+            <a id="downloadPptxBtn" href="#" class="btn-action btn-download" download>
+                <span>💾</span> Download PPTX
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Presentation Stage -->
+    <div class="theater-layout" id="theaterStage">
+        <main class="stage-container">
+            <!-- Deck Info Header -->
+            <div class="deck-header-info">
+                <div class="deck-title-group">
+                    <h2 id="activeDeckTitle">Loading Presentation...</h2>
+                    <p class="deck-subtitle" id="activeDeckSubtitle">Research Slide Deck</p>
+                </div>
+                <div>
+                    <span class="deck-badge" id="activeDeckBadge">Civic Systems</span>
+                </div>
+            </div>
+
+            <!-- Slide Viewport -->
+            <div class="viewport-wrapper" id="viewport">
+                <button class="nav-arrow arrow-left" id="prevSlideBtn" onclick="prevSlide()" aria-label="Previous Slide">&larr;</button>
+                <img id="currentSlideImg" class="slide-image" src="" alt="Slide View">
+                <button class="nav-arrow arrow-right" id="nextSlideBtn" onclick="nextSlide()" aria-label="Next Slide">&rarr;</button>
+            </div>
+
+            <!-- Stage Control Bar -->
+            <div class="stage-controls">
+                <div class="control-group">
+                    <button class="btn-action" onclick="firstSlide()" title="First slide">&laquo;</button>
+                    <button class="btn-action" onclick="prevSlide()" title="Previous slide">&larr; Prev</button>
+                    <div class="slide-counter" id="slideCounterText">Slide 1 / 1</div>
+                    <button class="btn-action" onclick="nextSlide()" title="Next slide">Next &rarr;</button>
+                    <button class="btn-action" onclick="lastSlide()" title="Last slide">&raquo;</button>
+                </div>
+
+                <div class="progress-track" id="progressTrack" onclick="onProgressClick(event)">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="control-group">
+                    <span style="font-size: 0.75rem; color: #64748b; font-family: 'Fira Code', monospace;">Shortcuts: &larr; &rarr; Space F Esc</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Thumbnails Drawer -->
+        <aside class="thumbnails-panel" id="thumbnailsPanel">
+            <div class="thumb-header">
+                <h3>Slide Thumbnails</h3>
+                <button class="btn-action" style="padding: 0.2rem 0.5rem;" onclick="toggleThumbnails()">&times;</button>
+            </div>
+            <div class="thumb-list" id="thumbListContainer">
+                <!-- Populated via JavaScript -->
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Catalog of presentations exported from PowerPoint
+        const DECKS = {
+            "SPARC_City_of_the_Sun_Executive_Deck": {
+                title: "SPARC: Restoring the City of the Sun",
+                subtitle: "Bi-State Coordinated Triage, Upstream IEP Modeling, and HUD FY2026 Data Coherence",
+                category: "Civic & Regional Architecture",
+                badgeClass: "badge-civic",
+                folder: "SPARC_City_of_the_Sun_Executive_Deck",
+                file: "decks/SPARC_City_of_the_Sun_Executive_Deck.pptx",
+                slideCount: 8,
+                ext: "GIF"
+            },
+            "SPARC_HUD_2026_Executive_Deck_Enhanced": {
+                title: "SPARC HUD FY2026 Executive Deck",
+                subtitle: "Coordinated Entry Optimization, HMIS Data Pipelines, and System Coherence",
+                category: "Civic Systems & Data Analytics",
+                badgeClass: "badge-civic",
+                folder: "SPARC_HUD_2026_Executive_Deck_Enhanced",
+                file: "decks/SPARC_HUD_2026_Executive_Deck_Enhanced.pptx",
+                slideCount: 21,
+                ext: "GIF"
+            },
+            "Belleville_Housing_First_Blueprint": {
+                title: "A Blueprint for Belonging in Belleville",
+                subtitle: "A Strategic Action Plan for St. Clair County Housing First Initiatives",
+                category: "Civic & Housing Systems",
+                badgeClass: "badge-civic",
+                folder: "Belleville_Housing_First_Blueprint",
+                file: "decks/Belleville_Housing_First_Blueprint.pptx",
+                slideCount: 15,
+                ext: "GIF"
+            },
+            "St._Louis_Watershed_Reimagined": {
+                title: "St. Louis Watershed Reimagined",
+                subtitle: "Ecological Resilience, Hydrological Modeling, and Community Urban Infrastructure",
+                category: "Ecological Infrastructure",
+                badgeClass: "badge-eco",
+                folder: "St._Louis_Watershed_Reimagined",
+                file: "decks/St._Louis_Watershed_Reimagined.pptx",
+                slideCount: 15,
+                ext: "GIF"
+            },
+            "Gnostic_Reality_OS": {
+                title: "Gnostic Reality OS",
+                subtitle: "NotebookLM Synthesis: Metaphysical Cybernetics, Cognitive Models, and Information Theory",
+                category: "Edge Science & Cognitive Systems",
+                badgeClass: "badge-ai",
+                folder: "Gnostic_Reality_OS",
+                file: "decks/Gnostic_Reality_OS.pptx",
+                slideCount: 17,
+                ext: "GIF"
+            },
+            "Quantum_Magik": {
+                title: "Quantum Magik: Resonance Dynamics",
+                subtitle: "Non-Equilibrium Thermodynamics, Information Entropy, and Synchronicity Matrices",
+                category: "Edge Science & Physics",
+                badgeClass: "badge-ai",
+                folder: "Quantum_Magik",
+                file: "decks/Quantum_Magik.pptx",
+                slideCount: 15,
+                ext: "GIF"
+            },
+            "Redesigning_the_Broken_Blueprint": {
+                title: "Redesigning the Broken Blueprint",
+                subtitle: "Systems Diagnostics, Architectural Refactoring, and Sustainable Infrastructure",
+                category: "Systems Architecture",
+                badgeClass: "badge-deck",
+                folder: "Redesigning_the_Broken_Blueprint",
+                file: "decks/Redesigning_the_Broken_Blueprint.pptx",
+                slideCount: 15,
+                ext: "GIF"
+            },
+            "The_Bioluminescent_Orb": {
+                title: "The Bioluminescent Orb",
+                subtitle: "Synthetic Biology, Optical Biosensors, and Living Ecological Monitoring Systems",
+                category: "Biotechnology & Ecological Systems",
+                badgeClass: "badge-eco",
+                folder: "The_Bioluminescent_Orb",
+                file: "decks/The_Bioluminescent_Orb.pptx",
+                slideCount: 11,
+                ext: "GIF"
+            }
+        };
+
+        let currentDeckId = "SPARC_City_of_the_Sun_Executive_Deck";
+        let currentSlideIndex = 1;
+        let autoplayInterval = null;
+
+        // Initialize from URL parameters or default
+        function initViewer() {
+            const params = new URLSearchParams(window.location.search);
+            const deckParam = params.get('deck');
+            const slideParam = parseInt(params.get('slide'), 10);
+
+            if (deckParam && DECKS[deckParam]) {
+                currentDeckId = deckParam;
+            }
+
+            populateDeckSelect();
+
+            if (slideParam && slideParam >= 1 && slideParam <= DECKS[currentDeckId].slideCount) {
+                currentSlideIndex = slideParam;
+            } else {
+                currentSlideIndex = 1;
+            }
+
+            loadDeck(currentDeckId, currentSlideIndex);
+            setupKeyboardNavigation();
+            setupTouchGestures();
+        }
+
+        function populateDeckSelect() {
+            const select = document.getElementById('deckSelect');
+            select.innerHTML = '';
+            for (const [id, data] of Object.entries(DECKS)) {
+                const opt = document.createElement('option');
+                opt.value = id;
+                opt.textContent = `${data.title} (${data.slideCount} slides)`;
+                if (id === currentDeckId) opt.selected = true;
+                select.appendChild(opt);
+            }
+        }
+
+        function switchDeck(deckId) {
+            if (!DECKS[deckId]) return;
+            currentDeckId = deckId;
+            currentSlideIndex = 1;
+            if (autoplayInterval) stopAutoplay();
+            loadDeck(currentDeckId, currentSlideIndex);
+            updateUrlParams();
+        }
+
+        function getSlideUrl(deckId, slideIndex) {
+            const deck = DECKS[deckId];
+            return `decks/slides/${deck.folder}/Slide${slideIndex}.${deck.ext}`;
+        }
+
+        function loadDeck(deckId, slideIndex) {
+            const deck = DECKS[deckId];
+            document.getElementById('activeDeckTitle').textContent = deck.title;
+            document.getElementById('activeDeckSubtitle').textContent = deck.subtitle;
+            document.getElementById('activeDeckBadge').textContent = deck.category;
+            document.getElementById('downloadPptxBtn').href = deck.file;
+            document.getElementById('deckSelect').value = deckId;
+
+            renderThumbnails(deckId);
+            showSlide(slideIndex);
+        }
+
+        function showSlide(index) {
+            const deck = DECKS[currentDeckId];
+            if (index < 1) index = 1;
+            if (index > deck.slideCount) index = deck.slideCount;
+
+            currentSlideIndex = index;
+
+            const slideImg = document.getElementById('currentSlideImg');
+            const targetSrc = getSlideUrl(currentDeckId, currentSlideIndex);
+
+            // Smooth image swap
+            slideImg.style.opacity = '0.4';
+            const tempImg = new Image();
+            tempImg.src = targetSrc;
+            tempImg.onload = () => {
+                slideImg.src = targetSrc;
+                slideImg.style.opacity = '1';
+            };
+
+            // Preload next slide for zero latency
+            if (currentSlideIndex < deck.slideCount) {
+                const preload = new Image();
+                preload.src = getSlideUrl(currentDeckId, currentSlideIndex + 1);
+            }
+
+            // Update UI elements
+            document.getElementById('slideCounterText').textContent = `Slide ${currentSlideIndex} / ${deck.slideCount}`;
+            const pct = ((currentSlideIndex) / deck.slideCount) * 100;
+            document.getElementById('progressFill').style.width = `${pct}%`;
+
+            // Button states
+            document.getElementById('prevSlideBtn').disabled = (currentSlideIndex === 1);
+            document.getElementById('nextSlideBtn').disabled = (currentSlideIndex === deck.slideCount);
+
+            // Highlight thumbnail
+            const allThumbs = document.querySelectorAll('.thumb-item');
+            allThumbs.forEach(t => t.classList.remove('active'));
+            const activeThumb = document.getElementById(`thumb-${currentSlideIndex}`);
+            if (activeThumb) {
+                activeThumb.classList.add('active');
+                activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            updateUrlParams();
+        }
+
+        function renderThumbnails(deckId) {
+            const deck = DECKS[deckId];
+            const container = document.getElementById('thumbListContainer');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= deck.slideCount; i++) {
+                const item = document.createElement('div');
+                item.className = `thumb-item ${i === currentSlideIndex ? 'active' : ''}`;
+                item.id = `thumb-${i}`;
+                item.onclick = () => showSlide(i);
+
+                const img = document.createElement('img');
+                img.src = getSlideUrl(deckId, i);
+                img.loading = "lazy";
+                img.alt = `Slide ${i}`;
+
+                const num = document.createElement('span');
+                num.className = 'thumb-number';
+                num.textContent = `${i}`;
+
+                item.appendChild(img);
+                item.appendChild(num);
+                container.appendChild(item);
+            }
+        }
+
+        function nextSlide() {
+            const deck = DECKS[currentDeckId];
+            if (currentSlideIndex < deck.slideCount) {
+                showSlide(currentSlideIndex + 1);
+            } else if (autoplayInterval) {
+                // Loop back to start in autoplay
+                showSlide(1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 1) {
+                showSlide(currentSlideIndex - 1);
+            }
+        }
+
+        function firstSlide() {
+            showSlide(1);
+        }
+
+        function lastSlide() {
+            const deck = DECKS[currentDeckId];
+            showSlide(deck.slideCount);
+        }
+
+        function onProgressClick(event) {
+            const track = document.getElementById('progressTrack');
+            const rect = track.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const fraction = Math.max(0, Math.min(1, clickX / rect.width));
+            const deck = DECKS[currentDeckId];
+            const targetSlide = Math.max(1, Math.min(deck.slideCount, Math.round(fraction * deck.slideCount)));
+            showSlide(targetSlide);
+        }
+
+        function toggleThumbnails() {
+            const panel = document.getElementById('thumbnailsPanel');
+            panel.classList.toggle('collapsed');
+        }
+
+        function toggleAutoplay() {
+            if (autoplayInterval) {
+                stopAutoplay();
+            } else {
+                startAutoplay();
+            }
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 4500);
+            document.getElementById('autoplayIcon').textContent = '⏸';
+            document.getElementById('autoplayBtn').style.borderColor = 'var(--accent-cyan)';
+            document.getElementById('autoplayBtn').style.color = 'var(--accent-cyan)';
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+            document.getElementById('autoplayIcon').textContent = '▶';
+            document.getElementById('autoplayBtn').style.borderColor = '';
+            document.getElementById('autoplayBtn').style.color = '';
+        }
+
+        function toggleFullscreen() {
+            const elem = document.documentElement;
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().catch(err => {
+                    console.warn('Fullscreen error:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function setupKeyboardNavigation() {
+            window.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+                switch (e.key) {
+                    case 'ArrowRight':
+                    case ' ':
+                        e.preventDefault();
+                        nextSlide();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        prevSlide();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        firstSlide();
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        lastSlide();
+                        break;
+                    case 'f':
+                    case 'F':
+                        toggleFullscreen();
+                        break;
+                    case 't':
+                    case 'T':
+                        toggleThumbnails();
+                        break;
+                }
+            });
+        }
+
+        function setupTouchGestures() {
+            const stage = document.getElementById('viewport');
+            let startX = 0;
+            let endX = 0;
+
+            stage.addEventListener('touchstart', (e) => {
+                startX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            stage.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].screenX;
+                if (endX < startX - 50) {
+                    nextSlide(); // Swiped left
+                } else if (endX > startX + 50) {
+                    prevSlide(); // Swiped right
+                }
+            }, { passive: true });
+        }
+
+        function updateUrlParams() {
+            const url = new URL(window.location);
+            url.searchParams.set('deck', currentDeckId);
+            url.searchParams.set('slide', currentSlideIndex);
+            window.history.replaceState({}, '', url);
+        }
+
+        window.addEventListener('DOMContentLoaded', initViewer);
+    </script>
+</body>
+</html>

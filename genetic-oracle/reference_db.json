@@ -1,0 +1,223 @@
+{
+  "rs1801133": {
+    "rsid": "rs1801133",
+    "gene": "MTHFR",
+    "category": "Methylation",
+    "trait_name": "MTHFR C677T (Folate Cycle)",
+    "chromosome": "1",
+    "position_grch37": 11856378,
+    "interpretations": {
+      "GG": "Wild-type (C/C). Standard MTHFR enzyme activity and folate metabolism.",
+      "AG": "Heterozygous (C/T). ~30-40% reduction in MTHFR enzyme efficiency. Mildly reduced folate conversion.",
+      "AA": "Homozygous risk (T/T). ~60-70% reduction in MTHFR enzyme activity. Homocysteine levels may rise; high-potency methylfolate supplementation is often recommended."
+    }
+  },
+  "rs1801131": {
+    "rsid": "rs1801131",
+    "gene": "MTHFR",
+    "category": "Methylation",
+    "trait_name": "MTHFR A1298C (Neurotransmitter Cycle)",
+    "chromosome": "1",
+    "position_grch37": 11854476,
+    "interpretations": {
+      "TT": "Wild-type (A/A). Standard MTHFR activity and BH4 synthesis.",
+      "TG": "Heterozygous (A/C). ~20% reduction in enzyme activity. Minimal impact on its own, but combined with C677T (compound heterozygosity), it reduces efficiency to ~45-50%.",
+      "GG": "Homozygous risk (C/C). ~40% reduction in enzyme activity. Can affect BH4 levels, impacting dopamine, serotonin, and nitric oxide synthesis."
+    }
+  },
+  "rs4680": {
+    "rsid": "rs4680",
+    "gene": "COMT",
+    "category": "Neuro-Cognitive",
+    "trait_name": "COMT Val158Met (Dopamine Clearance)",
+    "chromosome": "22",
+    "position_grch37": 19951271,
+    "interpretations": {
+      "GG": "Homozygous Val/Val ('Warrior'). Rapid dopamine clearance. High stress tolerance and emotional resilience, but may require more stimulation for peak focus.",
+      "AG": "Heterozygous Val/Met ('Balanced'). Intermediate dopamine clearance. A balanced profile combining cognitive flexibility with moderate stress tolerance.",
+      "AA": "Homozygous Met/Met ('Worrier'). Slow dopamine clearance. High baseline dopamine levels, leading to superior memory, focus, and executive function, but lower threshold for stress overload."
+    }
+  },
+  "rs1800497": {
+    "rsid": "rs1800497",
+    "gene": "DRD2",
+    "category": "Neuro-Cognitive",
+    "trait_name": "DRD2 TaqIA (Dopamine Receptor Density)",
+    "chromosome": "11",
+    "position_grch37": 113270828,
+    "interpretations": {
+      "GG": "A2/A2 (Homozygous Wild-type). Standard density of dopamine D2 receptors. Baseline reward pathways operate normally.",
+      "AG": "A1/A2 (Heterozygous). ~30% reduction in dopamine D2 receptor density. Linked to a higher drive for reward, novelty seeking, and susceptibility to habit formation.",
+      "AA": "A1/A1 (Homozygous Risk). ~40% reduction in dopamine D2 receptor density. High susceptibility to dopamine-seeking behaviors, reward deficiency syndrome, and habit forming."
+    }
+  },
+  "rs6265": {
+    "rsid": "rs6265",
+    "gene": "BDNF",
+    "category": "Neuro-Cognitive",
+    "trait_name": "BDNF Val66Met (Neuroplasticity)",
+    "chromosome": "11",
+    "position_grch37": 27679922,
+    "interpretations": {
+      "GG": "Val/Val (Wild-type). Standard secretion of Brain-Derived Neurotrophic Factor. Optimized for active neuroplasticity, memory formation, and synaptic growth.",
+      "AG": "Val/Met (Heterozygous). Moderately reduced activity-dependent BDNF secretion. Balances memory retention dynamics with resilience under acute emotional strain.",
+      "AA": "Met/Met (Homozygous Risk). ~30% reduction in activity-dependent BDNF secretion. Associated with altered working memory and slower cognitive processing, but sometimes linked to unique creative thinking and focus profiles."
+    }
+  },
+  "rs1801260": {
+    "rsid": "rs1801260",
+    "gene": "CLOCK",
+    "category": "Circadian Rhythm",
+    "trait_name": "CLOCK Gene (Circadian Alignment)",
+    "chromosome": "4",
+    "position_grch37": 56301369,
+    "interpretations": {
+      "GG": "Wild-type (C/C). Standard circadian rhythm. Morning-leaning chronotype, associated with easier early waking and stable sleep latency.",
+      "AG": "Heterozygous (C/G). Intermediate chronotype. Adaptable sleep schedule with balanced morning/night energy levels.",
+      "AA": "Homozygous Risk (G/G). Night owl chronotype. Associated with delayed sleep phase, higher late-evening alertness, and susceptibility to sleep debt in standard schedules."
+    }
+  },
+  "rs7205": {
+    "rsid": "rs7205",
+    "gene": "ASMT",
+    "category": "Circadian Rhythm",
+    "trait_name": "ASMT (Melatonin Synthesis - PAR1)",
+    "chromosome": "25",
+    "position_grch37": 1458324,
+    "interpretations": {
+      "AA": "Wild-type. Standard expression of Acetylserotonin O-methyltransferase. Optimized conversion of serotonin to melatonin for normal sleep cycles.",
+      "AG": "Heterozygous. Intermediate ASMT activity. Melatonin production is generally stable, but sleep onset may be more sensitive to evening blue light exposure.",
+      "GG": "Homozygous Risk. Reduced ASMT activity. Slower melatonin synthesis, leading to delayed sleep onset and potential sleep quality issues under artificial evening light."
+    }
+  },
+  "rs4988235": {
+    "rsid": "rs4988235",
+    "gene": "LCT",
+    "category": "Diet & Fitness",
+    "trait_name": "LCT C/T-13910 (Lactose Tolerance)",
+    "chromosome": "2",
+    "position_grch37": 136608646,
+    "interpretations": {
+      "GG": "Lactose Intolerant (C/C). Adult lactase non-persistence. The body naturally winds down lactase enzyme production in adulthood, leading to digestive sensitivity to dairy.",
+      "AG": "Lactose Tolerant (C/T). Lactase persistence. A single copy of the persistence allele keeps lactase active, enabling normal dairy digestion into adulthood.",
+      "AA": "Lactose Tolerant (T/T). Homozygous lactase persistence. Optimized for dairy digestion into adulthood with standard lactase levels."
+    }
+  },
+  "rs1815739": {
+    "rsid": "rs1815739",
+    "gene": "ACTN3",
+    "category": "Diet & Fitness",
+    "trait_name": "ACTN3 R577X (Muscle Fiber Type)",
+    "chromosome": "11",
+    "position_grch37": 66328095,
+    "interpretations": {
+      "CC": "Homozygous R/R (Sprint/Power). Full presence of alpha-actinin-3 in fast-twitch fibers. Optimized for explosive sprint, power, and muscle force production.",
+      "TC": "Heterozygous R/X (Mixed/Balanced). Moderate alpha-actinin-3 levels. A hybrid profile showing balanced capacity for both speed-power and long-distance endurance.",
+      "TT": "Homozygous X/X (Endurance). Complete lack of alpha-actinin-3. Fast-twitch fibers act more like slow-twitch fibers, yielding exceptional muscular efficiency, recovery, and long-distance aerobic endurance."
+    }
+  },
+  "rs174537": {
+    "rsid": "rs174537",
+    "gene": "FADS1",
+    "category": "Diet & Fitness",
+    "trait_name": "FADS1 rs174537 (Omega-3 Conversion)",
+    "chromosome": "11",
+    "position_grch37": 61552650,
+    "interpretations": {
+      "GG": "Homozygous Wild-type. Efficient conversion of plant-based omega-3s (ALA) into active long-chain fatty acids (EPA and DHA).",
+      "AG": "Heterozygous. Intermediate omega-3 conversion efficiency. Benefits from dietary intake of pre-formed EPA/DHA (e.g. wild fish or algal oil) to maintain optimal brain and joint health.",
+      "AA": "Homozygous Risk. Poor conversion of plant-based ALA (flax/chia) to EPA/DHA. Direct supplementation of active marine-source EPA/DHA is highly recommended."
+    }
+  },
+  "rs6564851": {
+    "rsid": "rs6564851",
+    "gene": "BCMO1",
+    "category": "Diet & Fitness",
+    "trait_name": "BCMO1 (Vitamin A Conversion)",
+    "chromosome": "16",
+    "position_grch37": 81232822,
+    "interpretations": {
+      "GG": "Homozygous Wild-type. Efficient conversion of plant beta-carotene into active Vitamin A (retinol).",
+      "GT": "Heterozygous. ~30% reduction in beta-carotene conversion. Plant-source carotenes should be supplemented with direct Vitamin A sources (retinyl palmitate, cod liver oil, eggs/dairy).",
+      "TT": "Homozygous Risk. ~60-70% reduction in plant beta-carotene conversion. Relying only on carrots/leafy greens for Vitamin A is insufficient; direct active Vitamin A (retinol) is highly recommended."
+    }
+  },
+  "rs1799971": {
+    "rsid": "rs1799971",
+    "gene": "OPRM1",
+    "category": "Receptor Sensitivity",
+    "trait_name": "OPRM1 A118G (Opioid Receptor Sensitivity)",
+    "chromosome": "6",
+    "position_grch37": 154360797,
+    "interpretations": {
+      "AA": "A/A (Wild-type). Standard mu-opioid receptor density and sensitivity. Standard pain tolerance and beta-endorphin signaling.",
+      "AG": "A/G (Heterozygous). Moderately reduced mu-opioid receptor binding. Associated with slightly higher pain sensitivity, altered response to opioid medication, and a unique reward pathway threshold.",
+      "GG": "G/G (Homozygous Risk). ~3-fold reduction in mu-opioid receptor expression. Associated with significantly higher sensitivity to physical and social pain, and requiring higher doses of pain medication."
+    }
+  },
+  "rs53576": {
+    "rsid": "rs53576",
+    "gene": "OXTR",
+    "category": "Receptor Sensitivity",
+    "trait_name": "OXTR G/A (Oxytocin Receptor)",
+    "chromosome": "3",
+    "position_grch37": 8804371,
+    "interpretations": {
+      "GG": "G/G (Homozygous Wild-type). Standard oxytocin receptor density. High stress resilience, social connection, and intuitive empathy readings.",
+      "AG": "G/A (Heterozygous). Intermediate oxytocin sensitivity. Balanced empathy traits and moderate stress resilience under social pressure.",
+      "AA": "A/A (Homozygous Risk). Reduced oxytocin receptor density. Associated with lower baseline social stress tolerance, unique social communication styles, and a tendency to process empathy cognitively rather than raw affectively."
+    }
+  },
+  "rs17822931": {
+    "rsid": "rs17822931",
+    "gene": "ABCC11",
+    "category": "Lesser-Known Quirks",
+    "trait_name": "ABCC11 (Earwax & Body Odor)",
+    "chromosome": "16",
+    "position_grch37": 48258198,
+    "interpretations": {
+      "GG": "Homozygous Wild-type. Wet earwax and standard underarm apocrine gland secretion. Normal body odor profile.",
+      "AG": "Heterozygous. Wet earwax and standard apocrine gland secretion. Normal body odor profile.",
+      "AA": "Homozygous Mutation. Dry earwax and a complete absence of the chemical compound (trimethylamine/fatty acids) that underarm bacteria feed on. Zero underarm body odor; deodorant is biologically unnecessary."
+    }
+  },
+  "rs713598": {
+    "rsid": "rs713598",
+    "gene": "TAS2R38",
+    "category": "Lesser-Known Quirks",
+    "trait_name": "TAS2R38 (Bitter Supertaster)",
+    "chromosome": "7",
+    "position_grch37": 141672618,
+    "interpretations": {
+      "GG": "Non-taster (AVI/AVI). Insensitive to bitter compounds like PTC/PROP. Broccoli, kale, dark chocolate, and black coffee taste mild or pleasant.",
+      "CG": "Medium Taster (PAV/AVI). Moderate sensitivity to bitter compounds. Can detect bitterness in cruciferous vegetables but finds them tolerable.",
+      "CC": "Supertaster (PAV/PAV). Extreme sensitivity to bitter taste compounds. Cruciferous vegetables, cilantro, and dark IPAs can taste overwhelmingly bitter."
+    }
+  },
+  "rs762551": {
+    "rsid": "rs762551",
+    "gene": "CYP1A2",
+    "category": "Lesser-Known Quirks",
+    "trait_name": "CYP1A2 (Caffeine Metabolism)",
+    "chromosome": "15",
+    "position_grch37": 75042285,
+    "interpretations": {
+      "AA": "Fast Caffeine Metabolizer. Caffeine is cleared rapidly by the liver. Coffee provides clean, short-acting focus without lingering cardiovascular stress or sleep disturbance.",
+      "AC": "Slow Caffeine Metabolizer. Caffeine clears slowly. Prolonged effects, higher risk of jitteriness, and potential sleep disruption if consumed in the afternoon.",
+      "CC": "Ultra-Slow Caffeine Metabolizer. Caffeine remains in the bloodstream for a very long duration. Increased cardiovascular risk under high daily caffeine intake; afternoon coffee significantly compromises sleep."
+    }
+  },
+  "rs1805007": {
+    "rsid": "rs1805007",
+    "gene": "MC1R",
+    "category": "Lesser-Known Quirks",
+    "trait_name": "MC1R (Red Hair & Pain Threshold)",
+    "chromosome": "16",
+    "position_grch37": 89985386,
+    "interpretations": {
+      "CC": "Wild-type. Standard melanocortin 1 receptor function. Normal hair pigment, standard pain thresholds, and baseline general anesthesia sensitivity.",
+      "CT": "Heterozygous. Single copy carrier of red hair variant. Subtle variations in skin sensitivity; normal anesthesia sensitivity.",
+      "TT": "Homozygous Red Hair variant. Low MC1R activity, yielding red hair, fair skin/freckles. Biologically linked to higher sensitivity to cold/heat pain, higher tolerance to electrical pain, and requiring ~20% more general anesthesia in clinical procedures."
+    }
+  }
+}
