@@ -75,32 +75,56 @@
             flex-grow: 1;
         }
         .project-link-btn {
+            position: relative;
+            overflow: hidden;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(176, 38, 255, 0.2));
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.22), rgba(176, 38, 255, 0.2), rgba(16, 185, 129, 0.18), rgba(0, 243, 255, 0.22));
+            background-size: 260% 260%;
+            animation: liquidFlow 7s ease-in-out infinite;
             color: #fff;
             text-decoration: none;
-            padding: 0.6rem 1rem;
-            border-radius: 6px;
+            padding: 0.65rem 1.1rem;
+            border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid rgba(0, 243, 255, 0.4);
-            transition: all 0.2s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 243, 255, 0.18);
+            transition: all 0.25s ease;
+        }
+        .project-link-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+            transition: left 0.6s ease;
+        }
+        .project-link-btn:hover::after {
+            left: 140%;
         }
         .project-link-btn:hover {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.4), rgba(176, 38, 255, 0.4));
-            border-color: #00f3ff;
-            box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+            transform: translateY(-2px) scale(1.02);
+            border-color: rgba(0, 243, 255, 0.65);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.65), 0 8px 24px rgba(0, 243, 255, 0.35), 0 0 14px rgba(176, 38, 255, 0.25);
+        }
+        .project-link-btn:active {
+            transform: translateY(1px) scale(0.985);
         }
         .btn-deck {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
-            border-color: rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(16, 185, 129, 0.2), rgba(0, 243, 255, 0.2));
+            border-color: rgba(96, 165, 250, 0.4);
         }
         .btn-deck:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(16, 185, 129, 0.4));
             border-color: #60a5fa;
-            box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.65), 0 8px 24px rgba(96, 165, 250, 0.4);
         }
         .quick-nav {
             display: flex;
@@ -110,28 +134,44 @@
             margin-top: 1.5rem;
         }
         .quick-nav a {
-            color: #94a3b8;
+            position: relative;
+            overflow: hidden;
+            color: #cbd5e1;
             text-decoration: none;
             font-size: 0.88rem;
-            padding: 0.4rem 0.8rem;
+            padding: 0.45rem 0.95rem;
             border-radius: 20px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            transition: all 0.2s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 243, 255, 0.08), rgba(176, 38, 255, 0.06));
+            background-size: 220% 220%;
+            animation: liquidFlow 8s ease-in-out infinite;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.25s ease;
         }
         .quick-nav a:hover {
             color: #fff;
-            border-color: var(--accent-cyan);
-            background: rgba(0, 243, 255, 0.08);
+            transform: translateY(-2px) scale(1.04);
+            border-color: rgba(0, 243, 255, 0.55);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.55), 0 6px 18px rgba(0, 243, 255, 0.3);
         }
     </style>
 </head>
 <body>
-    <div id="glow-bg"></div>
+    <div id="glow-bg">
+        <div class="etheric-orb orb-cyan"></div>
+        <div class="etheric-orb orb-violet"></div>
+        <div class="etheric-orb orb-magenta"></div>
+        <div class="etheric-orb orb-amber"></div>
+        <div class="etheric-orb orb-emerald"></div>
+        <div class="etheric-orb orb-indigo"></div>
+    </div>
 
     <header>
         <div class="profile-header-container">
             <div class="profile-avatar-wrap">
-                <img src="assets/ashleigh_walker.jpg" alt="Ashleigh Walker" class="profile-avatar">
+                <img src="assets/ashleigh_daylight_portrait.jpg" alt="Ashleigh Walker" class="profile-avatar">
                 <span class="status-indicator" title="Open to Full-Stack & Data Analytics Roles">Available</span>
             </div>
             <div class="profile-header-text">
@@ -728,63 +768,75 @@
             <p style="color: #94a3b8; margin-bottom: 1.5rem;">Before I ever wrote code, I worked with my hands. Building physical things, growing food, singing, and drawing taught me patience, focus, and how things fit together. When I sit down to program, that same practical mindset carries straight through.</p>
 
             <div class="craft-grid">
-                <!-- Craft 1: Woodworking & Building -->
+                <!-- Craft 1: Woodworking & Framing in Progress -->
                 <div class="craft-card">
                     <div class="craft-img-wrap">
-                        <img src="assets/woodworking_tree_of_life_stencil.jpg" alt="Tree of Life Woodworking Layout" class="grid-img">
-                        <span class="craft-tag">Woodworking & Building</span>
+                        <img src="assets/woodworking_upholstery_build.jpg" alt="Woodworking and framing build in progress" class="grid-img">
+                        <span class="craft-tag">Woodworking & Carpentry</span>
                     </div>
                     <div class="craft-info">
-                        <h3>Woodworking & Building</h3>
-                        <p>When you work with wood, you cannot rush your cuts or ignore the grain. If a cut is off by an eighth of an inch, the whole piece wobbles. Building things by hand taught me to slow down, plan my layout, and make sure every join is clean and strong. I take that exact same attitude into code: keep the structure simple, measure twice, and build things that actually hold up.</p>
+                        <h3>Woodworking & Framing in Progress</h3>
+                        <p>Working on a custom frame with hand tools, measuring tape, and stretch fabric. Making sure the frame is square and solid before anything else goes on it. Working with physical wood teaches you that structure is everything: if the foundation is not level, nothing that sits on top of it will be stable either.</p>
                     </div>
                 </div>
 
-                <!-- Craft 2: Singing & Music -->
+                <!-- Craft 2: Finished Custom Build -->
                 <div class="craft-card">
                     <div class="craft-img-wrap">
-                        <img src="assets/ashleigh_vocal_harmonics.jpg" alt="Ashleigh Walker: Singing and Harmonics" class="grid-img">
-                        <span class="craft-tag">Music & Singing</span>
+                        <img src="assets/woodworking_cushion_complete.webp" alt="Finished royal blue custom upholstered cushion seat" class="grid-img">
+                        <span class="craft-tag">Finished Handcrafted Build</span>
                     </div>
                     <div class="craft-info">
-                        <h3>Singing & Music</h3>
-                        <p>I have loved singing for as long as I can remember. Singing trains your ear to listen closely, stay in time, and feel how different notes blend together. That curiosity about how sound waves and frequencies work led me to build my own browser audio tools, experimenting with pure tones, harmonies, and synthesizers using the Web Audio API.</p>
+                        <h3>Finished Custom Seat Build</h3>
+                        <p>The finished royal blue upholstered seat cushion, built from the frame up. Taking a project from raw lumber and foam to a clean, comfortable, finished build is one of the most rewarding feelings there is. It is the same satisfaction I get when an application comes together and runs cleanly from end to end.</p>
                     </div>
                 </div>
 
                 <!-- Craft 3: Gardening & Growing Food -->
                 <div class="craft-card">
                     <div class="craft-img-wrap">
-                        <img src="assets/cahokia_sunset_skyline.png" alt="Cahokia Mounds Sunset over St. Louis Arch" class="grid-img">
-                        <span class="craft-tag">Gardening & Living Systems</span>
+                        <img src="assets/garden_backyard_tomatoes.jpg" alt="Backyard garden tomato plants ripening in the sun" class="grid-img">
+                        <span class="craft-tag">Gardening & Soil</span>
                     </div>
                     <div class="craft-info">
-                        <h3>Gardening & Growing Food</h3>
-                        <p>Getting outside and working in the soil keeps me grounded. Gardening takes patience: prepping the beds, watching for pests, watering consistently, and knowing when to prune things back so the plant stays healthy. It is a daily reminder that good things take time and steady attention, whether you are tending tomatoes or maintaining a codebase.</p>
+                        <h3>Gardening & Backyard Tomatoes</h3>
+                        <p>Tending tomatoes in the backyard garden. Getting out in the dirt and watching things grow keeps me grounded. Gardening takes real patience: checking the soil, watching the leaves, giving plants what they need every day, and letting time do its work. It is a daily reminder that good things cannot be rushed.</p>
                     </div>
                 </div>
 
-                <!-- Craft 4: Drawing & Geometry -->
+                <!-- Craft 4: Art Studio & Code Workbench -->
                 <div class="craft-card">
                     <div class="craft-img-wrap">
-                        <img src="assets/sacred_geometry_mandala.jpg" alt="Hand-Drawn Sacred Geometry Mandala" class="grid-img">
-                        <span class="craft-tag">Art & Geometry</span>
+                        <img src="assets/art_painting_coding_desk.jpg" alt="Creative workspace with coding laptop, paints, brushes, and palette" class="grid-img">
+                        <span class="craft-tag">Studio & Creative Workspace</span>
                     </div>
                     <div class="craft-info">
-                        <h3>Drawing & Hand-Crafted Art</h3>
-                        <p>I love sitting down with a pencil, ruler, and compass to draw geometric mandalas by hand. Focusing on symmetry, spacing, and clean lines sharpens my visual instincts. When I design a web interface, that practice helps me make screens that feel balanced, easy to look at, and natural to click through.</p>
+                        <h3>Art Studio & Code Workbench</h3>
+                        <p>My everyday workspace where painting, building, and coding happen side by side. On the left is my terminal and code editor; on the right are my paints, jars, palette, and brushes. I have always moved back and forth between visual art and software. Both require creative problem solving and a good eye for detail.</p>
                     </div>
                 </div>
 
-                <!-- Craft 5: Creative Exploration & Meaning -->
+                <!-- Craft 5: Hand-Drawn Sacred Geometry -->
                 <div class="craft-card">
                     <div class="craft-img-wrap">
-                        <img src="assets/visionary_creative_synthesis.jpg" alt="Creative Exploration and Meaning" class="grid-img">
-                        <span class="craft-tag">Creative Curiosity</span>
+                        <img src="assets/sacred_geometry_mandala.jpg" alt="Hand-drawn sacred geometry mandala created with ruler and compass" class="grid-img">
+                        <span class="craft-tag">Hand-Drawn Art</span>
                     </div>
                     <div class="craft-info">
-                        <h3>Curiosity & Human Meaning</h3>
-                        <p>Curiosity is what keeps me learning every day. I love exploring ancient wisdom traditions, history, and how people make sense of the world. At the end of the day, I want to build software that actually helps people, treats users with respect, and makes technology feel a little more human and accessible.</p>
+                        <h3>Drawing & Sacred Geometry</h3>
+                        <p>Hand-drawn geometric artwork created with ruler, compass, and pencil. Sitting down to draft balanced patterns by hand trains your eye for symmetry, spacing, and proportion. When I build user interfaces, that same spatial sense helps me create screens that feel natural and balanced.</p>
+                    </div>
+                </div>
+
+                <!-- Craft 6: Singing & Vocal Harmonics -->
+                <div class="craft-card">
+                    <div class="craft-img-wrap">
+                        <img src="assets/ashleigh_vocal_harmonics.jpg" alt="Ashleigh Walker singing into studio condenser microphone" class="grid-img">
+                        <span class="craft-tag">Music & Vocal Singing</span>
+                    </div>
+                    <div class="craft-info">
+                        <h3>Singing & Vocal Harmonics</h3>
+                        <p>Singing into the mic and working with sound. Singing trains you to listen carefully, feel the pitch, and notice how vibrations interact in a room. That curiosity about sound and frequency led me right into experimenting with audio tools, synthesizers, and real-time audio visualization in the browser.</p>
                     </div>
                 </div>
             </div>

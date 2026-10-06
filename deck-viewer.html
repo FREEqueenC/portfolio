@@ -51,23 +51,31 @@
         }
 
         .back-link {
+            position: relative;
+            overflow: hidden;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            color: var(--accent-cyan);
+            color: #fff;
             text-decoration: none;
             font-size: 0.88rem;
             font-weight: 600;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            background: rgba(0, 243, 255, 0.08);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            transition: all 0.2s ease;
+            padding: 0.45rem 0.95rem;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.22), rgba(176, 38, 255, 0.18));
+            background-size: 200% 200%;
+            animation: liquidFlow 7s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.35);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.25s ease;
         }
 
         .back-link:hover {
-            background: rgba(0, 243, 255, 0.2);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+            transform: translateY(-2px) scale(1.02);
+            border-color: var(--accent-cyan);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(0, 243, 255, 0.35);
         }
 
         .deck-select-wrap {
@@ -108,35 +116,49 @@
         }
 
         .btn-action {
+            position: relative;
+            overflow: hidden;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            background: rgba(15, 23, 42, 0.9);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.75));
             color: var(--text-main);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            border-radius: 6px;
-            padding: 0.45rem 0.9rem;
-            font-size: 0.82rem;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 8px;
+            padding: 0.5rem 0.95rem;
+            font-size: 0.84rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.25);
+            transition: all 0.25s ease;
         }
 
         .btn-action:hover {
             border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 4px 14px rgba(0, 243, 255, 0.25);
+        }
+
+        .btn-action:active {
+            transform: translateY(1px);
         }
 
         .btn-download {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.15), rgba(176, 38, 255, 0.15));
-            border-color: var(--border-glow);
-            color: var(--accent-cyan);
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.25), rgba(176, 38, 255, 0.22), rgba(16, 185, 129, 0.18));
+            background-size: 220% 220%;
+            animation: liquidFlow 6s ease-in-out infinite;
+            border-color: rgba(0, 243, 255, 0.4);
+            color: #fff;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 0 2px 10px rgba(0, 243, 255, 0.2);
         }
 
         .btn-download:hover {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.3), rgba(176, 38, 255, 0.3));
-            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+            border-color: var(--accent-cyan);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), 0 6px 20px rgba(0, 243, 255, 0.4);
         }
 
         /* Main Presentation Theater */
@@ -419,6 +441,15 @@
     </style>
 </head>
 <body>
+    <div id="glow-bg">
+        <div class="etheric-orb orb-cyan"></div>
+        <div class="etheric-orb orb-violet"></div>
+        <div class="etheric-orb orb-magenta"></div>
+        <div class="etheric-orb orb-amber"></div>
+        <div class="etheric-orb orb-emerald"></div>
+        <div class="etheric-orb orb-indigo"></div>
+    </div>
+
     <!-- Top Navigation Bar -->
     <header class="viewer-nav">
         <div class="nav-left">
