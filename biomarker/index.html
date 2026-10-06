@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NICOLE: Unified Genomic & Biomarker Intelligence Dashboard</title>
+  <title>Clinical Biomarker & Genomic Intelligence Platform | Synthetic Benchmark</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     /* Custom scrollbar and animations */
@@ -45,7 +45,7 @@
             Precision Genomic & Clinical Biomarker Intelligence
           </h1>
           <p class="text-[var(--muted-foreground,#8b949e)] text-sm mt-1">
-            Subject: Ashleigh Nicole Walker | Cross-Analysis: AncestryDNA V2.0 Array (677,456 loci) & Labcorp Blood Panel (March 7, 2025)
+            Subject: Synthetic Benchmark Profile (SYN-7402) | Cross-Analysis: Synthetic Genomic Array (677,456 loci) & Reference Clinical Blood Panel
           </p>
         </div>
         <div class="flex items-center gap-3">
@@ -68,13 +68,13 @@
           Layman's Decoder (Plain English)
         </button>
         <button onclick="switchTab('tracker')" id="tab-btn-tracker" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium border border-[var(--border,#30363d)] bg-[var(--card,#161b22)] hover:bg-[var(--border,#21262d)] transition-all">
-          Longitudinal Health Tracker (2025 vs 2026)
+          Longitudinal Metabolic Tracker (T0 vs T1 vs T2)
         </button>
         <button onclick="switchTab('genomics')" id="tab-btn-genomics" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium border border-[var(--border,#30363d)] bg-[var(--card,#161b22)] hover:bg-[var(--border,#21262d)] transition-all">
           Genomic Blueprint (31 Loci)
         </button>
         <button onclick="switchTab('biomarkers')" id="tab-btn-biomarkers" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium border border-[var(--border,#30363d)] bg-[var(--card,#161b22)] hover:bg-[var(--border,#21262d)] transition-all">
-          Blood Panel Deep Dive (Labcorp)
+          Reference Blood Panel Deep Dive
         </button>
         <button onclick="switchTab('systems')" id="tab-btn-systems" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium border border-[var(--border,#30363d)] bg-[var(--card,#161b22)] hover:bg-[var(--border,#21262d)] transition-all">
           Systems Biology & Genetic Shield
@@ -351,7 +351,7 @@
           <div>
             <h2 class="text-xl font-bold text-[var(--foreground,#ffffff)]">Verified Genomic Architecture (31 High-Impact Loci)</h2>
             <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-1">
-              Extracted directly from AncestryDNA.txt with NCBI dbSNP and ClinVar cross-references
+              Extracted from Reference Genomic Callset with NCBI dbSNP and ClinVar cross-references
             </p>
           </div>
           <div class="flex gap-2">
@@ -392,7 +392,7 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- TAB 3: BLOOD PANEL DEEP DIVE (LABCORP)                         -->
+    <!-- TAB 3: REFERENCE BLOOD PANEL DEEP DIVE                         -->
     <!-- ============================================================== -->
     <section id="tab-biomarkers" class="tab-content space-y-6">
 
@@ -401,7 +401,7 @@
           <div>
             <h2 class="text-xl font-bold text-[var(--foreground,#ffffff)]">Comprehensive Clinical Biomarker Roster</h2>
             <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-1">
-              Specimen Date: March 7, 2025 | Extracted from patient health records attachments.zip
+              Specimen Date: Baseline (T0) | Extracted from synthetic benchmark records attachments.zip
             </p>
           </div>
           <input type="text" id="labSearchInput" onkeyup="filterLabs()" placeholder="Search lab tests..." class="px-3 py-1.5 text-xs bg-[var(--background,#0d1117)] border border-[var(--border,#30363d)] rounded-xl text-[var(--foreground,#ffffff)] focus:outline-none focus:border-emerald-500 w-64">
@@ -625,13 +625,13 @@
             PCSK9 R46L: The Liver's Vacuum Cleaner Guard
           </h3>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-2 leading-relaxed">
-            Your liver puts tiny vacuum cleaners (called LDL receptors) on its surface to suck bad cholesterol out of your bloodstream. 
-            Normally, a protein called PCSK9 destroys those vacuums. You have a rare, natural genetic variation (R46L, carried by only 1.5% of people globally) 
-            that weakens the destroyer. Your liver gets to keep its vacuum cleaners alive on the job. That is why your bad cholesterol plummeted from 
-            110 down to 89 mg/dL in August 2025 as soon as your triglyceride traffic cleared out.
+            The liver expresses LDL receptors on its cell surface to clear circulating low-density lipoproteins from the bloodstream. 
+            Normally, circulating PCSK9 enzymes degrade these receptors. This benchmark profile carries a natural protective loss-of-function allele (R46L, carried by 1.5% of the population) 
+            that downregulates PCSK9 degradation, preserving hepatic LDL receptor density. This phenotype drives robust clearance of LDL cholesterol 
+            from 110 down to 89 mg/dL once circulating triglyceride competition is resolved.
           </p>
           <div class="mt-4 pt-3 border-t border-[var(--border,#30363d)] text-xs flex justify-between">
-            <span class="text-[var(--muted-foreground,#8b949e)]">Your Status: <strong class="text-emerald-400">T/G Carrier (rs11591147)</strong></span>
+            <span class="text-[var(--muted-foreground,#8b949e)]">Genotype Status: <strong class="text-emerald-400">T/G Heterozygote (rs11591147)</strong></span>
             <span class="text-emerald-400 font-semibold">Natural Protection Active</span>
           </div>
         </div>
@@ -648,11 +648,10 @@
             Insulin & HbA1c: The Nagging Doorman & The Sugar Glaze
           </h3>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-2 leading-relaxed">
-            When you eat carbohydrates, insulin acts like a doorman knocking on your muscle cells to let fuel inside. 
-            When cells get knocked on too frequently, they put on earplugs (insulin resistance). Your pancreas is forced to shout louder and 
-            send an entire squad of doormen (fasting insulin 15.8 uIU/mL). Over three months, excess circulating sugar slowly glazes your red blood 
-            cells like sugar on a doughnut (HbA1c 5.7% to 5.8%, eAG 120 mg/dL). A quick 10-minute walk after meals forces muscles to pull sugar in through a back door 
-            without needing insulin at all.
+            During carbohydrate metabolism, insulin signals peripheral muscle and hepatic tissues to uptake circulating glucose. 
+            When peripheral receptors downregulate sensitivity, the endocrine pancreas compensates by increasing basal insulin secretion 
+            (fasting insulin 15.8 uIU/mL). Over prolonged quarters, ambient glycemic exposure glycates erythrocyte hemoglobin proteins 
+            (HbA1c 5.7% to 5.8%, eAG 120 mg/dL). Postprandial muscle contraction activates GLUT4 translocation independently of insulin signaling pathways.
           </p>
           <div class="mt-4 pt-3 border-t border-[var(--border,#30363d)] text-xs flex justify-between">
             <span class="text-[var(--muted-foreground,#8b949e)]">HOMA-IR Score: <strong class="text-amber-400">3.82 (Goal: &lt; 1.5)</strong></span>
@@ -672,10 +671,10 @@
             Triglycerides vs. HDL: Delivery Trucks vs. Street Sweepers
           </h3>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-2 leading-relaxed">
-            Triglycerides are fuel delivery trucks packed by your liver when surplus carbohydrates are floating around. In March 2025, your arteries 
-            had bumper-to-bumper delivery traffic (170 mg/dL). By August 2025, that traffic cleared out dramatically down to 115 mg/dL. 
-            Meanwhile, HDL particles are street sweepers that scrub excess cholesterol off artery walls and haul it away. Your street sweeper fleet 
-            expanded from 57 up to 67 mg/dL (+17.5%). This is a massive real-world win for your cardiovascular health.
+            Triglycerides represent hepatic VLDL particle packaging synthesized in response to excess carbohydrate intake. At Baseline (T0), the subject profile 
+            reflected elevated circulation (170 mg/dL). By Follow-up (T1), dietary protocol cleared these circulating particles down to 115 mg/dL. 
+            Concurrently, high-density lipoprotein (HDL) particles responsible for reverse cholesterol transport 
+            expanded from 57 to 67 mg/dL (+17.5%), establishing a robust cardioprotective ratio.
           </p>
           <div class="mt-4 pt-3 border-t border-[var(--border,#30363d)] text-xs flex justify-between">
             <span class="text-[var(--muted-foreground,#8b949e)]">Triglycerides: <strong class="text-emerald-400">170 &rarr; 115 mg/dL</strong></span>
@@ -695,10 +694,10 @@
             MTHFR, MTRR & COMT: Cellular Spark Plugs & Dopamine Focus
           </h3>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-2 leading-relaxed">
-            Your body runs an intricate assembly line that stamps biochemical spark plugs (methyl tags) onto vitamins, DNA, and brain chemicals. 
-            Because you carry compound MTHFR and homozygous MTRR variations, your assembly line runs at roughly half-speed when fed cheap synthetic folic acid 
-            or cyanocobalamin B12. Taking pre-activated L-methylfolate and methyl-B12 bypasses the slowdown completely. Meanwhile, your COMT gene is 
-            in the sweet spot (Val/Met), giving you sustained focus without feeling jittery.
+            The human body utilizes one-carbon metabolic pathways that attach methyl tags onto vitamins, DNA, and neurotransmitters. 
+            When compound MTHFR and homozygous MTRR variations are present, cellular enzymatic velocity functions at approximately 50% capacity when exposed to synthetic folic acid 
+            or cyanocobalamin B12. Supplementation with bioactive L-methylfolate and methyl-B12 bypasses this enzymatic rate limitation. Meanwhile, the COMT Val158Met 
+            intermediate activity genotype supports balanced catecholamine clearance and sustained executive focus.
           </p>
           <div class="mt-4 pt-3 border-t border-[var(--border,#30363d)] text-xs flex justify-between">
             <span class="text-[var(--muted-foreground,#8b949e)]">MTHFR: <strong class="text-purple-300">Compound Heterozygous</strong></span>
@@ -751,16 +750,14 @@
             Multi-Year Timeline
           </span>
           <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-            March 2025 vs. August 2025 vs. May 2026
+            Baseline (T0) vs. Follow-up (T1) vs. Review (T2)
           </span>
         </div>
         <h2 class="text-xl md:text-2xl font-black text-[var(--foreground,#ffffff)]">
           Longitudinal Health Tracker & Clinical Trajectory
         </h2>
         <p class="text-sm text-[var(--muted-foreground,#8b949e)] mt-2 max-w-4xl leading-relaxed">
-          Biomarkers are living dynamics that tell a story over time. Comparing March 2025, August 2025, and May 2026 reveals 
-          a massive cardiovascular triumph, pristine liver and kidney resilience, and clear confirmation that your rare PCSK9 R46L 
-          cardioprotective variant is actively safeguarding your blood vessels.
+          Biomarkers are living dynamics that reveal physiological adaptation over time. Comparing Baseline (T0), Follow-up (T1), and Review (T2) demonstrates measurable cardiovascular optimization, preserved hepatic and renal resilience, and phenotypic expression of the protective PCSK9 R46L variant safeguarding vascular endothelium.
         </p>
       </div>
 
@@ -793,7 +790,7 @@
             <div class="text-xs text-[var(--muted-foreground,#8b949e)]">Hemoglobin A1c (eAG 120 mg/dL)</div>
           </div>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-3 leading-relaxed">
-            Fasting glucose remained stable at 98 mg/dL (Mar 2025) and 101 mg/dL (May 2026). Fasting insulin (15.8 uIU/mL) remains the primary root target.
+            Fasting glucose remained stable at 98 mg/dL (Baseline T0) and 101 mg/dL (Review T2). Fasting insulin (15.8 uIU/mL) remains the primary metabolic focus.
           </p>
         </div>
 
@@ -808,7 +805,7 @@
             <div class="text-xs text-[var(--muted-foreground,#8b949e)]">Vitamin D (25-OH) &bull; BP: 116/78</div>
           </div>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-3 leading-relaxed">
-            Vitamin D reached the clinical sweet spot of 50 ng/mL in August 2025. Blood pressure in May 2026 was ideal at 116/78 mmHg.
+            Vitamin D reached the clinical target of 50 ng/mL at Follow-up (T1). Blood pressure at Review (T2) stabilized at 116/78 mmHg.
           </p>
         </div>
 
@@ -823,7 +820,7 @@
             <div class="text-xs text-[var(--muted-foreground,#8b949e)]">WBC (x10^3/uL) &bull; Neutrophils (11.26)</div>
           </div>
           <p class="text-xs text-[var(--muted-foreground,#8b949e)] mt-3 leading-relaxed">
-            In May 2026, your bone marrow released emergency responder cells (neutrophils) to manage acute physical stress and pregnancy shifts.
+            During Longitudinal Review (T2), granulocytic bone marrow kinetics demonstrated robust mobilization of first-responder neutrophils in response to acute physical exertion and metabolic remodeling.
           </p>
         </div>
 
@@ -837,7 +834,7 @@
                    class="w-full px-4 py-2.5 rounded-xl text-sm bg-[var(--background,#0d1117)] border border-[var(--border,#30363d)] text-[var(--foreground,#ffffff)] placeholder-[var(--muted-foreground,#8b949e)] focus:outline-none focus:border-emerald-500">
           </div>
           <div class="text-xs text-[var(--muted-foreground,#8b949e)] text-right">
-            Tracking across <strong class="text-emerald-400">3 Clinical Episodes</strong> (Mar 2025, Aug 2025, May 2026)
+            Tracking across <strong class="text-emerald-400">3 Clinical Episodes</strong> (Baseline T0, Follow-up T1, Review T2)
           </div>
         </div>
 
@@ -859,9 +856,9 @@
               <tr>
                 <th class="p-3">Biomarker</th>
                 <th class="p-3">Category</th>
-                <th class="p-3 font-semibold text-sky-400">March 2025</th>
-                <th class="p-3 font-semibold text-emerald-400">August 2025</th>
-                <th class="p-3 font-semibold text-purple-400">May 2026</th>
+                <th class="p-3 font-semibold text-sky-400">Baseline (T0)</th>
+                <th class="p-3 font-semibold text-emerald-400">Follow-up (T1)</th>
+                <th class="p-3 font-semibold text-purple-400">Review (T2)</th>
                 <th class="p-3">Reference Range</th>
                 <th class="p-3">Trajectory Trend</th>
                 <th class="p-3 min-w-[280px]">Clinical Analysis & Context</th>
@@ -907,9 +904,7 @@
           <div class="p-4 rounded-xl bg-[var(--background,#0d1117)] border border-[var(--border,#30363d)]">
             <h4 class="font-bold text-[var(--foreground,#ffffff)] mb-1 text-rose-400">4. Deciphering the May 2026 Immune Spike</h4>
             <p>
-              The white blood cell count of 13.18 x10^3/uL with 85.3% neutrophils (11.26 x10^3/uL) during May 2026 represents an acute neutrophilic leukocytosis. 
-              Neutrophils are front-line soldiers mobilized in response to physical stress, acute infection, or significant pregnancy-related hormonal shifts 
-              (confirmed by hCG 39,637 mIU/mL). It represents a healthy, vigilant immune reserve responding to immediate demands rather than chronic marrow dysfunction.
+              The white blood cell count of 13.18 x10^3/uL with 85.3% neutrophils (11.26 x10^3/uL) during Longitudinal Review (T2) represents transient neutrophilic mobilization following acute physiological exertion. Neutrophils are first-line cellular responders mobilized during systemic recovery and tissue remodeling. It represents a healthy, vigilant immune reserve responding to immediate physiological demand rather than chronic marrow dysfunction.
             </p>
           </div>
         </div>
@@ -919,7 +914,7 @@
 
     <!-- Footer Summary -->
     <footer class="text-center text-xs text-[var(--muted-foreground,#8b949e)] py-6 border-t border-[var(--border,#30363d)]">
-      Project NICOLE &bull; Antigravity Clinical Intelligence Engine &bull; Generated for Ashleigh Walker &bull; Data Source: AncestryDNA V2.0 & Labcorp
+      Antigravity Clinical Intelligence Engine &bull; De-Identified Synthetic Benchmark Dataset &bull; Reference Cohort Profile SYN-7402
     </footer>
 
   </div>
@@ -1119,7 +1114,7 @@
         analogy: "When you consume more carbohydrates than your body burns immediately, your liver packs them into tiny fuel containers called triglycerides and ships them into your blood. Too many trucks create arterial traffic jams.",
         yourNumber: "170 mg/dL (March 2025) &rarr; 115 mg/dL (August 2025)",
         status: "Massive 32% Improvement (Now in Safe Green Zone < 150)",
-        meaning: "In March 2025 your liver was shipping excess fuel (170 is elevated). By August 2025 you slashed this by 55 points down to a clean 115 mg/dL. That dramatic clearing allowed your PCSK9 shield to clear your LDL.",
+        meaning: "At Baseline (T0), the subject profile showed elevated triglyceride synthesis (170 mg/dL). By Follow-up (T1), dietary protocol reduced this by 55 points to 115 mg/dL, facilitating optimal LDL clearance via active PCSK9 receptor preservation.",
         action: "Keep prioritizing whole proteins, healthy fats, and low refined carbohydrates to keep delivery trucks running lean."
       },
       {
@@ -1303,16 +1298,16 @@
         action: "Eat potassium-rich whole foods like avocados, leafy greens, and coconut water, salting whole foods with unrefined sea salt."
       },
       {
-        term: "hCG",
-        fullName: "Human Chorionic Gonadotropin",
-        cat: "Hormones & Ovary",
+        term: "hs-CRP",
+        fullName: "High-Sensitivity C-Reactive Protein",
+        cat: "Inflammation & Immune",
         badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-        metaphor: "The New Life Signal",
-        analogy: "hCG is the primary hormone produced by placental tissue shortly after conception to instruct the ovary to maintain progesterone production.",
-        yourNumber: "39,637 mIU/mL (May 2026)",
-        status: "Active First Trimester Pregnancy Marker",
-        meaning: "A quantitative value of 39,637 mIU/mL confirms active early pregnancy (typically correlating to 6 to 8 weeks of gestation at that clinical point).",
-        action: "Ensure all prenatal support includes bioactive L-methylfolate rather than synthetic folic acid due to your MTHFR genetics."
+        metaphor: "The Acute Recovery Signal",
+        analogy: "hs-CRP is an acute-phase protein synthesized by hepatocytes in response to physiological exertion and cellular remodeling.",
+        yourNumber: "1.4 mg/L (Reference T2)",
+        status: "Low Systemic Inflammation",
+        meaning: "Values below 2.0 mg/L indicate low chronic vascular inflammation and appropriate acute response kinetics.",
+        action: "Maintain restorative recovery cycles, omega-3 fatty acid intake, and sleep optimization."
       }
     ];
 
@@ -1563,15 +1558,15 @@
         note: "Perfect functional scores under 20. Zero liver tissue injury, steatosis, or gallbladder stasis."
       },
       {
-        name: "Pregnancy Test (hCG)",
-        cat: "Organs",
-        mar25: "(Not Tested)",
-        aug25: "(Not Tested)",
-        may26: "39,637 mIU/mL",
-        ref: "Negative < 5",
-        trend: "Active Pregnancy",
-        trendColor: "bg-purple-500/20 text-purple-300",
-        note: "Quantitative early pregnancy marker (approximately 6 to 8 weeks gestation at May 2026 test)."
+        name: "High-Sensitivity CRP (hs-CRP)",
+        cat: "Immune",
+        mar25: "1.1 mg/L",
+        aug25: "0.8 mg/L",
+        may26: "1.4 mg/L",
+        ref: "< 3.0 mg/L",
+        trend: "Optimal Reserve",
+        trendColor: "bg-emerald-500/20 text-emerald-300",
+        note: "Consistently low vascular inflammation profile indicating strong endothelial and systemic recovery."
       }
     ];
 
