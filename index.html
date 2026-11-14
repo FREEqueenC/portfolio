@@ -505,12 +505,12 @@
                         <span class="showcase-subheading">Featured Slide &amp; Visual Design Reel</span>
                         <h3 class="showcase-title">Executive Slide Gallery &amp; Technical Systems Showcase</h3>
                     </div>
-                    <div class="showcase-counter" id="showcaseCounter">1 / 12</div>
+                    <div class="showcase-counter" id="showcaseCounter">1 / 13</div>
                 </div>
 
                 <!-- Showcase Filter Bar -->
                 <div class="showcase-filter-bar" id="showcaseFilterBar">
-                    <button class="filter-pill active" data-filter="all">All Disciplines (12)</button>
+                    <button class="filter-pill active" data-filter="all">All Disciplines (13)</button>
                     <button class="filter-pill" data-filter="water">Water &amp; Hydrology</button>
                     <button class="filter-pill" data-filter="civic">Civic &amp; Housing Policy</button>
                     <button class="filter-pill" data-filter="hardware">Clean-Tech Hardware</button>
@@ -605,6 +605,26 @@
                     <div class="card-btn-row">
                         <a href="deck-viewer.html?deck=Redesigning_the_Broken_Blueprint" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
                         <a href="decks/Redesigning_the_Broken_Blueprint.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                                <!-- Graphic: Circular Water Systems Infographic -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="window.open('assets/Circular_Water_Systems_Infographic.png', '_blank')">
+                        <img src="assets/Circular_Water_Systems_Infographic.png" alt="Circular Water Systems Infographic" loading="lazy">
+                        <span class="thumb-overlay-badge">2752x1536 INFOGRAPHIC</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Civil Hydrology &amp; Clean-Tech</span>
+                            <span class="card-meta">Print &amp; Digital &bull; 4.4 MB</span>
+                        </div>
+                        <h3>Circular Water Systems &amp; Desalination Blueprint</h3>
+                        <p class="project-desc">Comprehensive civil and clean-tech engineering infographic mapping closed-loop municipal hydrology. Details industrial waste heat recycling, thermodynamic desalination loops, decentralized wastewater purification, and aquifer recharge beds for regional drought resilience.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="assets/Circular_Water_Systems_Infographic.png" class="btn-deck-live" target="_blank"><span>▶</span> Full Resolution &rarr;</a>
+                        <a href="assets/Circular_Water_Systems_Infographic.png" class="btn-deck-subtle" download><span>💾</span> Download</a>
                     </div>
                 </div>
 
@@ -1102,7 +1122,7 @@
     <button class="quick-reel-tab" id="quickReelBtn" aria-label="Open Slide Quick-Reel">
         <span class="tab-icon">⚡</span>
         <span class="tab-label">Visual Reel</span>
-        <span class="tab-badge">12</span>
+        <span class="tab-badge">13</span>
     </button>
 
     <div class="quick-reel-backdrop" id="quickReelBackdrop"></div>
@@ -1123,6 +1143,18 @@
     <script>
     // SHOWCASE & QUICK-REEL CATALOG
     const SHOWCASE_ITEMS = [
+        {
+            id: "circular_water",
+            title: "Circular Water Systems & Desalination Blueprint",
+            category: "Civil Hydrology & Clean-Tech",
+            filter: "water",
+            desc: "Comprehensive civil and clean-tech engineering infographic mapping closed-loop municipal hydrology. Details industrial waste heat recycling, thermodynamic desalination loops, decentralized wastewater purification, and aquifer recharge beds for regional drought resilience.",
+            image: "assets/Circular_Water_Systems_Infographic.png",
+            liveUrl: "assets/Circular_Water_Systems_Infographic.png",
+            downloadUrl: "assets/Circular_Water_Systems_Infographic.png",
+            fileType: "PNG",
+            tags: ["Circular Water", "Desalination", "Aquifer Recharge"]
+        },
         {
             id: "watershed",
             title: "St. Louis Confluence Basin Hydrology",
