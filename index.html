@@ -505,12 +505,12 @@
                         <span class="showcase-subheading">Featured Slide &amp; Visual Design Reel</span>
                         <h3 class="showcase-title">Executive Slide Gallery &amp; Technical Systems Showcase</h3>
                     </div>
-                    <div class="showcase-counter" id="showcaseCounter">1 / 13</div>
+                    <div class="showcase-counter" id="showcaseCounter">1 / 15</div>
                 </div>
 
                 <!-- Showcase Filter Bar -->
                 <div class="showcase-filter-bar" id="showcaseFilterBar">
-                    <button class="filter-pill active" data-filter="all">All Disciplines (13)</button>
+                    <button class="filter-pill active" data-filter="all">All Disciplines (15)</button>
                     <button class="filter-pill" data-filter="water">Water &amp; Hydrology</button>
                     <button class="filter-pill" data-filter="civic">Civic &amp; Housing Policy</button>
                     <button class="filter-pill" data-filter="hardware">Clean-Tech Hardware</button>
@@ -608,7 +608,48 @@
                     </div>
                 </div>
 
-                                <!-- Graphic: Circular Water Systems Infographic -->
+                                
+                <!-- Deck: Regenerative Infrastructure -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=Regenerative_Infrastructure'">
+                        <img src="decks/slides/Regenerative_Infrastructure/Slide1.PNG" alt="Regenerative Infrastructure" loading="lazy">
+                        <span class="thumb-overlay-badge">15 SLIDES</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Ecological Engineering</span>
+                            <span class="card-meta">15 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Regenerative Infrastructure &amp; Ecological Engineering</h3>
+                        <p class="project-desc">Comprehensive municipal slide deck on closed-loop urban ecology. Integrates urban bioswale networks, soil carbon sequestration, riparian buffer revitalization, and regional watershed resilience strategies.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Regenerative_Infrastructure" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Regenerative_Infrastructure.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
+                <!-- Graphic: AI Data Center Waste Heat Solutions -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="window.open('assets/AI_Data_Center_Waste_Heat_Solutions.png', '_blank')">
+                        <img src="assets/AI_Data_Center_Waste_Heat_Solutions.png" alt="AI Data Center Waste Heat Solutions" loading="lazy">
+                        <span class="thumb-overlay-badge">2752x1536 INFOGRAPHIC</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Clean-Tech Thermodynamics</span>
+                            <span class="card-meta">High-Res Infographic &bull; 4.7 MB</span>
+                        </div>
+                        <h3>AI Data Center Waste Heat Solutions Blueprint</h3>
+                        <p class="project-desc">High-resolution architectural blueprint detailing thermal energy harvesting from enterprise AI compute facilities. Illustrates acoustic wave cooling cycles, thermodynamic heat cascading, and closed-loop municipal heat pump integration.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="assets/AI_Data_Center_Waste_Heat_Solutions.png" class="btn-deck-live" target="_blank"><span>▶</span> Full Resolution &rarr;</a>
+                        <a href="assets/AI_Data_Center_Waste_Heat_Solutions.png" class="btn-deck-subtle" download><span>💾</span> Download</a>
+                    </div>
+                </div>
+
+                <!-- Graphic: Circular Water Systems Infographic -->
                 <div class="project-card">
                     <div class="project-card-thumb" onclick="window.open('assets/Circular_Water_Systems_Infographic.png', '_blank')">
                         <img src="assets/Circular_Water_Systems_Infographic.png" alt="Circular Water Systems Infographic" loading="lazy">
@@ -1122,7 +1163,7 @@
     <button class="quick-reel-tab" id="quickReelBtn" aria-label="Open Slide Quick-Reel">
         <span class="tab-icon">⚡</span>
         <span class="tab-label">Visual Reel</span>
-        <span class="tab-badge">13</span>
+        <span class="tab-badge">15</span>
     </button>
 
     <div class="quick-reel-backdrop" id="quickReelBackdrop"></div>
@@ -1143,6 +1184,30 @@
     <script>
     // SHOWCASE & QUICK-REEL CATALOG
     const SHOWCASE_ITEMS = [
+        {
+            id: "regen_infra",
+            title: "Regenerative Infrastructure & Ecological Engineering",
+            category: "Ecological Engineering",
+            filter: "water",
+            desc: "Comprehensive municipal slide deck on closed-loop urban ecology. Integrates urban bioswale networks, soil carbon sequestration, riparian buffer revitalization, and regional watershed resilience strategies.",
+            image: "decks/slides/Regenerative_Infrastructure/Slide1.PNG",
+            liveUrl: "deck-viewer.html?deck=Regenerative_Infrastructure",
+            downloadUrl: "decks/Regenerative_Infrastructure.pptx",
+            fileType: "PPTX",
+            tags: ["Regenerative Ecology", "Urban Bioswales", "Watershed Restoration"]
+        },
+        {
+            id: "ai_waste_heat",
+            title: "AI Data Center Waste Heat Solutions Blueprint",
+            category: "Clean-Tech Thermodynamics",
+            filter: "infographic",
+            desc: "High-resolution architectural blueprint detailing thermal energy harvesting from enterprise AI compute facilities. Illustrates acoustic wave cooling cycles, thermodynamic heat cascading, and closed-loop municipal heat pump integration.",
+            image: "assets/AI_Data_Center_Waste_Heat_Solutions.png",
+            liveUrl: "assets/AI_Data_Center_Waste_Heat_Solutions.png",
+            downloadUrl: "assets/AI_Data_Center_Waste_Heat_Solutions.png",
+            fileType: "PNG",
+            tags: ["Waste Heat", "Thermodynamics", "Acoustic Cooling"]
+        },
         {
             id: "circular_water",
             title: "Circular Water Systems & Desalination Blueprint",
