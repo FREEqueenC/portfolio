@@ -491,16 +491,73 @@
             <div class="live-deck-banner">
                 <div class="live-deck-banner-text">
                     <h4>Interactive Live Presentation Mode Active</h4>
-                    <p>All 8 executive slide decks can be launched live directly in your browser with keyboard navigation (Arrow keys / Spacebar), slide scrubber, fullscreen mode, and autoplay.</p>
+                    <p>18 executive slide decks and high-impact technical blueprints can be launched live directly in your browser with keyboard navigation (Arrow keys / Spacebar), slide scrubber, fullscreen mode, and autoplay.</p>
                 </div>
                 <a href="deck-viewer.html" class="btn-open-viewer">
                     <span>▶</span> Open Master Presentation Stage
                 </a>
             </div>
 
+            <!-- Interactive Featured Slide Showcase & Gallery Slider -->
+            <div class="slide-showcase-container">
+                <div class="showcase-header">
+                    <div class="showcase-header-left">
+                        <span class="showcase-subheading">Featured Slide &amp; Visual Design Reel</span>
+                        <h3 class="showcase-title">Executive Slide Gallery &amp; Technical Systems Showcase</h3>
+                    </div>
+                    <div class="showcase-counter" id="showcaseCounter">1 / 12</div>
+                </div>
+
+                <!-- Showcase Filter Bar -->
+                <div class="showcase-filter-bar" id="showcaseFilterBar">
+                    <button class="filter-pill active" data-filter="all">All Disciplines (12)</button>
+                    <button class="filter-pill" data-filter="water">Water &amp; Hydrology</button>
+                    <button class="filter-pill" data-filter="civic">Civic &amp; Housing Policy</button>
+                    <button class="filter-pill" data-filter="hardware">Clean-Tech Hardware</button>
+                    <button class="filter-pill" data-filter="infographic">Infographics &amp; Architecture</button>
+                    <button class="filter-pill" data-filter="theory">Cognitive &amp; Hermeneutics</button>
+                </div>
+
+                <!-- Stage Grid -->
+                <div class="slide-stage-grid">
+                    <div class="slide-viewport-card">
+                        <button class="stage-arrow-btn prev" id="stagePrevBtn" aria-label="Previous Slide">&larr;</button>
+                        <img id="showcaseStageImg" src="decks/slides/St._Louis_Watershed_Reimagined/Slide1.GIF" alt="Featured Slide Preview">
+                        <button class="stage-arrow-btn next" id="stageNextBtn" aria-label="Next Slide">&rarr;</button>
+                    </div>
+
+                    <div class="slide-meta-panel">
+                        <div class="meta-tag" id="showcaseCategory">Water &amp; Environmental Systems</div>
+                        <h4 id="showcaseTitle">St. Louis Confluence Basin Hydrology</h4>
+                        <p id="showcaseDescription">Civil engineering and watershed hydrological deck analyzing the Mississippi and Missouri river confluence basin. Evaluates combined sewer overflow (CSO) reduction, urban bioswale network design, permeable surface retrofits, and flood mitigation modeling across the bi-state metropolitan watershed.</p>
+                        
+                        <div class="competency-chips" id="showcaseCompetencies">
+                            <span class="competency-chip">Civil Hydrology</span>
+                            <span class="competency-chip">CSO Mitigation</span>
+                            <span class="competency-chip">Bi-State Watershed</span>
+                        </div>
+
+                        <div class="deck-action-row">
+                            <a id="showcaseLiveBtn" href="deck-viewer.html?deck=St._Louis_Watershed_Reimagined" class="btn-deck-live"><span>▶</span> Launch Full Presentation &rarr;</a>
+                            <a id="showcaseDownloadBtn" href="decks/St._Louis_Watershed_Reimagined.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filmstrip Scroller -->
+                <div class="filmstrip-scroller" id="showcaseFilmstrip">
+                    <!-- Filmstrip thumbnails injected via JS -->
+                </div>
+            </div>
+
+
             <div class="project-grid">
                 <!-- Deck 1: SPARC HUD 2026 Enhanced -->
                 <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=SPARC_HUD_2026_Executive_Deck_Enhanced'">
+                        <img src="decks/slides/SPARC_HUD_2026_Executive_Deck_Enhanced/Slide1.GIF" alt="SPARC HUD FY 2026 Strategy" loading="lazy">
+                        <span class="thumb-overlay-badge">21 SLIDES</span>
+                    </div>
                     <div>
                         <div class="badge-row">
                             <span class="badge badge-civic">Bi-State CoC Governance</span>
@@ -517,6 +574,10 @@
 
                 <!-- Deck 2: Belleville Housing First -->
                 <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=Belleville_Housing_First_Blueprint'">
+                        <img src="decks/slides/Belleville_Housing_First_Blueprint/Slide1.GIF" alt="Belleville Housing First Blueprint" loading="lazy">
+                        <span class="thumb-overlay-badge">15 SLIDES</span>
+                    </div>
                     <div>
                         <div class="badge-row">
                             <span class="badge badge-civic">Municipal Operations</span>
@@ -549,6 +610,10 @@
 
                 <!-- Deck 4: St. Louis Watershed -->
                 <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=St._Louis_Watershed_Reimagined'">
+                        <img src="decks/slides/St._Louis_Watershed_Reimagined/Slide1.GIF" alt="St. Louis Watershed Reimagined" loading="lazy">
+                        <span class="thumb-overlay-badge">15 SLIDES</span>
+                    </div>
                     <div>
                         <div class="badge-row">
                             <span class="badge badge-eco">Civil Hydrology &amp; Ecology</span>
@@ -563,8 +628,132 @@
                     </div>
                 </div>
 
+                <!-- Deck: Data Center Waste Heat to Clean Water -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=Data_Center_Waste_Heat_Desalination'">
+                        <img src="decks/slides/Data_Center_Waste_Heat_Desalination/Slide1.PNG" alt="Data Center Waste Heat to Clean Water" loading="lazy">
+                        <span class="thumb-overlay-badge">15 SLIDES</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Clean-Tech Hydrology</span>
+                            <span class="card-meta">15 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Data Center Waste Heat to Clean Water</h3>
+                        <p class="project-desc">Closed-loop clean-tech presentation modeling thermal exhaust capture from enterprise AI clusters. Details thermodynamic energy recovery, low-temperature multi-effect distillation, acoustic wave cooling, and closed-loop aquifer recharge for municipal resilience.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Data_Center_Waste_Heat_Desalination" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Data_Center_Waste_Heat_Desalination.pdf" class="btn-deck-subtle" download><span>💾</span> PDF</a>
+                    </div>
+                </div>
+
+                <!-- Graphic: Thermal Desalination Infographic -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="window.open('assets/Waste_Heat_to_Water_Infographic.png', '_blank')">
+                        <img src="assets/Waste_Heat_to_Water_Infographic.png" alt="Thermal Desalination Infographic" loading="lazy">
+                        <span class="thumb-overlay-badge">HIGH-RES INFOGRAPHIC</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-eco">Thermodynamics Infographic</span>
+                            <span class="card-meta">Print &amp; Digital &bull; 4.7 MB</span>
+                        </div>
+                        <h3>Waste Heat to Water Technical Blueprint</h3>
+                        <p class="project-desc">High-resolution architectural infographic illustrating end-to-end data center thermodynamic capture. Features SMR containment integration, acoustic wave cooling loops, metal-organic framework (MOF) atmospheric harvesting, and groundwater injection beds.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="assets/Waste_Heat_to_Water_Infographic.png" class="btn-deck-live" target="_blank"><span>▶</span> Full Resolution &rarr;</a>
+                        <a href="assets/Waste_Heat_to_Water_Infographic.png" class="btn-deck-subtle" download><span>💾</span> Download</a>
+                    </div>
+                </div>
+
+                <!-- Graphic: IEP Pipeline Architecture of Renewal -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="window.open('assets/iep_pipeline_architecture_of_renewal.jpg', '_blank')">
+                        <img src="assets/iep_pipeline_architecture_of_renewal.jpg" alt="IEP Pipeline Architecture of Renewal" loading="lazy">
+                        <span class="thumb-overlay-badge">POLICY MANDALA</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-civic">Public Policy Chartbook</span>
+                            <span class="card-meta">Empirical Study &bull; Graphic</span>
+                        </div>
+                        <h3>IEP Pipeline &amp; Architecture of Renewal</h3>
+                        <p class="project-desc">Sacred geometry and empirical data visualization mapping systemic service cliffs from public school IEP transitions into chronic adult homelessness. Identifies high-leverage intervention junctures, trauma-informed housing subsidies, and peer navigation networks.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="assets/iep_pipeline_architecture_of_renewal.jpg" class="btn-deck-live" target="_blank"><span>▶</span> Full Resolution &rarr;</a>
+                        <a href="assets/iep_pipeline_architecture_of_renewal.jpg" class="btn-deck-subtle" download><span>💾</span> Download</a>
+                    </div>
+                </div>
+
+                <!-- Graphic: SPARC Multi-Agent Architecture Diagram -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="window.open('assets/sparc_unforgettable_architecture_diagram.png', '_blank')">
+                        <img src="assets/sparc_unforgettable_architecture_diagram.png" alt="SPARC Multi-Agent Architecture Diagram" loading="lazy">
+                        <span class="thumb-overlay-badge">SYSTEMS FLOW</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Multi-Agent Systems</span>
+                            <span class="card-meta">Architecture Flow &bull; Graphic</span>
+                        </div>
+                        <h3>SPARC Multi-Agent Autonomous Data System</h3>
+                        <p class="project-desc">Systems architecture flow illustrating autonomous data normalization and policy orchestration: Eva CSV structural guardrails, NICOLE cognitive fabric, and Stella HUD policy routing engine ensuring zero data loss and automated compliance.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="assets/sparc_unforgettable_architecture_diagram.png" class="btn-deck-live" target="_blank"><span>▶</span> Full Resolution &rarr;</a>
+                        <a href="assets/sparc_unforgettable_architecture_diagram.png" class="btn-deck-subtle" download><span>💾</span> Download</a>
+                    </div>
+                </div>
+
+                <!-- Graphic: DIY Faraday Cage Guide -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="window.open('assets/Faraday_Cage_Shielding_Guide.png', '_blank')">
+                        <img src="assets/Faraday_Cage_Shielding_Guide.png" alt="Faraday Cage Shielding Guide" loading="lazy">
+                        <span class="thumb-overlay-badge">HARDWARE SPEC</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">RF Physics &amp; Hardware</span>
+                            <span class="card-meta">Engineering Guide &bull; 6.1 MB</span>
+                        </div>
+                        <h3>Faraday Cage RF Attenuation Guide</h3>
+                        <p class="project-desc">Engineering specification and signal attenuation chart for physical RF shielding enclosures. Formulates mesh aperture sizing based on the tenth-wavelength rule, skin-depth conductivity formulas, and continuous seam bonding protocols.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="assets/Faraday_Cage_Shielding_Guide.png" class="btn-deck-live" target="_blank"><span>▶</span> Full Resolution &rarr;</a>
+                        <a href="assets/Faraday_Cage_Shielding_Guide.png" class="btn-deck-subtle" download><span>💾</span> Download</a>
+                    </div>
+                </div>
+
+                <!-- Deck: Circular AI Infrastructure -->
+                <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=Circular_AI_Infrastructure'">
+                        <img src="decks/slides/Circular_AI_Infrastructure/Slide1.PNG" alt="Circular AI Infrastructure" loading="lazy">
+                        <span class="thumb-overlay-badge">10 SLIDES</span>
+                    </div>
+                    <div>
+                        <div class="badge-row">
+                            <span class="badge badge-ai">Clean-Tech Infrastructure</span>
+                            <span class="card-meta">10 Slides &bull; Live Viewer</span>
+                        </div>
+                        <h3>Circular AI Hardware &amp; Micro-SMR Energy</h3>
+                        <p class="project-desc">Hardware infrastructure blueprint addressing compute energy bottlenecks. Combines micro-modular nuclear reactor (SMR) containment, closed-loop helium turbine Brayton cycles, structural e-waste silicon reclamation, and thermal energy cascading.</p>
+                    </div>
+                    <div class="card-btn-row">
+                        <a href="deck-viewer.html?deck=Circular_AI_Infrastructure" class="btn-deck-live"><span>▶</span> Live Presentation &rarr;</a>
+                        <a href="decks/Circular_AI_Infrastructure.pptx" class="btn-deck-subtle" download><span>💾</span> PPTX</a>
+                    </div>
+                </div>
+
                 <!-- Deck 5: City of the Sun -->
                 <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=SPARC_City_of_the_Sun_Executive_Deck'">
+                        <img src="decks/slides/SPARC_City_of_the_Sun_Executive_Deck/Slide1.GIF" alt="SPARC: City of the Sun" loading="lazy">
+                        <span class="thumb-overlay-badge">8 SLIDES</span>
+                    </div>
                     <div>
                         <div class="badge-row">
                             <span class="badge badge-civic">Clean-Tech Microgrid</span>
@@ -581,6 +770,10 @@
 
                 <!-- Deck 6: Bioluminescent Orb -->
                 <div class="project-card">
+                    <div class="project-card-thumb" onclick="location.href='deck-viewer.html?deck=The_Bioluminescent_Orb'">
+                        <img src="decks/slides/The_Bioluminescent_Orb/Slide1.GIF" alt="The Bioluminescent Orb" loading="lazy">
+                        <span class="thumb-overlay-badge">11 SLIDES</span>
+                    </div>
                     <div>
                         <div class="badge-row">
                             <span class="badge badge-eco">Photonic Computing</span>
@@ -904,5 +1097,318 @@
             }
         }
     </script>
+
+    <!-- Quick-Reel Floating Side Dock & Drawer -->
+    <button class="quick-reel-tab" id="quickReelBtn" aria-label="Open Slide Quick-Reel">
+        <span class="tab-icon">⚡</span>
+        <span class="tab-label">Visual Reel</span>
+        <span class="tab-badge">12</span>
+    </button>
+
+    <div class="quick-reel-backdrop" id="quickReelBackdrop"></div>
+
+    <aside class="quick-reel-drawer" id="quickReelDrawer">
+        <div class="drawer-header">
+            <h3><span>⚡</span> Visual Design Reel</h3>
+            <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Drawer">&times;</button>
+        </div>
+        <div class="drawer-intro">
+            Quickly sample slide spreads, system architectures, and technical infographics from Ashleigh's executive presentations.
+        </div>
+        <div class="drawer-scroll-body" id="drawerSnippetList">
+            <!-- Snippet cards populated via JS -->
+        </div>
+    </aside>
+
+    <script>
+    // SHOWCASE & QUICK-REEL CATALOG
+    const SHOWCASE_ITEMS = [
+        {
+            id: "watershed",
+            title: "St. Louis Confluence Basin Hydrology",
+            category: "Water & Environmental Systems",
+            filter: "water",
+            desc: "Civil engineering and watershed hydrological deck analyzing the Mississippi and Missouri river confluence basin. Evaluates combined sewer overflow (CSO) reduction, urban bioswale network design, permeable surface retrofits, and flood mitigation modeling across the bi-state metropolitan watershed.",
+            image: "decks/slides/St._Louis_Watershed_Reimagined/Slide1.GIF",
+            liveUrl: "deck-viewer.html?deck=St._Louis_Watershed_Reimagined",
+            downloadUrl: "decks/St._Louis_Watershed_Reimagined.pptx",
+            fileType: "PPTX",
+            tags: ["Civil Hydrology", "CSO Mitigation", "Bi-State Confluence"]
+        },
+        {
+            id: "desalination",
+            title: "Data Center Waste Heat to Clean Water",
+            category: "Thermodynamics & Water Production",
+            filter: "water",
+            desc: "Closed-loop clean-tech presentation modeling thermal exhaust capture from enterprise AI clusters. Details thermodynamic energy recovery, low-temperature multi-effect distillation, acoustic wave cooling, and closed-loop aquifer recharge for municipal resilience.",
+            image: "decks/slides/Data_Center_Waste_Heat_Desalination/Slide1.PNG",
+            liveUrl: "deck-viewer.html?deck=Data_Center_Waste_Heat_Desalination",
+            downloadUrl: "decks/Data_Center_Waste_Heat_Desalination.pdf",
+            fileType: "PDF",
+            tags: ["Waste-Heat-to-Water", "Thermal Desalination", "Acoustic Cooling"]
+        },
+        {
+            id: "desal_infographic",
+            title: "Thermal Desalination Technical Infographic",
+            category: "Technical Information Design",
+            filter: "infographic",
+            desc: "High-resolution architectural infographic illustrating end-to-end data center thermodynamic capture. Features SMR containment integration, acoustic wave cooling loops, metal-organic framework (MOF) atmospheric harvesting, and groundwater injection beds.",
+            image: "assets/Waste_Heat_to_Water_Infographic.png",
+            liveUrl: "assets/Waste_Heat_to_Water_Infographic.png",
+            downloadUrl: "assets/Waste_Heat_to_Water_Infographic.png",
+            fileType: "PNG",
+            tags: ["Infographic", "Thermodynamics", "MOF Harvesting"]
+        },
+        {
+            id: "sparc_hud",
+            title: "SPARC HUD FY2026 Bi-State CoC Strategy",
+            category: "Civic Policy & HMIS Governance",
+            filter: "civic",
+            desc: "Executive strategy deck coordinating St. Louis City (MO-501) and St. Clair County (IL-508). Focuses on inter-agency data sharing agreements, competitive Federal NOFO scoring rubrics, longitudinal Stella M system performance benchmarks, and cross-river resource pooling.",
+            image: "decks/slides/SPARC_HUD_2026_Executive_Deck_Enhanced/Slide1.GIF",
+            liveUrl: "deck-viewer.html?deck=SPARC_HUD_2026_Executive_Deck_Enhanced",
+            downloadUrl: "decks/SPARC_HUD_2026_Executive_Deck_Enhanced.pptx",
+            fileType: "PPTX",
+            tags: ["HUD NOFO", "HMIS Data Sharing", "Bi-State Governance"]
+        },
+        {
+            id: "belleville",
+            title: "Belleville Municipal Housing First Blueprint",
+            category: "Municipal Operations",
+            filter: "civic",
+            desc: "Municipal operational blueprint for St. Clair County, Illinois. Outlines city-level execution: converting congregate emergency shelter beds into permanent supportive housing (PSH), structuring flexible shallow-subsidy rapid re-housing (RRH), and linking street outreach teams directly to localized dispatch.",
+            image: "decks/slides/Belleville_Housing_First_Blueprint/Slide1.GIF",
+            liveUrl: "deck-viewer.html?deck=Belleville_Housing_First_Blueprint",
+            downloadUrl: "decks/Belleville_Housing_First_Blueprint.pptx",
+            fileType: "PPTX",
+            tags: ["Housing First", "Municipal Blueprint", "Shallow Subsidy"]
+        },
+        {
+            id: "iep_infographic",
+            title: "IEP Pipeline & Architecture of Renewal",
+            category: "Public Policy Infographic",
+            filter: "infographic",
+            desc: "Sacred geometry and empirical data visualization mapping systemic service cliffs from public school IEP transitions into chronic adult homelessness. Identifies high-leverage intervention junctures, trauma-informed housing subsidies, and peer navigation networks.",
+            image: "assets/iep_pipeline_architecture_of_renewal.jpg",
+            liveUrl: "assets/iep_pipeline_architecture_of_renewal.jpg",
+            downloadUrl: "assets/iep_pipeline_architecture_of_renewal.jpg",
+            fileType: "JPG",
+            tags: ["Public Policy", "IEP Cliff", "Service Architecture"]
+        },
+        {
+            id: "sparc_diagram",
+            title: "SPARC Multi-Agent Autonomous Data System",
+            category: "Systems Architecture Diagram",
+            filter: "infographic",
+            desc: "Systems architecture flow illustrating autonomous data normalization and policy orchestration: Eva CSV structural guardrails, NICOLE cognitive fabric, and Stella HUD policy routing engine ensuring zero data loss and automated compliance.",
+            image: "assets/sparc_unforgettable_architecture_diagram.png",
+            liveUrl: "assets/sparc_unforgettable_architecture_diagram.png",
+            downloadUrl: "assets/sparc_unforgettable_architecture_diagram.png",
+            fileType: "PNG",
+            tags: ["Multi-Agent Architecture", "HMIS Pipeline", "Data Guardrails"]
+        },
+        {
+            id: "circular_ai",
+            title: "Circular AI Hardware & Micro-SMR Energy",
+            category: "Sustainable Hardware Architecture",
+            filter: "hardware",
+            desc: "Hardware infrastructure blueprint addressing compute energy bottlenecks. Combines micro-modular nuclear reactor (SMR) containment, closed-loop helium turbine Brayton cycles, structural e-waste silicon reclamation, and thermal energy cascading.",
+            image: "decks/slides/Circular_AI_Infrastructure/Slide1.PNG",
+            liveUrl: "deck-viewer.html?deck=Circular_AI_Infrastructure",
+            downloadUrl: "decks/Circular_AI_Infrastructure.pptx",
+            fileType: "PPTX",
+            tags: ["Circular Hardware", "Micro-SMR", "Brayton Cycle"]
+        },
+        {
+            id: "faraday_guide",
+            title: "Faraday Cage RF Attenuation Guide",
+            category: "Electromagnetic Physics & Hardware",
+            filter: "hardware",
+            desc: "Engineering specification and signal attenuation chart for physical RF shielding enclosures. Formulates mesh aperture sizing based on the tenth-wavelength rule, skin-depth conductivity formulas, and continuous seam bonding protocols.",
+            image: "assets/Faraday_Cage_Shielding_Guide.png",
+            liveUrl: "assets/Faraday_Cage_Shielding_Guide.png",
+            downloadUrl: "assets/Faraday_Cage_Shielding_Guide.png",
+            fileType: "PNG",
+            tags: ["RF Shielding", "Electromagnetic Physics", "Hardware Guide"]
+        },
+        {
+            id: "gnostic_stack",
+            title: "Gnostic Intelligence Stack: 3-Agent Blueprint",
+            category: "Cognitive Architecture",
+            filter: "theory",
+            desc: "Tripartite autonomous agent architecture mapping classic cognitive archetypes to computational functions: Sentinel of Integrity (cybersecurity and firewall guardrails), Universal Decoder (translation and schema parser), and Sophia Core (generative reasoning engine).",
+            image: "assets/Gnostic_Intelligence_Stack_Blueprint.png",
+            liveUrl: "assets/Gnostic_Intelligence_Stack_Blueprint.png",
+            downloadUrl: "assets/Gnostic_Intelligence_Stack_Blueprint.png",
+            fileType: "PNG",
+            tags: ["Autonomous Agents", "Cognitive Stack", "Tripartite Architecture"]
+        },
+        {
+            id: "quantum_sovereignty",
+            title: "The Quantum Sovereignty Blueprint",
+            category: "Theoretical Physics & Cryptography",
+            filter: "theory",
+            desc: "NotebookLM research publication examining post-quantum cryptographic resilience, state sovereignty, non-local information processing, and harmonic phase alignment in distributed decentralized networks.",
+            image: "decks/slides/The_Quantum_Sovereignty_Blueprint/Slide1.PNG",
+            liveUrl: "deck-viewer.html?deck=The_Quantum_Sovereignty_Blueprint",
+            downloadUrl: "decks/The_Quantum_Sovereignty_Blueprint.pdf",
+            fileType: "PDF",
+            tags: ["Quantum Cryptography", "Information Theory", "Decentralization"]
+        },
+        {
+            id: "luminous_blueprint",
+            title: "The Luminous Blueprint: Harmonic Geometry",
+            category: "Cosmological Modeling",
+            filter: "theory",
+            desc: "20-slide visual study investigating cosmic resonance geometry, non-linear dynamics, and multidimensional system architecture, bridging ancient contemplative cosmologies with modern field physics.",
+            image: "decks/slides/The_Luminous_Blueprint/Slide1.PNG",
+            liveUrl: "deck-viewer.html?deck=The_Luminous_Blueprint",
+            downloadUrl: "decks/The_Luminous_Blueprint.pdf",
+            fileType: "PDF",
+            tags: ["Harmonic Geometry", "Field Dynamics", "Non-Linear Systems"]
+        }
+    ];
+
+    let currentFilter = "all";
+    let currentShowcaseIdx = 0;
+
+    function getFilteredItems() {
+        if (currentFilter === "all") return SHOWCASE_ITEMS;
+        return SHOWCASE_ITEMS.filter(item => item.filter === currentFilter);
+    }
+
+    function renderShowcaseStage(index) {
+        const filtered = getFilteredItems();
+        if (filtered.length === 0) return;
+        if (index < 0) index = filtered.length - 1;
+        if (index >= filtered.length) index = 0;
+        currentShowcaseIdx = index;
+
+        const item = filtered[currentShowcaseIdx];
+        const stageImg = document.getElementById('showcaseStageImg');
+        const titleEl = document.getElementById('showcaseTitle');
+        const descEl = document.getElementById('showcaseDescription');
+        const catEl = document.getElementById('showcaseCategory');
+        const chipsEl = document.getElementById('showcaseCompetencies');
+        const liveBtn = document.getElementById('showcaseLiveBtn');
+        const downBtn = document.getElementById('showcaseDownloadBtn');
+        const counterEl = document.getElementById('showcaseCounter');
+
+        if (stageImg) stageImg.src = item.image;
+        if (titleEl) titleEl.textContent = item.title;
+        if (descEl) descEl.textContent = item.desc;
+        if (catEl) catEl.textContent = item.category;
+        if (counterEl) counterEl.textContent = `${currentShowcaseIdx + 1} / ${filtered.length}`;
+
+        if (chipsEl) {
+            chipsEl.innerHTML = item.tags.map(t => `<span class="competency-chip">${t}</span>`).join('');
+        }
+
+        if (liveBtn) {
+            liveBtn.href = item.liveUrl;
+            liveBtn.innerHTML = `<span>▶</span> ${item.fileType === 'PNG' || item.fileType === 'JPG' ? 'View High-Res Infographic' : 'Launch Presentation'} &rarr;`;
+        }
+
+        if (downBtn) {
+            downBtn.href = item.downloadUrl;
+            downBtn.innerHTML = `<span>💾</span> ${item.fileType} Source`;
+        }
+
+        // Highlight active filmstrip thumb
+        document.querySelectorAll('.filmstrip-thumb').forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === currentShowcaseIdx);
+        });
+    }
+
+    function renderFilmstrip() {
+        const filmstrip = document.getElementById('showcaseFilmstrip');
+        if (!filmstrip) return;
+        const filtered = getFilteredItems();
+
+        filmstrip.innerHTML = filtered.map((item, i) => `
+            <div class="filmstrip-thumb ${i === currentShowcaseIdx ? 'active' : ''}" data-idx="${i}" title="${item.title}">
+                <img src="${item.image}" alt="${item.title}" loading="lazy">
+                <span class="filmstrip-tag">${item.tags[0] || item.category}</span>
+            </div>
+        `).join('');
+
+        filmstrip.querySelectorAll('.filmstrip-thumb').forEach(thumb => {
+            thumb.addEventListener('click', (e) => {
+                const idx = parseInt(thumb.getAttribute('data-idx'));
+                renderShowcaseStage(idx);
+            });
+        });
+    }
+
+    function renderQuickReelDrawer() {
+        const list = document.getElementById('drawerSnippetList');
+        if (!list) return;
+
+        list.innerHTML = SHOWCASE_ITEMS.map((item, i) => `
+            <div class="drawer-snippet-card">
+                <div class="snippet-card-img-wrap">
+                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                </div>
+                <div class="snippet-card-content">
+                    <span class="source-tag">${item.category}</span>
+                    <h5>${item.title}</h5>
+                    <p>${item.desc.substring(0, 115)}...</p>
+                    <a href="${item.liveUrl}" class="snippet-card-link" ${item.liveUrl.startsWith('http') || item.liveUrl.includes('.png') || item.liveUrl.includes('.jpg') ? 'target="_blank"' : ''}>
+                        ${item.fileType === 'PNG' || item.fileType === 'JPG' ? 'Open High-Res Graphic' : 'Launch Live Viewer'} &rarr;
+                    </a>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Initialize Showcase Events
+    document.addEventListener('DOMContentLoaded', () => {
+        renderFilmstrip();
+        renderShowcaseStage(0);
+        renderQuickReelDrawer();
+
+        // Prev / Next Stage Buttons
+        const prevBtn = document.getElementById('stagePrevBtn');
+        const nextBtn = document.getElementById('stageNextBtn');
+        if (prevBtn) prevBtn.addEventListener('click', () => renderShowcaseStage(currentShowcaseIdx - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => renderShowcaseStage(currentShowcaseIdx + 1));
+
+        // Filter Pills
+        const filterBar = document.getElementById('showcaseFilterBar');
+        if (filterBar) {
+            filterBar.querySelectorAll('.filter-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    filterBar.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    currentFilter = pill.getAttribute('data-filter');
+                    currentShowcaseIdx = 0;
+                    renderFilmstrip();
+                    renderShowcaseStage(0);
+                });
+            });
+        }
+
+        // Quick Reel Drawer Toggle
+        const reelBtn = document.getElementById('quickReelBtn');
+        const drawer = document.getElementById('quickReelDrawer');
+        const backdrop = document.getElementById('quickReelBackdrop');
+        const closeBtn = document.getElementById('drawerCloseBtn');
+
+        function openDrawer() {
+            if (drawer) drawer.classList.add('open');
+            if (backdrop) backdrop.classList.add('open');
+        }
+
+        function closeDrawer() {
+            if (drawer) drawer.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('open');
+        }
+
+        if (reelBtn) reelBtn.addEventListener('click', openDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        if (backdrop) backdrop.addEventListener('click', closeDrawer);
+    });
+    </script>
+
 </body>
 </html>
